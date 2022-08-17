@@ -1,3 +1,5 @@
+# All Bazzell tools available here: https://inteltechniques.com/tools/
+
 def searchengi(query: str) -> dict:
     """
     Output a dict containing the URLs for your query across all search engines.
@@ -51,8 +53,78 @@ def searchengi(query: str) -> dict:
 
     return SEdict
 
-def facebook(query: str) -> dict:
+# Segmented Facebook tool into separate functions
+# All tools available here: https://inteltechniques.com/tools/Facebook.html
+
+def facebook_username(query: str) -> dict:
     """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_search(query: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_UID(UID: str, qual: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_LOCID(LOCID: str, qualifier: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_UID_query(UID: str, qual:str, query: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_events_by_loc(LOCID: str, query: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+
+def facebook_profiles_by_institution(IID: str, name: str) -> dict:
+    """
+    Employer, city or school
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_mutuality(UID1: str, UID2: str) -> dict:
+    """
+    """
+    FBdict = {
+
+    }
+    return FBdict
+
+def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
+    """
+    Return posts, photos, videos by keyword within a specific timeframe
     """
     FBdict = {
 
@@ -91,11 +163,19 @@ def communities(query: str) -> dict:
     }
     return Commdict
 
-def emailaddr(query: str) -> dict:
+def emailaddr(email: str) -> dict:
+    # TODO: put the necessary inbetween the quote marks here:
     """
     """
+    # Implementation of this tool: https://inteltechniques.com/tools/Email.html
     Emaildict = {
-        
+        "Google": "", # TODO: add in the URLs w/ {email} interpolation
+        "Bing": "",
+        "Yandex": "",
+        "Emailrep": "",
+        "Gravatar": "",
+        "HIBP": "",
+        # TODO: inish setting up this dict
     }
     return Emaildict
 
@@ -219,21 +299,7 @@ def breachQ(query: str) -> dict:
     }
     return Breachdict
 
-def liveAud(query: str) -> dict:
-    """
-    """
-    Audict = {
-        
-    }
-    return Audict
-
-def liveVid(query: str) -> dict:
-    """
-    """
-    Vidict = {
-        
-    }
-    return Vidict
-
-# TODO: possible future implementation of API search tool
-# see: https://inteltechniques.com/tools/API.html
+# TODO: possibly implement the Live Audio and Live Video streams tools
+# However, bear in mind that those streaming service tools aren't as useful outside US.
+# Therefore, not a priority.
+# TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
