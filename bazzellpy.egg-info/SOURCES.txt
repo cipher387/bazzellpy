@@ -1,0 +1,8 @@
+README.md
+setup.py
+bazzellpy/__init__.py
+bazzellpy/functions.py
+bazzellpy.egg-info/PKG-INFO
+bazzellpy.egg-info/SOURCES.txt
+bazzellpy.egg-info/dependency_links.txt
+bazzellpy.egg-info/top_level.txt
