@@ -56,7 +56,7 @@ def searchengines(query: str) -> dict:
     return SEdict
 
 # Segmented Facebook tool into separate functions
-# All tools available here: https://inteltechniques.com/tools/Facebook.html
+# TODO: #1 All tools available here: https://inteltechniques.com/tools/Facebook.html
 
 def facebook_username(query: str) -> dict:
     """
@@ -133,7 +133,7 @@ def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
     }
     return FBdict
 
-# Twitter tool: https://inteltechniques.com/tools/Twitter.html
+# TODO: #2 Twitter tool: https://inteltechniques.com/tools/Twitter.html
 
 def twitter_user(query: str) -> dict:
     """
@@ -175,7 +175,7 @@ def twitter_lists(list_number: str) -> dict:
     }
     return Twitdict
 
-# Insta tool: https://inteltechniques.com/tools/Instagram.html
+# TODO: #3 Insta tool: https://inteltechniques.com/tools/Instagram.html
 
 def instagram_user(query: str) -> dict:
     """
@@ -225,7 +225,7 @@ def instagram_dumpor_tag(query: str) -> dict:
     }
     return Instadict
 
-# LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
+# TODO: #4 LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
 
 def linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
     """
@@ -265,6 +265,8 @@ def linkedin_keyword(keyword: str) -> dict:
 # def linkedin_photos_videos(...)
 #   function not implemented - use case seems redundant
 
+# TODO: #5 Communities tool: https://inteltechniques.com/tools/Communities.html
+
 def communities(query: str) -> dict:
     """
     """
@@ -273,21 +275,24 @@ def communities(query: str) -> dict:
     }
     return Commdict
 
-def emailaddress(email: str) -> dict:
-    # TODO: put the necessary inbetween the quote marks here:
+# TODO: #6 Email address tool: https://inteltechniques.com/tools/Email.html
+
+def email_address(email: str) -> dict:
     """
     """
     # Implementation of this tool: https://inteltechniques.com/tools/Email.html
     Emaildict = {
-        "Google": "", # TODO: add in the URLs w/ {email} interpolation
+        "Google": "",
         "Bing": "",
         "Yandex": "",
         "Emailrep": "",
         "Gravatar": "",
         "HIBP": "",
-        # TODO: inish setting up this dict
+        
     }
     return Emaildict
+
+# TODO: #7 Username tool: https://inteltechniques.com/tools/Username.html
 
 def usernameQ(query: str) -> dict:
     """
@@ -297,7 +302,9 @@ def usernameQ(query: str) -> dict:
     }
     return Userdict
 
-def nameQ(query: str) -> dict:
+# TODO: #8 Name tool: https://inteltechniques.com/tools/Name.html
+
+def nameQ(forename: str, surname: str) -> dict:
     """
     """
     Namedict = {
@@ -306,12 +313,14 @@ def nameQ(query: str) -> dict:
     return Namedict
 
 # def addressQ(query: str) -> dict:
-#   Limited application outside United States - not implemented (yet)
-#   TODO: possibly implement
+#   TODO: #23 Possibly implement address querying; Limited application outside United States - not implemented (yet)
+#   Tool is here: https://inteltechniques.com/tools/Address.html
 
 # def telephoneNo(query: str) -> dict:
-#   Limited application outside United States - not implemented (yet)
-#   TODO: possibly implement
+#   TODO: #22 Possibly implement telephone No tool; Limited application outside United States - not implemented (yet)
+#   Tool is here: https://inteltechniques.com/tools/Telephone.html
+
+# TODO: #9 Maps tool: https://inteltechniques.com/tools/Location.html
 
 def mapQu(query: str) -> dict:
     """
@@ -321,6 +330,8 @@ def mapQu(query: str) -> dict:
     }
     return Mapdict
 
+# TODO: #10 Documents tool: https://inteltechniques.com/tools/Documents.html
+
 def doQment(query: str) -> dict:
     """
     """
@@ -329,7 +340,9 @@ def doQment(query: str) -> dict:
     }
     return Docdict
 
-def pastesQ(query: str) -> dict:
+# TODO: #11 Pastes tool: https://inteltechniques.com/tools/Pastes.html
+
+def pastes_query(query: str) -> dict:
     """
     """
     Pastedict = {
@@ -337,7 +350,9 @@ def pastesQ(query: str) -> dict:
     }
     return Pastedict
 
-def imgQ(query: str) -> dict:
+# TODO: #12 Images tool: https://inteltechniques.com/tools/Images.html
+
+def img_query(query: str) -> dict:
     """
     """
     Imgdict = {
@@ -345,7 +360,9 @@ def imgQ(query: str) -> dict:
     }
     return Imgdict
 
-def vidQ(query: str) -> dict:
+# TODO: #13 Videos tool: https://inteltechniques.com/tools/Videos.html
+
+def vid_query(query: str) -> dict:
     """
     """
     Vidict = {
@@ -353,7 +370,9 @@ def vidQ(query: str) -> dict:
     }
     return Vidict
 
-def domQ(query: str) -> dict:
+# TODO: #14 Domains tool: https://inteltechniques.com/tools/Domain.html
+
+def domain_query(query: str) -> dict:
     """
     """
     Domdict = {
@@ -361,11 +380,40 @@ def domQ(query: str) -> dict:
     }
     return Domdict
 
-def IPaddQ(query: str) -> dict:
+# IP Addresses tool: https://inteltechniques.com/tools/IP.html
+
+def IP_query(query: str) -> dict:
     """
+    Output a dict containing the URLs for your IP query across all IP lookup providers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     IPdict = {
-        
+        "VD ReverseIP": f"http://viewdns.info/reverseip/?host={query}&t=1",
+        "VD LocateIP": f"http://viewdns.info/iplocation/?ip={query}",
+        "VD PortScan": f"http://viewdns.info/portscan/?host={query}",
+        "VD Whois": f"http://viewdns.info/whois/?domain={query}",
+        "VD TraceRoute": f"http://viewdns.info/traceroute/?ip={query}",
+        "VD ReverseDNS": f"http://viewdns.info/reversedns/?domain={query}",
+        "IPAddress.com": f"https://www.ipaddress.com/ipv4/{query}",
+        "DNSChcker": f"https://dnschecker.org/ip-whois-lookup.php?query={query}",
+        "IPLookup": f"https://www.ip-lookup.org/location/{query}",
+        "MXTool": f"ttps://mxtoolbox.com/SuperTool.aspx?action=arin%3a{query}&run=toolpage",
+        "MXBlacklist": f"https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a{query}&run=toolpage",
+        "MXBlocklist": f"https://mxtoolbox.com/SuperTool.aspx?action=blocklist%3a{query}&run=networktools",
+        "Bing IP": f"http://www.bing.com/search?q=ip%3A{query}",
+        "IPLocation": f"https://www.iplocation.net/ip-lookup?query={query}&submit=IP+Lookup",
+        "That's Them": f"https://thatsthem.com/ip/{query}",
+        "Torrents": f"http://iknowwhatyoudownload.com/en/peer/?ip={query}",
+        "Wigle SSID": f"https://wigle.net/search?ssid={query}",
+        "Wigle Postal": f"https://wigle.net/search#fullSearch?postalCode={query}",
+        "Shodan": f"https://www.shodan.io/search?query={query}",
+        "Shodan Beta": f"https://beta.shodan.io/host/{query}",
+        "Shodan Raw": f"https://beta.shodan.io/host/{query}/raw",
+        "ThreatCrowd": f"https://www.threatcrowd.org/ip.php?ip={query}",
+        "Censys": f"https://search.censys.io/hosts/{query}",
+        "Dehashed": f"https://dehashed.com/search?query=%22{query}%22"
     }
     return IPdict
 
@@ -373,17 +421,18 @@ def IPaddQ(query: str) -> dict:
 # def bizgovQ(query: str) -> dict:
 #   This is heavily US-centric
 #   Seems little point implementing right now
-#   TODO: implement this if demand appears
+#   TODO: #21 implement Business/Government searches if demand appears
 
 # Vehicle searches: https://inteltechniques.com/tools/Vehicle.html 
 # def vehiQl(query: str) -> dict:
 #   Only useful in the United States - not implemented
-#   TODO: implement if this becomes/is a desired feature
+#   TODO: #20 Implement vehicle searches if this becomes/is a desired feature
 
-# Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
+# TODO: #15 Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
 # Out of virtual/crypto currency - will mostly be bitcoin
 # Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
-# TODO: look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+# TODO: #19 look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+
 def bitcoin_address(query: str) -> dict:
     """
     """
@@ -392,12 +441,13 @@ def bitcoin_address(query: str) -> dict:
     }
     return currdict
 
-# Breach searches: https://inteltechniques.com/tools/Breaches.html
+# TODO: #16 Breach searches: https://inteltechniques.com/tools/Breaches.html
 # Recommend only partial implementation of breach stuff
 # Dehashing etc is done far better with other tools
 # No point reinventing the wheel...
 # Finding breaches is the real use-case here
 # Also some of the fns Bazzell has online seem edge cases for most OSINT
+
 def breachQ_email(query: str) -> dict:
     """
     """
@@ -440,7 +490,7 @@ def breachQ_IP(query: str) -> dict:
 
 # def live_audio_video(...)
 #   Function not implemented
-#   TODO: possibly implement the Live Audio and Live Video streams tools
+#   TODO: #17 possibly implement the Live Audio and Live Video streams tools
 #   However, bear in mind that those streaming service tools aren't as useful outside US.
 #   Therefore, not a priority.
 #   Live Audio searches: https://inteltechniques.com/tools/Radio.html
@@ -448,4 +498,4 @@ def breachQ_IP(query: str) -> dict:
 
 # def API_search(...)
 #   This function seems a bit pointless and possibly a security flaw
-#   TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
+#   TODO: #18 possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
