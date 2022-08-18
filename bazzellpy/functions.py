@@ -1,6 +1,8 @@
 # All Bazzell tools available here: https://inteltechniques.com/tools/
 
-def searchengi(query: str) -> dict:
+# Search engines tool: https://inteltechniques.com/tools/Search.html
+
+def searchengines(query: str) -> dict:
     """
     Output a dict containing the URLs for your query across all search engines.
 
@@ -131,7 +133,9 @@ def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
     }
     return FBdict
 
-def twitter(query: str) -> dict:
+# Twitter tool: https://inteltechniques.com/tools/Twitter.html
+
+def twitter_user(query: str) -> dict:
     """
     """
     Twitdict = {
@@ -139,7 +143,41 @@ def twitter(query: str) -> dict:
     }
     return Twitdict
 
-def instagram(query: str) -> dict:
+def twitter_user_year(query: str, year: str) -> dict:
+    """
+    """
+    Twitdict = {
+        
+    }
+    return Twitdict
+
+def search_term_year(query: str, year: str) -> dict:
+    """
+    """
+    Twitdict = {
+        
+    }
+    return Twitdict
+
+def twitter_real_name(real_name: str) -> dict:
+    """
+    """
+    Twitdict = {
+        
+    }
+    return Twitdict
+
+def twitter_lists(list_number: str) -> dict:
+    """
+    """
+    Twitdict = {
+        
+    }
+    return Twitdict
+
+# Insta tool: https://inteltechniques.com/tools/Instagram.html
+
+def instagram_user(query: str) -> dict:
     """
     """
     Instadict = {
@@ -147,13 +185,85 @@ def instagram(query: str) -> dict:
     }
     return Instadict
 
-def linkedin(query: str) -> dict:
+def instagram_follow(query: str) -> dict:
+    """
+    """
+    Instadict = {
+        
+    }
+    return Instadict
+
+def instagram_user_term(query: str) -> dict:
+    """
+    """
+    Instadict = {
+        
+    }
+    return Instadict
+
+def instagram_association(user1: str, user2: str) -> dict:
+    """
+    """
+    Instadict = {
+        
+    }
+    return Instadict
+
+def instagram_search_term(query: str) -> dict:
+    """
+    """
+    Instadict = {
+        
+    }
+    return Instadict
+
+def instagram_dumpor_tag(query: str) -> dict:
+    """
+    """
+    Instadict = {
+        
+    }
+    return Instadict
+
+# LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
+
+def linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
     """
     """
     Linkdict = {
         
     }
     return Linkdict
+
+def linkedin_post_search(keyword: str, title: str) -> dict:
+    """
+    """
+    Linkdict = {
+        
+    }
+    return Linkdict
+
+def linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
+    """
+    """
+    Linkdict = {
+        
+    }
+    return Linkdict
+
+def linkedin_keyword(keyword: str) -> dict:
+    """
+    """
+    Linkdict = {
+        
+    }
+    return Linkdict
+
+# def linkedin_web_mob_profile(...)
+#   function not implemented - use case seems redundant
+
+# def linkedin_photos_videos(...)
+#   function not implemented - use case seems redundant
 
 def communities(query: str) -> dict:
     """
@@ -163,7 +273,7 @@ def communities(query: str) -> dict:
     }
     return Commdict
 
-def emailaddr(email: str) -> dict:
+def emailaddress(email: str) -> dict:
     # TODO: put the necessary inbetween the quote marks here:
     """
     """
@@ -195,21 +305,13 @@ def nameQ(query: str) -> dict:
     }
     return Namedict
 
-def addressQ(query: str) -> dict:
-    """
-    """
-    Adddict = {
-        
-    }
-    return Adddict
+# def addressQ(query: str) -> dict:
+#   Limited application outside United States - not implemented (yet)
+#   TODO: possibly implement
 
-def telephoneNo(query: str) -> dict:
-    """
-    """
-    Nodict = {
-        
-    }
-    return Nodict
+# def telephoneNo(query: str) -> dict:
+#   Limited application outside United States - not implemented (yet)
+#   TODO: possibly implement
 
 def mapQu(query: str) -> dict:
     """
@@ -267,23 +369,22 @@ def IPaddQ(query: str) -> dict:
     }
     return IPdict
 
-def bizgovQ(query: str) -> dict:
-    """
-    """
-    Instdict = {
-        
-    }
-    return Instdict
+# Business/Government searches: https://inteltechniques.com/tools/Business.html
+# def bizgovQ(query: str) -> dict:
+#   This is heavily US-centric
+#   Seems little point implementing right now
+#   TODO: implement this if demand appears
 
-def vehiQl(query: str) -> dict:
-    """
-    """
-    Vehdict = {
-        
-    }
-    return Vehdict
+# Vehicle searches: https://inteltechniques.com/tools/Vehicle.html 
+# def vehiQl(query: str) -> dict:
+#   Only useful in the United States - not implemented
+#   TODO: implement if this becomes/is a desired feature
 
-def Qrypto(query: str) -> dict:
+# Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
+# Out of virtual/crypto currency - will mostly be bitcoin
+# Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
+# TODO: look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+def bitcoin_address(query: str) -> dict:
     """
     """
     currdict = {
@@ -291,7 +392,13 @@ def Qrypto(query: str) -> dict:
     }
     return currdict
 
-def breachQ(query: str) -> dict:
+# Breach searches: https://inteltechniques.com/tools/Breaches.html
+# Recommend only partial implementation of breach stuff
+# Dehashing etc is done far better with other tools
+# No point reinventing the wheel...
+# Finding breaches is the real use-case here
+# Also some of the fns Bazzell has online seem edge cases for most OSINT
+def breachQ_email(query: str) -> dict:
     """
     """
     Breachdict = {
@@ -299,7 +406,46 @@ def breachQ(query: str) -> dict:
     }
     return Breachdict
 
-# TODO: possibly implement the Live Audio and Live Video streams tools
-# However, bear in mind that those streaming service tools aren't as useful outside US.
-# Therefore, not a priority.
-# TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
+def breachQ_username(query: str) -> dict:
+    """
+    """
+    Breachdict = {
+        
+    }
+    return Breachdict
+
+def breachQ_domain(query: str) -> dict:
+    """
+    """
+    Breachdict = {
+        
+    }
+    return Breachdict
+
+def breachQ_telephone(query: str) -> dict:
+    """
+    """
+    Breachdict = {
+        
+    }
+    return Breachdict
+
+def breachQ_IP(query: str) -> dict:
+    """
+    """
+    Breachdict = {
+        
+    }
+    return Breachdict
+
+# def live_audio_video(...)
+#   Function not implemented
+#   TODO: possibly implement the Live Audio and Live Video streams tools
+#   However, bear in mind that those streaming service tools aren't as useful outside US.
+#   Therefore, not a priority.
+#   Live Audio searches: https://inteltechniques.com/tools/Radio.html
+#   Live Video searches: https://inteltechniques.com/tools/Video.html
+
+# def API_search(...)
+#   This function seems a bit pointless and possibly a security flaw
+#   TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
