@@ -1,7 +1,5 @@
 # bazzellpy
 
-### N.B. - THIS LIBRARY IS STILL UNDER DEVELOPMENT
-
 `bazzellpy` allows you to call [IntelTechniques Search Tools](https://inteltechniques.com/tools) as functions in your Python program.
 
 Michael Bazzell's useful suite of OSINT tools are a great start for any investigation. I wanted to be able to call on these tools without having to re-paste code when working on more complex projects. I've made this library available so you can too.
@@ -36,26 +34,8 @@ Unless otherwise specified, the methods below will output a dictionary or dictio
 ### Facebook search
 `facebook_search(query:str)`
 
-### Facebook UID search with qualifier
-`facebook_UID(UID: str, qual: str)`
-
-### Facebook Location ID search with qualifier
-`facebook_LOCID(LOCID: str, qualifier: str)`
-
-### Facebook UID search with qualifier and query
-`facebook_UID_query(UID: str, qual: str, query: str)`
-
-### Facebook events by location
-`facebook_events_by_loc(LOCID: str, query: str)`
-
-### Facebook profiles by institution
-`facebook_profiles_by_institution(IID: str, name: str)`
-
 ### Facebook mutual connections
 `facebook_mutuality(UID1: str, UID2: str)`
-
-### Facebook content by date
-`facebook_content_by_date(keyword: str, start: str, end: str)`
 
 ## Twitter tools
 
@@ -127,10 +107,6 @@ instagram_follow(query: str)
 ## Name search tool
 
 `name_query(forename: str, surname: str)`
-
-## Maps tool (in decimal degrees to avoid disappointment)
-
-`map_query(lat: str, long: str)`
 
 ## Documents search tool
 
