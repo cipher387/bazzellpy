@@ -435,9 +435,25 @@ def IP_query(query: str) -> dict:
 
 def bitcoin_query(query: str) -> dict:
     """
+    Output a dict containing the URLs for your Bitcoin address query across a number of services.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     currdict = {
-        
+        "BTC Validation": f"https://thomas.vanhoutte.be/tools/validate-bitcoin-address.php?address={query}",
+        "Satoshi Receive": f"https://blockchain.info/q/getreceivedbyaddress/{query}",
+        "Satoshi Sent": f"https://blockchain.info/q/getsentbyaddress/{query}",
+        "Satoshi Balance": f"https://blockchain.info/q/addressbalance/{query}",
+        "Summary": f"https://chain.api.btc.com/v3/address/{query}",
+        "Creation Date": f"https://blockchain.info/q/addressfirstseen/{query}",
+        "Blockchain": f"https://www.blockchain.com/btc/address/{query}",
+        "BitcoinAbuse": f"https://www.bitcoinabuse.com/reports/{query}",
+        "WhosWho": f"https://bitcoinwhoswho.com/address/{query}",
+        "OXT": f"https://oxt.me/address/{query}",
+        "WalletExplorer": f"https://www.walletexplorer.com/address/{query}",
+        "BTC": f"https://btc.com/{query}",
+        "BC BTC": f"https://blockchair.com/bitcoin/address/{query}"
     }
     return currdict
 
