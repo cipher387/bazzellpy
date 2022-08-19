@@ -9,7 +9,6 @@ def searchengines(query: str) -> dict:
     :param query: what you want to search
     :return: dict containing URLs for your query
     """
-
     SEdict = {
         "Surface web": {
             "Google": f"http://google.com/search?q={query}",
@@ -52,130 +51,248 @@ def searchengines(query: str) -> dict:
             "FreshOnion": f"http://freshonifyfe4rmuh6qwpsexfhdrww7wnt5qmkoertwxmcuvm4woo4ad.onion/?query={query}"
         }
     }
-
     return SEdict
 
 # Segmented Facebook tool into separate functions
-# TODO: #1 All tools available here: https://inteltechniques.com/tools/Facebook.html
+# Tools available here: https://inteltechniques.com/tools/Facebook.html
 
 def facebook_user(username: str, userno: str) -> dict:
     """
-    """
-    FBdict = {
+    Output a dict containing links to different parts of a user's Facebook profile.
 
+    :param username: the username to search - input "" if not available
+    :param userno: the user number to search - input "" if not available
+    :return: dict containing links to various parts of user profile
+    """
+    if username=="":
+        FBdict_username = {"Username search": "Nothing returned - no username supplied to search"}
+    else:
+        FBdict_username = {
+            "Timeline": f"https://www.facebook.com/{username}",
+            "About": f"https://www.facebook.com/{username}/about",
+            "Employment": f"https://www.facebook.com/{username}/about?section=work",
+            "Education": f"https://www.facebook.com/{username}/about?section=education",
+            "Locations": f"https://www.facebook.com/{username}/about?section=living",
+            "Contact Info": f"https://www.facebook.com/{username}/about?section=contact-info",
+            "Basic Info": f"https://www.facebook.com/{username}/about?section=basic-info",
+            "Relationship": f"https://www.facebook.com/{username}/about?section=relationship",
+            "Family": f"https://www.facebook.com/{username}/about?section=family",
+            "Biography": f"https://www.facebook.com/{username}/about?section=bio",
+            "Life Events": f"https://www.facebook.com/{username}/about?section=year-overviews",
+            "Friends": f"https://www.facebook.com/{username}/friends",
+            "Photos": f"https://www.facebook.com/{username}/photos",
+            "Photo Albums": f"https://www.facebook.com/{username}/photos_albums",
+            "Videos": f"https://www.facebook.com/{username}/videos",
+            "Check-ins": f"https://www.facebook.com/{username}/places_visited",
+            "Recent check-ins": f"https://www.facebook.com/{username}/places_recent",
+            "Sports": f"https://www.facebook.com/{username}/sports",
+            "Music": f"https://www.facebook.com/{username}/music",
+            "Movies": f"https://www.facebook.com/{username}/movies",
+            "TV": f"https://www.facebook.com/{username}/tv",
+            "Books": f"https://www.facebook.com/{username}/books",
+            "Apps & Games": f"https://www.facebook.com/{username}/games",
+            "Likes": f"https://www.facebook.com/{username}/likes",
+            "Events": f"https://www.facebook.com/{username}/events",
+            "Facts": f"https://www.facebook.com/{username}/did_you_know",
+            "Reviews": f"https://www.facebook.com/{username}/reviews",
+            "Notes": f"https://www.facebook.com/{username}/notes"
+        }
+    if userno=="":
+        FBdict_userno = {"User number search": "Nothing returned - no user number supplied to search"}
+    else:
+        FBdict_userno = {
+            "Profile":f"https://www.facebook.com/{userno}"
+        }
+    FBdict = {
+        "Username": FBdict_username,
+        "User number": FBdict_userno
     }
     return FBdict
 
 def facebook_search(query: str) -> dict:
     """
+    Output a dict containing links to various engines to search terms across facebook.
+
+    :param query: the term you want to search
+    :return: dict containing links to the search results for your query
     """
     FBdict = {
-
+        "All": f"https://www.facebook.com/search/top/?q={query}",
+        "Posts": f"https://www.facebook.com/search/posts/?q={query}",
+        "People": f"https://www.facebook.com/search/people/?q={query}",
+        "Photos": f"https://www.facebook.com/search/photos/?q={query}",
+        "Videos": f"https://www.facebook.com/search/videos/?q={query}",
+        "Marketplace": f"https://www.facebook.com/search/marketplace/?q={query}",
+        "Pages": f"https://www.facebook.com/search/pages/?q={query}",
+        "Places": f"https://www.facebook.com/search/places/?q={query}",
+        "Groups": f"https://www.facebook.com/search/groups/?q={query}",
+        "Apps": f"https://www.facebook.com/search/apps/?q={query}",
+        "Events": f"https://www.facebook.com/search/events/?q={query}",
+        "Links": f"https://www.facebook.com/search/links/?q={query}"
     }
     return FBdict
 
-def facebook_UID(UID: str, qual: str) -> dict:
+# Not implementing these in v1.0.0
+# TODO: Implement the remainder of the Facebook tools when get time
+#       There are JavaScript routines for querying
+#
+#def facebook_UID(UID: str, qual: str) -> dict:
+#    """
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
+#
+#def facebook_LOCID(LOCID: str, qualifier: str) -> dict:
+#    """
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
+#
+# def facebook_UID_query(UID: str, qual:str, query: str) -> dict:
+#    """
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
+#
+#def facebook_events_by_loc(LOCID: str, query: str) -> dict:
+#    """
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
+#
+#def facebook_profiles_by_institution(IID: str, name: str) -> dict:
+#    """
+#    Employer, city or school
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
+
+def facebook_mutuality(UID1: str, UID2: str) -> str:
     """
+    Output a string containing a URL showing common friends between two user IDs.
+
+    :param UID1: the first User ID
+    :param UID2: the second User ID
+    :return: common friends result URL as string
     """
-    FBdict = {
+    FBstr = f"https://facebook.com/browse/mutual_friends/?uid={UID1}&node={UID2}",
+    return FBstr
 
-    }
-    return FBdict
+#def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
+#    """
+#    Return posts, photos, videos by keyword within a specific timeframe
+#    """
+#    FBdict = {
+#
+#    }
+#    return FBdict
 
-def facebook_LOCID(LOCID: str, qualifier: str) -> dict:
-    """
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-def facebook_UID_query(UID: str, qual:str, query: str) -> dict:
-    """
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-def facebook_events_by_loc(LOCID: str, query: str) -> dict:
-    """
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-
-def facebook_profiles_by_institution(IID: str, name: str) -> dict:
-    """
-    Employer, city or school
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-def facebook_mutuality(UID1: str, UID2: str) -> dict:
-    """
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
-    """
-    Return posts, photos, videos by keyword within a specific timeframe
-    """
-    FBdict = {
-
-    }
-    return FBdict
-
-# TODO: #2 Twitter tool: https://inteltechniques.com/tools/Twitter.html
+# Segmented Twitter tool into separate functions
+# TODO: Twitter tool: https://inteltechniques.com/tools/Twitter.html
 
 def twitter_user(query: str) -> dict:
     """
+    Takes Twitter username as string and returns dict of URLs to aspects of profile and third-party analysis tools
+    
+    :param query: the Twitter username you want to query
+    :return: dictionary of URLs - Twitter profile & third-party analysis
     """
     Twitdict = {
-        
+        "Twitter Profile": f"https://twitter.com/{query}",
+        "Outgoing Tweets": f"https://twitter.com/search?q=from%3A{query}&f=live",
+        "Incoming Tweets": f"https://twitter.com/search?q=to%3A{query}&f=live",
+        "Media Tweets": f"https://twitter.com/{query}/media/",
+        "Liked Tweets": f"https://twitter.com/{query}/likes/"
+        "Lists Created": f"https://twitter.com/{query}/lists/",
+        "Lists Included": f"https://twitter.com/{query}/lists/memberships",
+        "Moments": f"https://twitter.com/{query}/moments",
+        "Topics": f"https://twitter.com/{query}/topics",
+        "Followers": f"https://twitter.com/{query}/followers",
+        "Following": f"https://twitter.com/{query}/following",
+        "Social Bearing": f"https://socialbearing.com/search/user/{query}",
+        "FollerMe": f"https://foller.me/{query}",
+        "Google Archives": f"http://google.com/search?q=site%3Atwitter.com%2F{query}",
+        "Google Tweets": f"https://www.google.com/search?q=site%3Atwitter.com%2F{query}%2Fstatus%2F",
+        "Bing Archives": f"http://www.bing.com/search?q=twitter.com/{query}",
+        "Yandex Archives": f"https://www.yandex.com/search/?text=https%3A%2F%2Ftwitter.com%2F{query}",
+        "Google Cache": f"https://webcache.googleusercontent.com/search?q=cache:https://twitter.com/{query}",
+        "Wayback Machine": f"http://web.archive.org/web/*/twitter.com/{query}",
+        "Historical": f"https://memory.lol/tw/{query}",
+        "Spoonbill": f"https://spoonbill.io/data/{query}",
+        "Friend Analysis": f"https://followerwonk.com/analyze/{query}",
+        "Follower Analysis": f"https://followerwonk.com/analyze/{query}?op=fl",
+        "Twitter Audit": f"https://www.twitteraudit.com/{query}",
+        "Twitonomy": f"https://www.twitonomy.com/profile.php?sn={query}"
     }
     return Twitdict
 
 def twitter_user_year(query: str, year: str) -> dict:
     """
+    See a Twitter user's activity during a specific year
+
+    :param query: the user's username
+    :param year: the year you are interested in
+    :return: dict of URLs that chops up activity in various ways to be selected from for further analysis 
     """
     Twitdict = {
-        
+        "Outgoing by Year": f"",
+        "Incoming by Year": f"",
+        "Media by Year": f"",
+        "No Replies": f"",
+        "Only Replies": f""
     }
     return Twitdict
 
-def search_term_year(query: str, year: str) -> dict:
+def twitter_query_year(query: str, year: str) -> str:
     """
+    Returns a URL giving activity for a specific term for a particular year
+
+    :param query: search term(s)
+    :param year: the year you are interested in
+    :return: string of URL to page displaying activity
     """
-    Twitdict = {
-        
-    }
-    return Twitdict
+    Twitstr = f""
+    return Twitstr
 
 def twitter_real_name(real_name: str) -> dict:
     """
+    Identify Twitter Profiles using an individual's real name.
+
+    :param real_name: the individual's real name
+    :return: dict containing two URLs of search results
     """
     Twitdict = {
-        
+        "Profile Search I": "",
+        "Profile Search II": ""
     }
     return Twitdict
 
 def twitter_lists(list_number: str) -> dict:
     """
+    Return URLs with details about Twitter lists (members and followers).
+
+    :param list_number: the ID number of the list
+    :return: dict containing the URLs
     """
     Twitdict = {
-        
+        "List": "",
+        "List Members": "",
+        "List Followers": ""
     }
     return Twitdict
 
-# TODO: #3 Insta tool: https://inteltechniques.com/tools/Instagram.html
+# Segmented Insta tool into separate functions
+# TODO: Insta tool: https://inteltechniques.com/tools/Instagram.html
 
 def instagram_user(query: str) -> dict:
     """
@@ -193,7 +310,7 @@ def instagram_follow(query: str) -> dict:
     }
     return Instadict
 
-def instagram_user_term(query: str) -> dict:
+def instagram_user_term(user: str, search_term: str) -> str:
     """
     """
     Instadict = {
@@ -201,7 +318,7 @@ def instagram_user_term(query: str) -> dict:
     }
     return Instadict
 
-def instagram_association(user1: str, user2: str) -> dict:
+def instagram_association(user1: str, user2: str) -> str:
     """
     """
     Instadict = {
@@ -217,7 +334,7 @@ def instagram_search_term(query: str) -> dict:
     }
     return Instadict
 
-def instagram_dumpor_tag(query: str) -> dict:
+def instagram_dumpor_tag(query: str) -> str:
     """
     """
     Instadict = {
@@ -225,7 +342,8 @@ def instagram_dumpor_tag(query: str) -> dict:
     }
     return Instadict
 
-# TODO: #4 LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
+# Segmented LinkedIn tool into separate functions
+# TODO: LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
 
 def linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
     """
@@ -265,7 +383,8 @@ def linkedin_keyword(keyword: str) -> dict:
 # def linkedin_photos_videos(...)
 #   function not implemented - use case seems redundant
 
-# TODO: #5 Communities tool: https://inteltechniques.com/tools/Communities.html
+# TODO: Communities tool: https://inteltechniques.com/tools/Communities.html
+#       Only implementing the username searches part of this tool, the rest seems quite redundant
 
 def community_query(query: str) -> dict:
     """
@@ -275,7 +394,7 @@ def community_query(query: str) -> dict:
     }
     return Commdict
 
-# TODO: #6 Email address tool: https://inteltechniques.com/tools/Email.html
+# TODO: Email address tool: https://inteltechniques.com/tools/Email.html
 
 def email_query(email: str) -> dict:
     """
@@ -292,7 +411,7 @@ def email_query(email: str) -> dict:
     }
     return Emaildict
 
-# TODO: #7 Username tool: https://inteltechniques.com/tools/Username.html
+# TODO: Username tool: https://inteltechniques.com/tools/Username.html
 
 def username_query(query: str) -> dict:
     """
@@ -302,7 +421,7 @@ def username_query(query: str) -> dict:
     }
     return Userdict
 
-# TODO: #8 Name tool: https://inteltechniques.com/tools/Name.html
+# TODO: Name tool: https://inteltechniques.com/tools/Name.html
 
 def name_query(forename: str, surname: str) -> dict:
     """
@@ -313,24 +432,27 @@ def name_query(forename: str, surname: str) -> dict:
     return Namedict
 
 # def addressQ(query: str) -> dict:
-#   TODO: #23 Possibly implement address querying; Limited application outside United States - not implemented (yet)
+#   TODO: Possibly implement address querying; Limited application outside United States - not implemented (yet)
 #   Tool is here: https://inteltechniques.com/tools/Address.html
-
+#
 # def telephoneNo(query: str) -> dict:
-#   TODO: #22 Possibly implement telephone No tool; Limited application outside United States - not implemented (yet)
+#   TODO: Possibly implement telephone No tool; Limited application outside United States - not implemented (yet)
 #   Tool is here: https://inteltechniques.com/tools/Telephone.html
+#
+# Maps tool: https://inteltechniques.com/tools/Location.html
+# TODO: Possibly add Maps tool in the future
+#       I really don't see this tool as necessary - why would you
+#       need to search lat and long from multiple sources?
+#
+# def map_query(lat: str, long: str) -> dict:
+#    """
+#    """
+#    Mapdict = {
+#        
+#    }
+#    return Mapdict
 
-# TODO: #9 Maps tool: https://inteltechniques.com/tools/Location.html
-
-def map_query(query: str) -> dict:
-    """
-    """
-    Mapdict = {
-        
-    }
-    return Mapdict
-
-# TODO: #10 Documents tool: https://inteltechniques.com/tools/Documents.html
+# TODO: Documents tool: https://inteltechniques.com/tools/Documents.html
 
 def doc_query(query: str) -> dict:
     """
@@ -340,7 +462,7 @@ def doc_query(query: str) -> dict:
     }
     return Docdict
 
-# TODO: #11 Pastes tool: https://inteltechniques.com/tools/Pastes.html
+# TODO: Pastes tool: https://inteltechniques.com/tools/Pastes.html
 
 def paste_query(query: str) -> dict:
     """
@@ -360,7 +482,7 @@ def img_query(query: str) -> dict:
     }
     return Imgdict
 
-# TODO: #13 Videos tool: https://inteltechniques.com/tools/Videos.html
+# TODO: Videos tool: https://inteltechniques.com/tools/Videos.html
 
 def vid_query(query: str) -> dict:
     """
@@ -370,7 +492,7 @@ def vid_query(query: str) -> dict:
     }
     return Vidict
 
-# TODO: #14 Domains tool: https://inteltechniques.com/tools/Domain.html
+# TODO: Domains tool: https://inteltechniques.com/tools/Domain.html
 
 def domain_query(query: str) -> dict:
     """
@@ -421,17 +543,17 @@ def IP_query(query: str) -> dict:
 # def bizgovQ(query: str) -> dict:
 #   This is heavily US-centric
 #   Seems little point implementing right now
-#   TODO: #21 implement Business/Government searches if demand appears
+#   TODO: implement Business/Government searches if demand appears
 
 # Vehicle searches: https://inteltechniques.com/tools/Vehicle.html 
 # def vehiQl(query: str) -> dict:
 #   Only useful in the United States - not implemented
-#   TODO: #20 Implement vehicle searches if this becomes/is a desired feature
+#   TODO: Implement vehicle searches if this becomes/is a desired feature
 
-# TODO: #15 Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
+# Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
 # Out of virtual/crypto currency - will mostly be bitcoin
 # Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
-# TODO: #19 look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+# TODO: look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
 
 def bitcoin_query(query: str) -> dict:
     """
@@ -541,10 +663,10 @@ def breachQ_IP(query: str) -> dict:
 # Master query function for breaches below
 # Also - I know that chaining 5 if statements together below to make this is awful
 #       I just don't have time to write something better
-# TODO: #27 Breach master tool should really have error handling
+# TODO: Breach master tool should really have error handling
 #       Hell, probably should the rest of this library
-# TODO: #28 If there is time at some point, add in RegEx to check queries valid for each arg in breach query master
-# TODO: #26 Possibly add in master queries for other tools
+# TODO: If there is time at some point, add in RegEx to check queries valid for each arg in breach query master
+# TODO: Possibly add in master queries for other tools
 #       However, does seem like the master query is most useful for this tool at this stage
 #       Worth waiting to see if there is any demand for this
 
@@ -590,7 +712,7 @@ def breach_query(email: str, username: str, domain: str, telephone: str, IP_add:
 
 # def live_audio_video(...)
 #   Function not implemented
-#   TODO: #17 possibly implement the Live Audio and Live Video streams tools
+#   TODO: possibly implement the Live Audio and Live Video streams tools
 #   However, bear in mind that those streaming service tools aren't as useful outside US.
 #   Therefore, not a priority.
 #   Live Audio searches: https://inteltechniques.com/tools/Radio.html
@@ -598,4 +720,4 @@ def breach_query(email: str, username: str, domain: str, telephone: str, IP_add:
 
 # def API_search(...)
 #   This function seems a bit pointless and possibly a security flaw
-#   TODO: #18 possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
+#   TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
