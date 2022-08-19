@@ -58,7 +58,7 @@ def searchengines(query: str) -> dict:
 # Segmented Facebook tool into separate functions
 # TODO: #1 All tools available here: https://inteltechniques.com/tools/Facebook.html
 
-def facebook_username(query: str) -> dict:
+def facebook_user(username: str, userno: str) -> dict:
     """
     """
     FBdict = {
@@ -267,7 +267,7 @@ def linkedin_keyword(keyword: str) -> dict:
 
 # TODO: #5 Communities tool: https://inteltechniques.com/tools/Communities.html
 
-def communities(query: str) -> dict:
+def community_query(query: str) -> dict:
     """
     """
     Commdict = {
@@ -277,7 +277,7 @@ def communities(query: str) -> dict:
 
 # TODO: #6 Email address tool: https://inteltechniques.com/tools/Email.html
 
-def email_address(email: str) -> dict:
+def email_query(email: str) -> dict:
     """
     """
     # Implementation of this tool: https://inteltechniques.com/tools/Email.html
@@ -294,7 +294,7 @@ def email_address(email: str) -> dict:
 
 # TODO: #7 Username tool: https://inteltechniques.com/tools/Username.html
 
-def usernameQ(query: str) -> dict:
+def username_query(query: str) -> dict:
     """
     """
     Userdict = {
@@ -304,7 +304,7 @@ def usernameQ(query: str) -> dict:
 
 # TODO: #8 Name tool: https://inteltechniques.com/tools/Name.html
 
-def nameQ(forename: str, surname: str) -> dict:
+def name_query(forename: str, surname: str) -> dict:
     """
     """
     Namedict = {
@@ -322,7 +322,7 @@ def nameQ(forename: str, surname: str) -> dict:
 
 # TODO: #9 Maps tool: https://inteltechniques.com/tools/Location.html
 
-def mapQu(query: str) -> dict:
+def map_query(query: str) -> dict:
     """
     """
     Mapdict = {
@@ -332,7 +332,7 @@ def mapQu(query: str) -> dict:
 
 # TODO: #10 Documents tool: https://inteltechniques.com/tools/Documents.html
 
-def doQment(query: str) -> dict:
+def doc_query(query: str) -> dict:
     """
     """
     Docdict = {
@@ -342,7 +342,7 @@ def doQment(query: str) -> dict:
 
 # TODO: #11 Pastes tool: https://inteltechniques.com/tools/Pastes.html
 
-def pastes_query(query: str) -> dict:
+def paste_query(query: str) -> dict:
     """
     """
     Pastedict = {
@@ -433,7 +433,7 @@ def IP_query(query: str) -> dict:
 # Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
 # TODO: #19 look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
 
-def bitcoin_address(query: str) -> dict:
+def bitcoin_query(query: str) -> dict:
     """
     """
     currdict = {
@@ -441,7 +441,7 @@ def bitcoin_address(query: str) -> dict:
     }
     return currdict
 
-# TODO: #16 Breach searches: https://inteltechniques.com/tools/Breaches.html
+# Breach searches: https://inteltechniques.com/tools/Breaches.html
 # Recommend only partial implementation of breach stuff
 # Dehashing etc is done far better with other tools
 # No point reinventing the wheel...
@@ -450,41 +450,125 @@ def bitcoin_address(query: str) -> dict:
 
 def breachQ_email(query: str) -> dict:
     """
+    Output a dict containing the URLs for your email address query across all breach registers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     Breachdict = {
-        
+        "HIBP": f"https://haveibeenpwned.com/unifiedsearch/{query}",
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "IntelX": f"https://intelx.io/?s={query}",
+        "PSDMP": f"https://psbdmp.ws/api/search/{query}",
+        "CyberNews": f"https://check.cybernews.com/chk/?lang=en_US&e={query}",
+        "Spycloud": f"https://portal.spycloud.com/endpoint/enriched-stats/{query}",
+        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}"
     }
     return Breachdict
 
 def breachQ_username(query: str) -> dict:
     """
+    Output a dict containing the URLs for your username query across all breach registers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     Breachdict = {
-        
+        "HIBP": f"https://haveibeenpwned.com/unifiedsearch/{query}",
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}"
     }
     return Breachdict
 
 def breachQ_domain(query: str) -> dict:
     """
+    Output a dict containing the URLs for your domain query across all breach registers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     Breachdict = {
-        
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
+        "IntelX": f"https://intelx.io/?s={query}",
+        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}"
     }
     return Breachdict
 
 def breachQ_telephone(query: str) -> dict:
     """
+    Output a dict containing the URLs for your telephone number query across all breach registers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     Breachdict = {
-        
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}"
     }
     return Breachdict
 
 def breachQ_IP(query: str) -> dict:
     """
+    Output a dict containing the URLs for your IP address query across all breach registers.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
     """
     Breachdict = {
-        
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
+        "IntelX": f"https://intelx.io/?s={query}"
+    }
+    return Breachdict
+
+# Master query function for breaches below
+# Also - I know that chaining 5 if statements together below to make this is awful
+#       I just don't have time to write something better
+# TODO: #27 Breach master tool should really have error handling
+#       Hell, probably should the rest of this library
+# TODO: #28 If there is time at some point, add in RegEx to check queries valid for each arg in breach query master
+# TODO: #26 Possibly add in master queries for other tools
+#       However, does seem like the master query is most useful for this tool at this stage
+#       Worth waiting to see if there is any demand for this
+
+def breach_query(email: str, username: str, domain: str, telephone: str, IP_add: str) -> dict:
+    """
+    Output a dict containing the URLs for your IP query across all breach registers.
+
+    :param email: email address to query - input "" to skip
+    :param username: username to query - input "" to skip
+    :param domain: domain to query - input "" to skip
+    :param telephone: telephone number to query - input "" to skip
+    :param IP_add: IP address to query - input "" to skip
+    :return: dict of dicts containing URLs for your query
+    """
+    if email=="":
+        s1 = {"Email": "Email to query not specified"}
+    else:
+        s1 = breachQ_email(email)
+    if username=="":
+        s2 = {"Username": "Username to query not specified"}
+    else:
+        s2 = breachQ_username(username)
+    if domain=="":
+        s3 = {"Domain": "Domain to query not specified"}
+    else:
+        s3 = breachQ_domain(domain)
+    if telephone=="":
+        s4 = {"Telephone": "Number to query not specified"}
+    else:
+        s4 = breachQ_telephone(telephone)
+    if IP_add=="":
+        s5 = {"IP": "Address to query not specified"}
+    else:
+        s5 = breachQ_IP(IP_add)
+    Breachdict = {
+        "Email": s1,
+        "Username": s2,
+        "Domain": s3,
+        "Telephone": s4,
+        "IP Address": s5
     }
     return Breachdict
 
