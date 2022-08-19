@@ -1,4 +1,4 @@
-# Bazzell-py
+# bazzellpy
 
 ### N.B. - THIS LIBRARY IS STILL UNDER DEVELOPMENT
 
