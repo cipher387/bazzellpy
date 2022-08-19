@@ -108,10 +108,6 @@ instagram_follow(query: str)
 
 `name_query(forename: str, surname: str)`
 
-## Maps tool (in decimal degrees to avoid disappointment)
-
-`map_query(lat: str, long: str)`
-
 ## Documents search tool
 
 `doc_query(query: str)`
