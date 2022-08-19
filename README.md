@@ -6,6 +6,8 @@
 
 Michael Bazzell's useful suite of OSINT tools are a great start for any investigation. I wanted to be able to call on these tools without having to re-paste code when working on more complex projects. I've made this library available so you can too.
 
+***Michael Bazzell has not endorsed this library and any references to his person are merely to give him due credit for publishing his tools. I am in no way involved with IntelTechniques or Michael Bazzell.***
+
 If you like this library, feel free to buy me a coffee!
 
 <p align="center"><a href="https://www.buymeacoffee.com/dmw94" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a></p>
