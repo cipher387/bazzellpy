@@ -245,11 +245,11 @@ def twitter_user_year(query: str, year: str) -> dict:
     :return: dict of URLs that chops up activity in various ways to be selected from for further analysis 
     """
     Twitdict = {
-        "Outgoing by Year": f"",
-        "Incoming by Year": f"",
-        "Media by Year": f"",
-        "No Replies": f"",
-        "Only Replies": f""
+        "Outgoing by Year": f"https://twitter.com/search?q=from%3A{query}}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live",
+        "Incoming by Year": f"https://twitter.com/search?q=to%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live",
+        "Media by Year": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31%20filter%3Amedia&src=typd&f=live",
+        "No Replies": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31%20-filter%3Areplies&src=typd&f=live",
+        "Only Replies": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31%20filter%3Areplies&src=typd&f=live"
     }
     return Twitdict
 
@@ -261,19 +261,20 @@ def twitter_query_year(query: str, year: str) -> str:
     :param year: the year you are interested in
     :return: string of URL to page displaying activity
     """
-    Twitstr = f""
+    Twitstr = f"https://twitter.com/search?q={query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live"
     return Twitstr
 
-def twitter_real_name(real_name: str) -> dict:
+def twitter_real_name(forename: str, surname: str) -> dict:
     """
     Identify Twitter Profiles using an individual's real name.
 
-    :param real_name: the individual's real name
+    :param forename: the individual's real first name
+    :param surname: the individual's real surname
     :return: dict containing two URLs of search results
     """
     Twitdict = {
-        "Profile Search I": "",
-        "Profile Search II": ""
+        "Profile Search I": f"https://twitter.com/search?q={forename}%20{surname}&f=user",
+        "Profile Search II": f"http://followerwonk.com/bio/?q_type=all&n={forename}%20{surname}"
     }
     return Twitdict
 
@@ -285,20 +286,28 @@ def twitter_lists(list_number: str) -> dict:
     :return: dict containing the URLs
     """
     Twitdict = {
-        "List": "",
-        "List Members": "",
-        "List Followers": ""
+        "List": f"https://twitter.com/i/lists/{query}",
+        "List Members": f"https://twitter.com/i/lists/{query}/members",
+        "List Followers": f"https://twitter.com/i/lists/{query}/followers"
     }
     return Twitdict
 
 # Segmented Insta tool into separate functions
-# TODO: Insta tool: https://inteltechniques.com/tools/Instagram.html
+# Insta tool: https://inteltechniques.com/tools/Instagram.html
 
 def instagram_user(query: str) -> dict:
     """
     """
     Instadict = {
-        
+        "IG Profile": f"",
+        "IG Channel": f"",
+        "IG Tagged": f"",
+        "Outgoing Search": f"",
+        "Incoming Search": f"",
+        "Bing Search": f"",
+        "Yandex Search": f"",
+        "Twitter Posts": f"",
+        "Dumpor Profile": f""
     }
     return Instadict
 
@@ -306,93 +315,176 @@ def instagram_follow(query: str) -> dict:
     """
     """
     Instadict = {
-        
+        "Followers": f"",
+        "Following": f""
     }
     return Instadict
 
 def instagram_user_term(user: str, search_term: str) -> str:
     """
     """
-    Instadict = {
-        
-    }
-    return Instadict
+    Instastr = f""
+    return Instastr
 
 def instagram_association(user1: str, user2: str) -> str:
     """
     """
-    Instadict = {
-        
-    }
-    return Instadict
+    Instastr = f""
+    return Instastr
 
-def instagram_search_term(query: str) -> dict:
-    """
-    """
-    Instadict = {
-        
-    }
-    return Instadict
-
-def instagram_dumpor_tag(query: str) -> str:
-    """
-    """
-    Instadict = {
-        
-    }
-    return Instadict
+# Almost certain there is no purpose for these two methods
+# TODO: implement these when get an opportunity to
+#def instagram_search_term(query: str) -> dict:
+#    """
+#    """
+#    Instadict = {
+#        
+#    }
+#    return Instadict
+#def instagram_dumpor_tag(query: str) -> str:
+#    """
+#    """
+#    Instadict = {
+#        
+#    }
+#    return Instadict
 
 # Segmented LinkedIn tool into separate functions
 # TODO: LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
 
-def linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
+def linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> str:
     """
     """
-    Linkdict = {
-        
-    }
-    return Linkdict
+    Linkstr = f""
+    return Linkstr
 
-def linkedin_post_search(keyword: str, title: str) -> dict:
+def linkedin_post_search(keyword: str, title: str) -> str:
     """
     """
-    Linkdict = {
-        
-    }
-    return Linkdict
+    Linkstr = f""
+    return Linkstr
 
 def linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
     """
     """
     Linkdict = {
-        
+        "Google": f"",
+        "Bing": f"",
+        "Yandex": f""
     }
     return Linkdict
 
-def linkedin_keyword(keyword: str) -> dict:
-    """
-    """
-    Linkdict = {
-        
-    }
-    return Linkdict
+# Utility seems non-essential for locating individuals
+# TODO: add when have time, would be useful for people using OSINT for Recruitment
+#def linkedin_keyword(keyword: str) -> dict:
+#    """
+#    """
+#    Linkdict = {
+#    }
+#    return Linkdict
 
 # def linkedin_web_mob_profile(...)
 #   function not implemented - use case seems redundant
+#   TODO: only if requested
 
 # def linkedin_photos_videos(...)
 #   function not implemented - use case seems redundant
+#   TODO: only if requested
 
 # TODO: Communities tool: https://inteltechniques.com/tools/Communities.html
 #       Only implementing the username searches part of this tool, the rest seems quite redundant
+#       TODO: implement other aspects of tool if requested
+#       Actually, scratch only usernames policy (at least for the following exceptions):
+#       4chan tool would be quite useful - implementing in separate tool
+#       ... likewise with Tiktok, Telegram, Discord and Meetup subtools
 
 def community_query(query: str) -> dict:
     """
     """
     Commdict = {
-        
+        "Reddit": {
+            "User Profile": f"",
+            "User Posts": f"",
+            "User Comments": f"",
+            "Reddit Archive I": f"",
+            "Reddit Archive II": f""
+            "Pushshift User I": f"",
+            "Pushshift User II": f""
+        },
+        "Hacker News": {
+            "User Search": f"",
+            "User Posts": f"",
+            "User Comments": f"",
+            "Favorites": f""
+        },
+        "TikTok": {
+            "User Profile": f"",
+            "User Profile Search": f"",
+            "TikTok Analytics I": f"",
+            "TikTok Analytics II": f"",
+            "TikTok Analytics III": f""
+        },
+        "Meetup": {
+            "Member Search": f""
+        },
+        "Ebay": {
+            "User Account": f"",
+            "User Feedback": f"",
+            "User Items": f""
+        },
+        "Pintrest": {
+            "User Search": f"",
+            "User Pins": f"",
+            "User Boards": f""
+        },
+        "Discord": {
+            "Server Invite Check": f""
+        },
+        "Other": {
+            "Parler User": f"",
+            "Gab User": f"",
+            "Telegram User/Channel": f"",
+            "Telegram User Videos": f""
+        }
     }
     return Commdict
+
+def community_term_query(query: str) -> dict:
+    """
+    """
+    commdict = {
+        "4chan": {
+            "Keyword Search": f"",
+            "Archive Search I": f"",
+            "Archive Search II": f"",
+            "Google Search": f""
+        },
+        "TikTok": {
+            "Tags": f"",
+            "Term Search": f"",
+            "Video Search": f"",
+            "Google Search": f""
+        },
+        "Meetup": {
+            "Event Search": f"",
+            "Post Search": f"",
+            "Google Search": f""
+        },
+        "Discord": {
+            "Disboard": f"",
+            "Top.gg": f"",
+            "Discord.me": f"",
+            "Servers": f"",
+            "Discordbee": f"",
+            "Google Search": f""
+        },
+        "Telegram": {
+            "Group Search": f"",
+            "Channel Search I": f"",
+            "Channel Searcg II": f""
+        }
+    }
+    return commdict
 
 # TODO: Email address tool: https://inteltechniques.com/tools/Email.html
 
@@ -401,13 +493,31 @@ def email_query(email: str) -> dict:
     """
     # Implementation of this tool: https://inteltechniques.com/tools/Email.html
     Emaildict = {
-        "Google": "",
-        "Bing": "",
-        "Yandex": "",
-        "Emailrep": "",
-        "Gravatar": "",
-        "HIBP": "",
-        
+        "Google": f"",
+        "Bing": f"",
+        "Yandex": f"",
+        "Emailrep": f"",
+        "Gravatar": f"",
+        "HIBP": f"",
+        "Dehashed": f"",
+        "Spycloud": f"",
+        "HudsonRock": f"",
+        "CyberNews": f"",
+        "PSBDMP": f"",
+        "IntelX": f"",
+        "LeakedSource": f"",
+        "HunterVerify": f"",
+        "OCCRP": f"",
+        "SpyTox": f"",
+        "ThatsThem": f"",
+        "Protonmail": f"",
+        "DomainData": f"",
+        "Whoisology": f"",
+        "AnalyzeID": f"",
+        "Whoxy": f"",
+        "ScamSearch": f"",
+        "MySpace": f"",
+        "Flickr": f""
     }
     return Emaildict
 
@@ -417,7 +527,33 @@ def username_query(query: str) -> dict:
     """
     """
     Userdict = {
-        
+        "Google": f"",
+        "Bing": f"",
+        "Yandex": f"",
+        "KnowEm Basic": f"",
+        "KnowEm Adv": f"",
+        "UserSearch": f"",
+        "NameVine": f"",
+        "SocialSearcher": f"",
+        "HaveIBeenPwned": f"",
+        "Dehashed": f"",
+        "PSBDMP": f"",
+        "Gravatar": f"",
+        "LinkTree": f"",
+        "InstagramBio": f"",
+        "Twitter": f"",
+        "Facebook": f"",
+        "Instagram": f"",
+        "TikTok": f"",
+        "Tinder": f"",
+        "Tumblr": f"",
+        "Snapchat": f"",
+        "Medium": f"",
+        "YouTube": f"",
+        "Reddit": f"",
+        "HIBP Emails": f"",
+        "Dehashed Emails": f"",
+        "Email Search": f""
     }
     return Userdict
 
