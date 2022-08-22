@@ -169,7 +169,7 @@ def twitter_user(query: str) -> dict:
         "Outgoing Tweets": f"https://twitter.com/search?q=from%3A{query}&f=live",
         "Incoming Tweets": f"https://twitter.com/search?q=to%3A{query}&f=live",
         "Media Tweets": f"https://twitter.com/{query}/media/",
-        "Liked Tweets": f"https://twitter.com/{query}/likes/"
+        "Liked Tweets": f"https://twitter.com/{query}/likes/",
         "Lists Created": f"https://twitter.com/{query}/lists/",
         "Lists Included": f"https://twitter.com/{query}/lists/memberships",
         "Moments": f"https://twitter.com/{query}/moments",
