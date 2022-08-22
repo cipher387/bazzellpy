@@ -437,8 +437,8 @@ def community_query(query: str) -> dict:
         },
         "Ebay": {
             "User Account": f"https://www.ebay.com/usr/{query}",
-            "User Feedback": f"https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid={user}",
-            "User Items": f"https://www.ebay.com/sch/{user}",
+            "User Feedback": f"https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid={query}",
+            "User Items": f"https://www.ebay.com/sch/{query}",
             "Google Search": f"https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.ebay.com%2Fusr+%22{query}%22"
         },
         "Pintrest": {
