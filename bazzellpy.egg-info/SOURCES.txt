@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 bazzellpy/__init__.py
