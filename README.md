@@ -16,184 +16,405 @@ If you like this library, feel free to buy me a coffee!
 `pip install bazzellpy`
 
 ## Import package and required method(s)
-`import bazzellpy`
-
-`from bazzellpy import <method>`
-
-## Note on methods
-Unless otherwise specified, the methods below will output a dictionary or dictionary of dictionaries
+```
+import bazzellpy
+from bazzellpy import <method>
+```
 
 ## Search engines tool
-`searchengines(query: str)` 
+```
+searchengines(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your query across all search engines.
+
+    :param query: what you want to search
+    :return: dict containing URLs for your query
+    """
+```
 
 ## Facebook tools
 
-### Facebook user search
-`facebook_user(username: str, userno: str)`
+```
+facebook_user(username: str, userno: str) -> dict:
+    """
+    Output a dict containing links to different parts of a user's Facebook profile.
 
-### Facebook search
-`facebook_search(query:str)`
+    :param username: the username to search - input "" if not available
+    :param userno: the user number to search - input "" if not available
+    :return: dict containing links to various parts of user profile
+    """
 
-### Facebook mutual connections
-`facebook_mutuality(UID1: str, UID2: str)`
+facebook_search(query: str) -> dict:
+    """
+    Output a dict containing links to various engines to search terms across facebook.
+
+    :param query: the term you want to search
+    :return: dict containing links to the search results for your query
+
+facebook_mutuality(UID1: str, UID2: str) -> str:
+    """
+    Output a string containing a URL showing common friends between two user IDs.
+
+    :param UID1: the first User ID
+    :param UID2: the second User ID
+    :return: common friends result URL as string
+    """
+```
 
 ## Twitter tools
 
-### Twitter user
-`twitter_user(query: str)`
+```
+twitter_user(query: str) -> dict:
+    """
+    Takes Twitter username as string and returns dict of URLs to aspects of profile and third-party analysis tools
+    
+    :param query: the Twitter username you want to query
+    :return: dictionary of URLs - Twitter profile & third-party analysis
+    """
 
-### Twitter user by year
-`twitter_user_year(query: str, year: str)`
+twitter_user_year(query: str, year: str) -> dict:
+    """
+    See a Twitter user's activity during a specific year
 
-### Search term by year
-`search_term_year(query: str, year: str)`
+    :param query: the user's username
+    :param year: the year you are interested in
+    :return: dict of URLs that chops up activity in various ways to be selected from for further analysis 
+    """
 
-### Real name search
-`twitter_real_name(real_name: str)`
+twitter_query_year(query: str, year: str) -> str:
+    """
+    Returns a URL giving activity for a specific term for a particular year
 
-### Lists search
-`twitter_lists(list_number: str)`
+    :param query: search term(s)
+    :param year: the year you are interested in
+    :return: string of URL to page displaying activity
+    """
+
+twitter_real_name(forename: str, surname: str) -> dict:
+    """
+    Identify Twitter Profiles using an individual's real name.
+
+    :param forename: the individual's real first name
+    :param surname: the individual's real surname
+    :return: dict containing two URLs of search results
+    """
+
+twitter_lists(list_number: str) -> dict:
+    """
+    Return URLs with details about Twitter lists (members and followers).
+
+    :param list_number: the ID number of the list
+    :return: dict containing the URLs
+    """
+```
 
 ## Instagram tools
 
-### User search
-`instagram_user(query: str)`
+```
+instagram_user(query: str) -> dict:
+    """
+    Various basic queries if all you have to go on is an Instagram username
 
-### Followers / following query
-instagram_follow(query: str)
+    :param query: individual's username
+    :return: dict containing URLs of results
+    """
 
-### User + search term query
-`instagram_user_term(user: str, search_term: str) -> str`
+instagram_follow(query: str) -> dict:
+    """
+    Directs to webpages containing a user's followers and who they follow
 
-### Association between 2 users
-`instagram_association(user1: str, user2: str) -> str`
+    :param query: the individual's username
+    :return: dict containing the URLs of the followers and following webpages
+    """
 
-### Hashtag and search term query
-`instagram_search_term(query: str)`
+instagram_user_term(user: str, search_term: str) -> str:
+    """
+    Searches out a user plus a search term
 
-### Dumpor tag query
-`instagram_dumpor_tag(query: str) -> str`
+    :param user: individual's username
+    :param search_term: self-explanatory
+    :return: string URL for search results
+    """
+
+instagram_association(user1: str, user2: str) -> str:
+    """
+    Identifies associations between two Instagram users
+
+    :param user1: first individual's username
+    :param user2: second individual's username
+    :return: string URL for search results
+    """
+
+instagram_search_or_tag(query: str) -> dict:
+    """
+    Results of search term or tag queries on Instagram
+
+    :param query: the search term
+    :return: dict of search result URLs
+    """
+```
 
 ## LinkedIn tools
 
-### Person search
+```
+linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> str:
+    """
+    Search result of profile matching a given forename, surname, title, company, school and keyword
 
-`linkedin_person_search(forename: str, surname: str, keyword: str, title: str, company: str, school: str)`
+    :param forename: self-explanatory
+    :param surname: self-explanatory
+    :param keyword: self-explanatory
+    :param title: individual's job title
+    :param company: self-explanatory
+    :param school: self-explanatory
+    :return: string containing URL of search result
+    """
 
-### Post search
+linkedin_post_search(keyword: str, title: str) -> str:
+    """
+    Searches posts given one or more keywords and the poster's job title
 
-`linkedin_post_search(keyword: str, title: str)`
+    :param keyword: self-explanatory
+    :param title: poster's job title
+    :return: string containing URL of search result
+    """
 
-### Person search on external engines
+linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
+    """
+    Search engine results for LinkedIn profiles matching a given forename, surname, title, company, school and keyword
 
-`linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title: str, company: str, school: str)`
-
-### Keyword search
-
-`linkedin_keyword(keyword: str)`
+    :param forename: self-explanatory
+    :param surname: self-explanatory
+    :param keyword: self-explanatory
+    :param title: individual's job title
+    :param company: self-explanatory
+    :param school: self-explanatory
+    :return: dict containing URLs of search results
+    """
+```
 
 ## Communities tool (username only)
 
-`community_query(query: str)`
+```
+community_query(query: str) -> dict:
+    """
+    Username and profile searches on Reddit, Hacker News, TikTok, Meetup, Ebay, Pintrest, Discord, Telegram, Parler and Gab
+
+    :param query: username to search
+    :return: dict of URLs of search results
+    """
+
+community_term_query(query: str) -> dict:
+    """
+    Terms and tags search across Reddit, 4chan, TikTok, Meetup, Discord and Telegram
+
+    :param query: the term or tag to search
+    :return: a dict containing URLs of search results
+    """
+```
 
 ## Email address tool
 
-`email_query(email: str)`
+```
+email_query(email: str) -> dict:
+    """
+    Returns URLs for search results on querying a specific email address
+
+    :param email: the email you want to search
+    :return: dict containing the search result URLs
+    """
+```
 
 ## Username search tool (anywhere not caught by "Communities tool")
 
-`username_query(query: str)`
+```
+username_query(query: str) -> dict:
+    """
+    Search for an individual given their username
+
+    :param query: the individual's username
+    :return: dict of URLs to search the username
+    """
+```
 
 ## Name search tool
 
-`name_query(forename: str, surname: str)`
+```
+name_query(forename: str, surname: str) -> dict:
+    """
+    Returns URLs to query a given real forename and surname.
+
+    :param forename: self-explanatory
+    :param surname: self-explanatory
+    :return: dict of URLs for querying an individual's real name against public databases
+    """
+```
 
 ## Documents search tool
 
-`doc_query(query: str)`
+```
+doc_query(query: str) -> dict:
+    """
+    Return search engine queries for online documents containing a particular term
 
-## Pastes tool
-
-`paste_query(query: str)`
+    :param query: your search term
+    :return: query URLs in dict
+    """
+```
 
 ## Images tool
 
-`img_query(query: str)`
+```
+img_query_url(query: str) -> dict:
+    """
+    Reverse search using an image
+
+    :param query: url of image
+    :return: results of image reverse search on various search engines
+    """
+
+img_query_text(query: str) -> dict:
+    """
+    Search for an image given a specific text query
+
+    :param query: search term / textual description of what you are looking for
+    :return: dict of URLs of results for the query
+    """
+```
 
 ## Videos tool
 
-`vid_query(query: str)`
+```
+YT_vid_ID_query(query: str) -> dict:
+    """
+    Various tools for use with Youtube (e.g., age-restriction bypass, view metadata, etc.)
+
+    :param query: video ID of interest
+    :return: dict of resultant URLs
+    """
+
+YT_vid_comments(video_id: str, search_term: str) -> str:
+    """
+    Return the URL of comments on a given Youtube Video
+
+    :param video_id: the ID number of the video
+    :param search_term: key terms you are looking for in comments
+    :return: URL (single string) of query result webpage
+    """
+
+YT_user_query(query: str) -> dict:
+    """
+    Query a YouTube user given their username
+
+    :param query: Youtube username
+    :return: links to profile and account details for the given username
+    """
+
+YT_channel_metadata(channel_id: str) -> str:
+    """
+    Get Youtube Channel metadata given a channel ID
+
+    :param query: channel ID of interest
+    :return: URL to metadata
+    """
+
+vid_search_term(query: str) -> dict:
+    """
+    Search for videos across the web by term or tag
+
+    :param query: search term or tag of interest
+    :return: dict containing URLs of results on various video sharing sites and search engines
+    """
+```
 
 ## Domains tool
 
-`domain_query(query: str)`
+```
+domain_query(query: str) -> dict:
+    """
+    Returns URLs of various sites to lookup information about a domain
+
+    :param query: the domain you want to query
+    :return: dict containg the URLs to lookup info
+    """
+```
 
 ## IP Addresses tool
 
 ```
-IP_query(query: str)
+IP_query(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your IP query across all IP lookup providers.
+
     :param query: what you want to search
     :return: dict containing URLs for your query
+    """
 ```
 
 ## Bitcoin address query
 
 ```
-bitcoin_query(query: str)
+bitcoin_query(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your Bitcoin address query across a number of services.
+
     :param query: what you want to search
     :return: dict containing URLs for your query
+    """
 ```
 
 ## Breach searches
 
-### Query using email address
-
 ```
-breachQ_email(query: str)
+breachQ_email(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your email address query across all breach registers.
+
     :param query: what you want to search
     :return: dict containing URLs for your query
-```
+    """
 
-### Query using username
+breachQ_username(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your username query across all breach registers.
 
-```
-breachQ_username(query: str)
     :param query: what you want to search
     :return: dict containing URLs for your query
-```
+    """
 
-### Query using domain
+breachQ_domain(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your domain query across all breach registers.
 
-```
-breachQ_domain(query: str)
     :param query: what you want to search
     :return: dict containing URLs for your query
-```
+    """
 
-### Query using telephone number
+breachQ_telephone(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your telephone number query across all breach registers.
 
-```
-breachQ_telephone(query: str)
     :param query: what you want to search
     :return: dict containing URLs for your query
-```
+    """
 
-### Query using IP address
+breachQ_IP(query: str) -> dict:
+    """
+    Output a dict containing the URLs for your IP address query across all breach registers.
 
-```
-breachQ_IP(query: str)
     :param query: what you want to search
     :return: dict containing URLs for your query
-```
+    """
 
-### Master query
+breach_query(email: str, username: str, domain: str, telephone: str, IP_add: str) -> dict:
+    """
+    Output a dict containing the URLs for your IP query across all breach registers.
 
-```
-breach_query(email: str, username: str, domain: str, telephone: str, IP_add: str)
     :param email: email address to query - input "" to skip
     :param username: username to query - input "" to skip
     :param domain: domain to query - input "" to skip
     :param telephone: telephone number to query - input "" to skip
     :param IP_add: IP address to query - input "" to skip
     :return: dict of dicts containing URLs for your query
+    """
 ```
