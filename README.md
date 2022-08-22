@@ -1,4 +1,4 @@
-# bazzellpy
+![bazzellpy](https://github.com/dmw94/bazzellpy/blob/main/title_img.png)
 
 `bazzellpy` allows you to call [IntelTechniques Search Tools](https://inteltechniques.com/tools) as functions in your Python program.
 
