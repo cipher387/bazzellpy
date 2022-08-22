@@ -169,7 +169,7 @@ def twitter_user(query: str) -> dict:
         "Outgoing Tweets": f"https://twitter.com/search?q=from%3A{query}&f=live",
         "Incoming Tweets": f"https://twitter.com/search?q=to%3A{query}&f=live",
         "Media Tweets": f"https://twitter.com/{query}/media/",
-        "Liked Tweets": f"https://twitter.com/{query}/likes/"
+        "Liked Tweets": f"https://twitter.com/{query}/likes/",
         "Lists Created": f"https://twitter.com/{query}/lists/",
         "Lists Included": f"https://twitter.com/{query}/lists/memberships",
         "Moments": f"https://twitter.com/{query}/moments",
@@ -204,7 +204,7 @@ def twitter_user_year(query: str, year: str) -> dict:
     """
 
     Twitdict = {
-        "Outgoing by Year": f"https://twitter.com/search?q=from%3A{query}}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live",
+        "Outgoing by Year": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live",
         "Incoming by Year": f"https://twitter.com/search?q=to%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live",
         "Media by Year": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31%20filter%3Amedia&src=typd&f=live",
         "No Replies": f"https://twitter.com/search?q=from%3A{query}%20since%3A{year}-01-01%20until%3A{year}-12-31%20-filter%3Areplies&src=typd&f=live",
