@@ -140,61 +140,6 @@ def facebook_search(query: str) -> dict:
 
     return FBdict
 
-# Not implementing these in v1.0.0
-# TODO: Implement the remainder of the Facebook tools when get time
-#       There are JavaScript routines for querying
-#
-#def facebook_UID(UID: str, qual: str) -> dict:
-#    """
-#    """
-#
-#    FBdict = {
-#
-#    }
-#
-#    return FBdict
-#
-#def facebook_LOCID(LOCID: str, qualifier: str) -> dict:
-#    """
-#    """
-#
-#    FBdict = {
-#
-#    }
-#    
-#   return FBdict
-#
-# def facebook_UID_query(UID: str, qual:str, query: str) -> dict:
-#    """
-#    """
-#
-#    FBdict = {
-#
-#    }
-#    
-#   return FBdict
-#
-#def facebook_events_by_loc(LOCID: str, query: str) -> dict:
-#    """
-#    """
-#
-#    FBdict = {
-#
-#    }
-#    
-#   return FBdict
-#
-#def facebook_profiles_by_institution(IID: str, name: str) -> dict:
-#    """
-#    Employer, city or school
-#    """
-#
-#    FBdict = {
-#
-#    }
-#    
-#   return FBdict
-
 def facebook_mutuality(UID1: str, UID2: str) -> str:
     """
     Output a string containing a URL showing common friends between two user IDs.
@@ -207,16 +152,6 @@ def facebook_mutuality(UID1: str, UID2: str) -> str:
     FBstr = f"https://facebook.com/browse/mutual_friends/?uid={UID1}&node={UID2}",
     
     return FBstr
-
-#def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
-#    """
-#    Return posts, photos, videos by keyword within a specific timeframe
-#    """
-#    FBdict = {
-#
-#    }
-#    
-#   return FBdict
 
 # Segmented Twitter tool into separate functions
 # Twitter tool: https://inteltechniques.com/tools/Twitter.html
@@ -459,37 +394,8 @@ def linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title
 
     return Linkdict
 
-# Utility seems non-essential for locating individuals
-# TODO: add when have time, would be useful for people using OSINT for Recruitment
-#def linkedin_keyword(keyword: str) -> dict:
-#    """
-#       'https://www.linkedin.com/search/results/companies/?keywords=' + keyword
-#       'https://www.linkedin.com/search/results/groups/?keywords=' + keyword
-#       'https://www.linkedin.com/search/results/schools/?keywords=' + keyword
-#       'https://www.linkedin.com/search/results/events/?keywords=' + keyword
-#       'https://www.linkedin.com/jobs/index/?keywords=' + keyword
-#    """
-#
-#    Linkdict = {
-#    }
-#
-#    return Linkdict
-#
-# def linkedin_web_mob_profile(...)
-#   function not implemented - use case seems redundant
-#   TODO: only if requested
-#   'https://search.google.com/test/mobile-friendly?url=http://linkedin.com/in/' + Search12
-#
-# def linkedin_photos_videos(...)
-#   function not implemented - use case seems redundant
-#   TODO: only if requested
-#   'https://www.google.com/search?q=site:linkedin.com+' + Search13 + '&source=lnms&tbm=isch'
-#   'https://www.bing.com/images/search?q=site%3alinkedin.com+' + Search14 + '&scenario=ImageBasicHover'
-#   'https://www.google.com/search?q=site:linkedin.com+' + Search15 + '&tbm=vid'
-
 # Communities tool: https://inteltechniques.com/tools/Communities.html
 #       Only implementing this tool in part because some parts seem redundant
-#       TODO: implement other aspects of tool if requested
 
 def community_query(query: str) -> dict:
     """
@@ -645,106 +551,88 @@ def email_query(email: str) -> dict:
 
 # Username tool: https://inteltechniques.com/tools/Username.html
 
-#####################
-#####################
-######################
-# CTRL + D = MULTIPLE LINE SELECT IN VSCODE
-# WILL MAKE FINISHING FROM HERE ON A LOT QUICKER
-#####################
-#####################
-#####################
+###############################################################
+###############################################################
+###############################################################
+########## CTRL + D = MULTIPLE LINE SELECT IN VSCODE ##########
+###############################################################
+###############################################################
+###############################################################
 
 def username_query(query: str) -> dict:
     """
-https://www.google.com/search?q=%22{query}%22
-https://www.bing.com/search?q=%22{query}%22
-'https://yandex.com/search/?text="{query}"'
-https://knowem.com/checkusernames.php?u={query}
-https://knowem.com/checksocialnames.php?u={query}
-https://usersearch.org/results_normal.php?URL_username={query}
-https://usersearch.org/results_advanced.php?URL_username={query}
-https://usersearch.org/results_advanced1.php?URL_username={query}
-https://usersearch.org/results_advanced2.php?URL_username={query}
-https://usersearch.org/results_advanced4.php?URL_username={query}
-https://usersearch.org/results_advanced5.php?URL_username={query}
-https://usersearch.org/results_advanced6.php?URL_username={query}
-https://usersearch.org/results_advanced7.php?URL_username={query}
-https://usersearch.org/results_dating.php?URL_username={query}
-https://usersearch.org/results_forums.php?URL_username={query}
-https://usersearch.org/results_crypto.php?URL_username={query}
-https://namevine.com/#/' + Search07
-https://www.social-searcher.com/search-users/?ntw=&q6=' + Search08
-https://haveibeenpwned.com/unifiedsearch/' + Search09
-https://dehashed.com/search?query="' + Search10 + '"'
-https://psbdmp.ws/api/search/' + Search11
-https://en.gravatar.com/' + Search12
-https://linktr.ee/' + Search13
-https://www.searchmy.bio/search?q=' + Search14
-http://twitter.com/' + Search15
-https://facebook.com/' + Search16
-http://instagram.com/' + Search17
-https://www.tiktok.com/@' + Search18
-https://tinder.com/@' + Search19
-https://' + Search20 + '.tumblr.com'
-https://www.snapchat.com/s/' + Search21
-https://medium.com/@' + Search22
-http://youtube.com/' + Search23
-https://www.reddit.com/user/' + Search24
-https://haveibeenpwned.com/unifiedsearch/{query}@gmail.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@yahoo.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@hotmail.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@protonmail.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@live.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@outlook.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@icloud.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@yandex.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@gmx.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@mail.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@mac.com?truncateResponse=true
-https://haveibeenpwned.com/unifiedsearch/{query}@me.com?truncateResponse=true
-https://dehashed.com/search?query=%22{query}@gmail.com%22
-https://dehashed.com/search?query=%22{query}@yahoo.com%22
-https://dehashed.com/search?query=%22{query}@hotmail.com%22
-https://dehashed.com/search?query=%22{query}@protonmail.com%22
-https://dehashed.com/search?query=%22{query}@live.com%22
-https://dehashed.com/search?query=%22{query}@outlook.com%22
-https://dehashed.com/search?query=%22{query}@icloud.com%22
-https://dehashed.com/search?query=%22{query}@yandex.com%22
-https://dehashed.com/search?query=%22{query}@gmx.com%22
-https://dehashed.com/search?query=%22{query}@mail.com%22
-https://dehashed.com/search?query=%22{query}@mac.com%22
-https://dehashed.com/search?query=%22{query}@me.com%22
-https://www.google.com/search?q=%22{query}@gmail.com%22OR%22{query}@yahoo.com%22OR%22{query}@hotmail.com%22OR%22{query}@protonmail.com%22OR%22{query}@live.com%22OR%22{query}@icloud.com%22OR%22{query}@yandex.com%22OR%22{query}@gmx.com%22OR%22{query}@mail.com%22OR%22{query}@mac.com%22OR%22{query}@me.com%22
+    Search for an individual given their username
+
+    :param query: the individual's username
+    :return: dict of URLs to search the username
     """
 
     Userdict = {
-        "Google": f"",
-        "Bing": f"",
-        "Yandex": f"",
-        "KnowEm Basic": f"",
-        "KnowEm Adv": f"",
-        "UserSearch": {},
-        "NameVine": f"",
-        "SocialSearcher": f"",
-        "HaveIBeenPwned": f"",
-        "Dehashed": f"",
-        "PSBDMP": f"",
-        "Gravatar": f"",
-        "LinkTree": f"",
-        "InstagramBio": f"",
-        "Twitter": f"",
-        "Facebook": f"",
-        "Instagram": f"",
-        "TikTok": f"",
-        "Tinder": f"",
-        "Tumblr": f"",
-        "Snapchat": f"",
-        "Medium": f"",
-        "YouTube": f"",
-        "Reddit": f"",
-        "HIBP Emails": {},
-        "Dehashed Emails": {},
-        "Email Search": f""
+        "Google": f'https://www.google.com/search?q=%22{query}%22',
+        "Bing": f'https://www.bing.com/search?q=%22{query}%22',
+        "Yandex": f'https://yandex.com/search/?text="{query}"',
+        "KnowEm Basic": f'https://knowem.com/checkusernames.php?u={query}',
+        "KnowEm Adv": f'https://knowem.com/checksocialnames.php?u={query}',
+        "UserSearch": [
+            f'https://usersearch.org/results_normal.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced1.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced2.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced4.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced5.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced6.php?URL_username={query}',
+            f'https://usersearch.org/results_advanced7.php?URL_username={query}',
+            f'https://usersearch.org/results_dating.php?URL_username={query}',
+            f'https://usersearch.org/results_forums.php?URL_username={query}',
+            f'https://usersearch.org/results_crypto.php?URL_username={query}'
+        ],
+        "NameVine": f'https://namevine.com/#/{query}',
+        "SocialSearcher": f'https://www.social-searcher.com/search-users/?ntw=&q6={query}',
+        "HaveIBeenPwned": f'https://haveibeenpwned.com/unifiedsearch/{query}',
+        "Dehashed": f'https://dehashed.com/search?query="{query}"',
+        "PSBDMP": f'https://psbdmp.ws/api/search/{query}',
+        "Gravatar": f'https://en.gravatar.com/{query}',
+        "LinkTree": f'https://linktr.ee/{query}',
+        "InstagramBio": f'https://www.searchmy.bio/search?q={query}',
+        "Twitter": f'http://twitter.com/{query}',
+        "Facebook": f'https://facebook.com/{query}',
+        "Instagram": f'http://instagram.com/{query}',
+        "TikTok": f'https://www.tiktok.com/@{query}',
+        "Tinder": f'https://tinder.com/@{query}',
+        "Tumblr": f'https://{query}.tumblr.com',
+        "Snapchat": f'https://www.snapchat.com/s/{query}',
+        "Medium": f'https://medium.com/@{query}',
+        "YouTube": f'http://youtube.com/{query}',
+        "Reddit": f'https://www.reddit.com/user/{query}',
+        "HIBP Emails": [
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@gmail.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@yahoo.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@hotmail.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@protonmail.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@live.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@outlook.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@icloud.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@yandex.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@gmx.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@mail.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@mac.com?truncateResponse=true",
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@me.com?truncateResponse=true"
+        ],
+        "Dehashed Emails": [
+            f"https://dehashed.com/search?query=%22{query}@gmail.com%22",
+            f"https://dehashed.com/search?query=%22{query}@yahoo.com%22",
+            f"https://dehashed.com/search?query=%22{query}@hotmail.com%22",
+            f"https://dehashed.com/search?query=%22{query}@protonmail.com%22",
+            f"https://dehashed.com/search?query=%22{query}@live.com%22",
+            f"https://dehashed.com/search?query=%22{query}@outlook.com%22",
+            f"https://dehashed.com/search?query=%22{query}@icloud.com%22",
+            f"https://dehashed.com/search?query=%22{query}@yandex.com%22",
+            f"https://dehashed.com/search?query=%22{query}@gmx.com%22",
+            f"https://dehashed.com/search?query=%22{query}@mail.com%22",
+            f"https://dehashed.com/search?query=%22{query}@mac.com%22",
+            f"https://dehashed.com/search?query=%22{query}@me.com%22"
+        ],
+        "Email Search": f'https://www.google.com/search?q=%22{query}@gmail.com%22OR%22{query}@yahoo.com%22OR%22{query}@hotmail.com%22OR%22{query}@protonmail.com%22OR%22{query}@live.com%22OR%22{query}@icloud.com%22OR%22{query}@yandex.com%22OR%22{query}@gmx.com%22OR%22{query}@mail.com%22OR%22{query}@mac.com%22OR%22{query}@me.com%22'
     }
 
     return Userdict
@@ -753,329 +641,317 @@ https://www.google.com/search?q=%22{query}@gmail.com%22OR%22{query}@yahoo.com%22
 
 def name_query(forename: str, surname: str) -> dict:
     """
-https://www.truepeoplesearch.com/results?name=' + Search01a + '%20' + Search01b, 'Search01window');}
-https://www.fastpeoplesearch.com/name/' + Search02a + '-' + Search02b, 'Search02window');}
-https://nuwber.com/search?name=' + Search03a + '%20' + Search03b, 'Search03window');}
-https://xlek.com/search_results.php?fname=' + Search04a + '&lname=' + Search04b + '&locations:all', 'Search04window');}
-https://www.familytreenow.com/search/genealogy/results?first=' + Search05a + '&last=' + Search05b, 'Search05window');}
-https://www.intelius.com/people-search/' + Search06a + '-' + Search06b, 'Search06window');}
-https://radaris.com/p/' + Search07a + '/' + Search07b, 'Search07window');}
-https://www.cyberbackgroundchecks.com/people/' + Search08a + '-' + Search08b, 'Search08window');}
-https://www.spytox.com/people/search?name=' + Search09a +'+' + Search09b, 'Search09window');}
-https://www.searchpeoplefree.com/find/' + Search10a + '-' + Search10b, 'Search10window');}
-https://www.spokeo.com/' + Search11a + '-' + Search11b +'?loaded=1', 'Search11window');}
-https://www.advancedbackgroundchecks.com/names/' + Search12a + '-' + Search12b, 'Search12window');}
-http://www.yasni.com/' + Search13a + '+' + Search13b + '/check+people?sh', 'Search13window');}
-https://www.zabasearch.com/people/' + Search14a + '+' + Search14b, 'Search14window');}
-https://www.peoplesearchnow.com/person/' + Search15a + '-' + Search15b, 'Search15window');}
-http://webmii.com/people?n=%22' + Search16a + '%20' + Search16b + '%22', 'Search16window');}
-https://www.social-searcher.com/search-users/?q6=' + Search17a + '+' + Search17b, 'Search17window');}
-https://www.truthfinder.com/results/?firstName=' + Search18a + '&lastName=' + Search18b + '&state=ALL', 'Search18window');}
-http://www.peoplebyname.com/people/' + Search19b + '/' + Search19a, 'Search19window');}
-https://www.whitepages.com/name/' + Search20a + '-' + Search20b, 'Search20window');}
-https://thatsthem.com/name/' + Search21a + '-' + Search21b, 'Search21window');}
-https://clustrmaps.com/persons/' + Search22a + '-' + Search22b, 'Search22window');}
-http://google.com/search?q=site:rocketreach.co+"' + Search23a + ' ' + Search23b + '"', 'Search23window');}
-https://www.officialusa.com/names/' + Search24a + '-' + Search24b, 'Search24window');}
-https://www.addresses.com/people/' + Search25a + '-' + Search25b, 'Search25window');}
-https://www.classmates.com/siteui/ybsearch/results?q=' + Search26a + ' ' + Search26b, 'Search26window');}
-https://cubib.com/search_results.php?fname=' + all1 + '&lname=' + all2 + '&locations:all', 'a4window');
+    Returns URLs to query a given real forename and surname.
+
+    :param forename: self-explanatory
+    :param surname: self-explanatory
+    :return: dict of URLs for querying an individual's real name against public databases
     """
 
     Namedict = {
-        
+        "TruePeopleSearch": f'https://www.truepeoplesearch.com/results?name={forename}%20{surname}',
+        "FastPeopleSearch": f'https://www.fastpeoplesearch.com/name/{forename}-{surname}',
+        "Nuwber": f'https://nuwber.com/search?name={forneame}%20{surname}',
+        "Xlek": f'https://xlek.com/search_results.php?fname={forename}&lname={surname}&locations:all',
+        "FamilyTreeNow": f'https://www.familytreenow.com/search/genealogy/results?first={forename}&last={surname}',
+        "Intelius People Search": f'https://www.intelius.com/people-search/{forename}-{surname}',
+        "Radaris": f'https://radaris.com/p/{forename}/{surname}',
+        "Cyber Background Checks": f'https://www.cyberbackgroundchecks.com/people/{forename}-{surname}',
+        "Spytox": f'https://www.spytox.com/people/search?name={forename}+{surname}',
+        "SearchPeopleFree": f'https://www.searchpeoplefree.com/find/{forename}-{surname}',
+        "Spokeo": f'https://www.spokeo.com/{forename}-{surname}?loaded=1',
+        "Advanced Background Checks": f'https://www.advancedbackgroundchecks.com/names/{forename}-{surname}',
+        "Yasni": f'http://www.yasni.com/{forename}+{surname}/check+people?sh',
+        "Zaba Search": f'https://www.zabasearch.com/people/{forename}+{surname}',
+        "PeopleSearchNow": f'https://www.peoplesearchnow.com/person/{forename}-{surname}',
+        "Webmii": f'http://webmii.com/people?n=%22{forename}%20{surname}%22',
+        "Social Searcher": f'https://www.social-searcher.com/search-users/?q6={forename}+{surname}',
+        "Truthfinder": f'https://www.truthfinder.com/results/?firstName={forename}&lastName={surname}&state=ALL',
+        "PeopleByName": f'http://www.peoplebyname.com/people/{forename}/{surname}',
+        "Whitepages": f'https://www.whitepages.com/name/{forename}-{surname}',
+        "That's Them": f'https://thatsthem.com/name/{forename}-{surname}',
+        "Clustrmaps": f'https://clustrmaps.com/persons/{forename}-{surname}',
+        "Rocketreach": f'http://google.com/search?q=site:rocketreach.co+"{forename} {surname}"',
+        "OfficialUSA": f'https://www.officialusa.com/names/{forename}-{surname}',
+        "Addresses.com": f'https://www.addresses.com/people/{forename}-{surname}',
+        "Classmates.com": f'https://www.classmates.com/siteui/ybsearch/results?q={forename} {surname}',
+        "Cubib": f'https://cubib.com/search_results.php?fname={forename}&lname={surname}&locations:all'
     }
 
     return Namedict
-
-# def addressQ(query: str) -> dict:
-#   TODO: Possibly implement address querying; Limited application outside United States - not implemented (yet)
-#   Tool is here: https://inteltechniques.com/tools/Address.html
-#
-# def telephoneNo(query: str) -> dict:
-#   TODO: Possibly implement telephone No tool; Limited application outside United States - not implemented (yet)
-#   Tool is here: https://inteltechniques.com/tools/Telephone.html
-#
-# Maps tool: https://inteltechniques.com/tools/Location.html
-# TODO: Possibly add Maps tool in the future
-#       I really don't see this tool as necessary - why would you
-#       need to search lat and long from multiple sources?
-#
-# def map_query(lat: str, long: str) -> dict:
-#    """
-#    """
-#
-#    Mapdict = {
-#        
-#    }
-#
-#    return Mapdict
 
 # Documents tool: https://inteltechniques.com/tools/Documents.html
 
 def doc_query(query: str) -> dict:
     """
-https://www.google.com/search?q=ext%3Apdf+{query}
-https://www.google.com/search?q=ext%3Adoc+OR+ext%3Adocx+{query}
-https://www.google.com/search?q=ext%3Axls+OR+ext%3Axlsx+OR+ext%3Acsv+{query}
-https://www.google.com/search?q=ext%3Appt+OR+ext%3Apptx+OR+ext%3Akey+{query}
-https://www.google.com/search?q=ext%3Atxt+OR+ext%3Artf+OR+ext%3Axml+{query}
-https://www.google.com/search?q=ext%3Aodt+OR+ext%3Aods+OR+ext%3Aodp+{query}
-https://www.google.com/search?q=ext%3Azip+OR+ext%3Arar+OR+ext%3A7z+{query}
-https://www.google.com/search?q=ext%3Ajpg+OR+ext%3Ajpeg+OR+ext%3Apng+{query}&tbm=isch
-https://www.google.com/search?q=ext%3Ampg+OR+ext%3Ampeg+OR+ext%3Amp4+{query}
-https://www.google.com/search?q=ext%3Amp3+OR+ext%3Awav+OR+ext%3Aflac+{query}
-https://www.google.com/search?q=site%3Adocs.google.com+{query}
-https://www.google.com/search?q=site%3Adrive.google.com+{query}
-https://www.google.com/search?q=site%3Astorage.googleapis.com+{query}
-https://www.google.com/search?q=site%3Adocs.microsoft.com+{query}
-https://www.google.com/search?q=site%3As3.amazonaws.com+{query}
-https://www.google.com/search?q=site%3Acloudfront.net+{query}
-https://buckets.grayhatwarfare.com/results/{query}
-https://www.google.com/search?q=site%3Aslideshare.net+{query}
-https://www.google.com/search?q=site%3Aprezi.com+{query}
-https://www.google.com/search?q=site%3Aissuu.com+{query}
-https://www.powershow.com/search/presentations/ppt/{query}
-https://www.google.com/search?q=site%3Aslidebean.com+{query}
-https://www.google.com/search?q=site%3Aauthorstream.com+{query}
-https://www.google.com/search?q=site%3Ascribd.com+{query}
-https://www.pdfdrive.net/search?q={query}
-https://search.wikileaks.org/?query={query}&exact_phrase=&any_of=&exclude_words=&document_date_start=&document_date_end=&released_date_start=&released_date_end=&new_search=True&order_by=most_relevant#results
-https://archive.org/search.php?query={query}&sin=TXT
-https://www.google.com/search?tbm=bks&q={query}
+    
     """
 
     Docdict = {
-        
+        "PDF": f"https://www.google.com/search?q=ext%3Apdf+{query}",
+        "DOC/DOCX": f"https://www.google.com/search?q=ext%3Adoc+OR+ext%3Adocx+{query}",
+        "XLS/XLSX/CSV": f"https://www.google.com/search?q=ext%3Axls+OR+ext%3Axlsx+OR+ext%3Acsv+{query}",
+        "PPT/PPTX/KEY": f"https://www.google.com/search?q=ext%3Appt+OR+ext%3Apptx+OR+ext%3Akey+{query}",
+        "TXT/RTF/XML": f"https://www.google.com/search?q=ext%3Atxt+OR+ext%3Artf+OR+ext%3Axml+{query}",
+        "ODT/ODS/ODP": f"https://www.google.com/search?q=ext%3Aodt+OR+ext%3Aods+OR+ext%3Aodp+{query}",
+        "ZIP/RAR/7Z": f"https://www.google.com/search?q=ext%3Azip+OR+ext%3Arar+OR+ext%3A7z+{query}",
+        "JPG/JPEG/PNG": f"https://www.google.com/search?q=ext%3Ajpg+OR+ext%3Ajpeg+OR+ext%3Apng+{query}&tbm=isch",
+        "MPG/MP4": f"https://www.google.com/search?q=ext%3Ampg+OR+ext%3Ampeg+OR+ext%3Amp4+{query}",
+        "MP3/WAV": f"https://www.google.com/search?q=ext%3Amp3+OR+ext%3Awav+OR+ext%3Aflac+{query}",
+        "Google Docs": f"https://www.google.com/search?q=site%3Adocs.google.com+{query}",
+        "Google Drive": f"https://www.google.com/search?q=site%3Adrive.google.com+{query}",
+        "Google API": f"https://www.google.com/search?q=site%3Astorage.googleapis.com+{query}",
+        "MS Docs": f"https://www.google.com/search?q=site%3Adocs.microsoft.com+{query}",
+        "Amazon AWS": f"https://www.google.com/search?q=site%3As3.amazonaws.com+{query}",
+        "Cloudfront": f"https://www.google.com/search?q=site%3Acloudfront.net+{query}",
+        "GrayHatWarfare": f"https://buckets.grayhatwarfare.com/results/{query}",
+        "SlideShare": f"https://www.google.com/search?q=site%3Aslideshare.net+{query}",
+        "Prezi": f"https://www.google.com/search?q=site%3Aprezi.com+{query}",
+        "ISSUU": f"https://www.google.com/search?q=site%3Aissuu.com+{query}",
+        "Powershow": f"https://www.powershow.com/search/presentations/ppt/{query}",
+        "Slide Bean": f"https://www.google.com/search?q=site%3Aslidebean.com+{query}",
+        "Author Stream": f"https://www.google.com/search?q=site%3Aauthorstream.com+{query}",
+        "Scribd": f"https://www.google.com/search?q=site%3Ascribd.com+{query}",
+        "PDF Drive": f"https://www.pdfdrive.net/search?q={query}",
+        "Wikileaks": f"https://search.wikileaks.org/?query={query}&exact_phrase=&any_of=&exclude_words=&document_date_start=&document_date_end=&released_date_start=&released_date_end=&new_search=True&order_by=most_relevant#results",
+        "Archive.org": f"https://archive.org/search.php?query={query}&sin=TXT",
+        "Google Books": f"https://www.google.com/search?tbm=bks&q={query}"  
     }
 
     return Docdict
-
-# TODO: Pastes tool: https://inteltechniques.com/tools/Pastes.html
-# Not doing right now
-#def paste_query(query: str) -> dict:
-#    """
-#    """
-#
-#    Pastedict = {
-#        
-#    }
-#
-#    return Pastedict
 
 # Images tool: https://inteltechniques.com/tools/Images.html
 
 def img_query_url(query: str) -> dict:
     """
-https://www.google.com/searchbyimage?site=search&sa=X&image_url={query}
-https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:{query}
-http://www.tineye.com/search/?url={query}
-https://yandex.com/images/search?rpt=imageview&url={query}
-https://graph.baidu.com/upload?image={query}
-https://karmadecay.com/search?q={query}
+    Reverse search using an image
+
+    :param query: url of image
+    :return: results of image reverse search on various search engines
     """
 
     Imgdict = {
-        
+        "Google Search by Image": f"https://www.google.com/searchbyimage?site=search&sa=X&image_url={query}",
+        "Bing Search by Image": f"https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:{query}",
+        "Tineye": f"http://www.tineye.com/search/?url={query}",
+        "Yandex Search by Image": f"https://yandex.com/images/search?rpt=imageview&url={query}",
+        "Baidu": f"https://graph.baidu.com/upload?image={query}",
+        "Karma Decay": f"https://karmadecay.com/search?q={query}"
     }
 
     return Imgdict
 
 def img_query_text(query: str) -> dict:
     """
-https://www.google.com/search?q={query}&tbm=isch
-https://www.bing.com/images/search?q={query}
-https://yandex.com/images/search?text={query}
-https://twitter.com/search?f=image&q={query}
-https://www.facebook.com/search/photos/?q={query}
-https://www.google.com/search?tbm=isch&q=site%3Ainstagram.com+{query}
-https://www.google.com/search?tbm=isch&q=site%3Alinkedin.com+{query}
-https://www.flickr.com/search/?text={query}
-https://www.tumblr.com/search/{query}
+    Search for an image given a specific text query
+
+    :param query: search term / textual description of what you are looking for
+    :return: dict of URLs of results for the query
     """
 
     Imgdict = {
-        
+        "Google Images": f"https://www.google.com/search?q={query}&tbm=isch",
+        "Bing Images": f"https://www.bing.com/images/search?q={query}",
+        "Yandex Images": f"https://yandex.com/images/search?text={query}",
+        "Twitter": f"https://twitter.com/search?f=image&q={query}",
+        "Facebook": f"https://www.facebook.com/search/photos/?q={query}",
+        "Instagram": f"https://www.google.com/search?tbm=isch&q=site%3Ainstagram.com+{query}",
+        "LinkedIn": f"https://www.google.com/search?tbm=isch&q=site%3Alinkedin.com+{query}",
+        "Flickr": f"https://www.flickr.com/search/?text={query}",
+        "Tumblr": f"https://www.tumblr.com/search/{query}"
     }
 
     return Imgdict
 
-# These could be stuck in other tools:
-#   https://api.flickr.com/services/rest/?method=flickr.people.findByEmail&api_key=27c196593dad58382fc4912b00cf1194&find_email=' + flemail
-#   https://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=27c196593dad58382fc4912b00cf1194&username=' + fluser
-#   https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=27c196593dad58382fc4912b00cf1194&user_id=' + flnumber + '&format=rest
-
 # Videos tool: https://inteltechniques.com/tools/Videos.html
 
-def vid_query(query: str) -> dict:
+def YT_vid_ID_query(query: str) -> dict:
     """
-https://keepvid.works/?url=https://www.youtube.com/watch/v=' + Search01, 'Search01window');}
-https://www.youtube.com/embed/' + Search02, 'Search02window');}
-https://i.ytimg.com/vi/' + Search03 + '/maxresdefault.jpg', 'Search03window');}
-https://img.youtube.com/vi/' + Search04 + '/1.jpg', 'Search04window');}
-https://img.youtube.com/vi/' + Search05 + '/2.jpg', 'Search05window');}
-https://img.youtube.com/vi/' + Search06 + '/3.jpg', 'Search06window');}
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=https://i.ytimg.com/vi/' + Search07 + '/maxresdefault.jpg', 'Search07window');}
-https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:https://i.ytimg.com/vi/' + Search08 + '/maxresdefault.jpg', 'Search08window');}
-https://yandex.com/images/search?rpt=imageview&url=https://i.ytimg.com/vi/' + Search09 + '/maxresdefault.jpg', 'Search09window');}
-http://www.tineye.com/search/?url=https://i.ytimg.com/vi/' + Search10 + '/maxresdefault.jpg', 'Search10window');}
-http://polsy.org.uk/stuff/ytrestrict.cgi?ytid=' + Search11, 'Search11window');}
-https://watannetwork.com/tools/blocked/#url=' + Search12, 'Search12window');}
-https://www.googleapis.com/youtube/v3/videos?id=' + Search13 + '&part=snippet,statistics,recordingDetails&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw', 'Search13window');}
-http://www.pwnyoutube.com/watch?v=' + Search14, 'Search14window');}
-https://web.archive.org/web/https://www.youtube.com/watch?v=' + Search15, 'Search15window');}
-https://www.google.com/search?tbm=vid&q=' + Search16, 'Search16window');}
-https://www.bing.com/videos/search?q=' + Search17, 'Search17window');}
-https://yandex.ru/video/search?text=' + Search18 + '&rpt=imageview', 'Search18window');}
-https://www.youtube.com/results?search_query=' + Search19, 'Search19window');}
-https://twitter.com/search?q=' + Search20 + '&f=video', 'Search20window');}
-https://www.facebook.com/search/videos/?q=' + Search21, 'Search21window');}
-https://www.reddit.com/search?q=site:v.redd.it%20AND%20' + Search22, 'Search22window');}
-https://www.tiktok.com/tag/' + Search23, 'Search23window');}
-https://www.peteyvid.com/index.php?q=' + Search24, 'Search24window');}
-https://archive.org/details/movies?and[]=' + Search25, 'Search25window');}
-https://archive.org/details/opensource_movies?and%5B%5D=' + Search26, 'Search26window');}
-https://archive.org/details/tv?q=' + Search27, 'Search27window');}
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=http://i.ytimg.com/vi/' + Search28 + '/0.jpg', 'rev13window');
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=http://i.ytimg.com/vi/' + Search28 + '/1.jpg', 'rev14window');
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=http://i.ytimg.com/vi/' + Search28 + '/2.jpg', 'rev15window');
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=http://i.ytimg.com/vi/' + Search28 + '/3.jpg', 'rev16window');
-http://www.tineye.com/search/?url=http://i.ytimg.com/vi/' + Search28 + '/0.jpg', 'revt5window');
-http://www.tineye.com/search/?url=http://i.ytimg.com/vi/' + Search28 + '/1.jpg', 'revt6window');
-http://www.tineye.com/search/?url=http://i.ytimg.com/vi/' + Search28 + '/2.jpg', 'revt7window');
-http://www.tineye.com/search/?url=http://i.ytimg.com/vi/' + Search28 + '/3.jpg', 'revt8window');
-https://yandex.com/images/search?source=collections&&url=http://i.ytimg.com/vi/' + Search28 + '/0.jpg&rpt=imageview', 'rev17window');
-https://yandex.com/images/search?source=collections&&url=http://i.ytimg.com/vi/' + Search28 + '/1.jpg&rpt=imageview', 'rev18window');
-https://yandex.com/images/search?source=collections&&url=http://i.ytimg.com/vi/' + Search28 + '/2.jpg&rpt=imageview', 'rev19window');
-https://yandex.com/images/search?source=collections&&url=http://i.ytimg.com/vi/' + Search28 + '/3.jpg&rpt=imageview', 'rev20window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=http://i.ytimg.com/vi/' + Search28 + '/0.jpg', 'rev21window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=http://i.ytimg.com/vi/' + Search28 + '/1.jpg', 'rev22window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=http://i.ytimg.com/vi/' + Search28 + '/2.jpg', 'rev23window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=http://i.ytimg.com/vi/' + Search28 + '/3.jpg', 'rev24window');}
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=https://i.vimeocdn.com/video/' + Search29, 'rev1window');
-http://www.tineye.com/search/?url=https://i.vimeocdn.com/video/' + Search29, 'revt1window');
-https://www.yandex.com/images/search?img_url=https://i.vimeocdn.com/video/' + Search29, 'rev5window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=https://i.vimeocdn.com/video/' + Search29, 'rev9window');}
-https://www.google.com/searchbyimage?site=search&sa=X&image_url=' + Search30, 'image1window');
-http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=' + Search30, 'image4window');
-http://www.tineye.com/search/?url=' + Search30, 'image2window');
-https://yandex.com/images/search?url=' + Search30 + '&rpt=imageview', 'image3window');
-https://image.baidu.com/pcdutu?queryImageUrl=' + Search30, 'image5window');}
-https://www.youtube.com/user/' + Search31, 'Search31window');}
-https://www.youtube.com/feeds/videos.xml?user=' + Search32, 'Search32window');}
-https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=' + Search33 + '&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw', 'Search33window');}
-https://www.googleapis.com/youtube/v3/commentThreads?part=id,snippet&videoId=' + Search34 + '&pageToken=&order=Relevance&maxResults=100&searchTerms=' + term + '&textFormat=plainText&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw', 'Search34window');}
+    Various tools for use with Youtube (e.g., age-restriction bypass, view metadata, etc.)
+
+    :param query: video ID of interest
+    :return: dict of resultant URLs
     """
 
     Vidict = {
-        
+        "Age Bypass": f"https://keepvid.works/?url=https://www.youtube.com/watch/v={query}",
+        "Full Screen": f"https://www.youtube.com/embed/{query}",
+        "Thumbnail HQ": f"https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
+        "Thumbnail 2": f"https://img.youtube.com/vi/{query}/1.jpg",
+        "Thumbnail 3": f"https://img.youtube.com/vi/{query}/2.jpg",
+        "Thumbnail 4": f"https://img.youtube.com/vi/{query}/3.jpg",
+        "Google Reverse": f"https://www.google.com/searchbyimage?site=search&sa=X&image_url=https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
+        "Bing Reverse": f"https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
+        "Yandex Reverse": f"https://yandex.com/images/search?rpt=imageview&url=https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
+        "Tineye Reverse": f"http://www.tineye.com/search/?url=https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
+        "Restrictions I": f"http://polsy.org.uk/stuff/ytrestrict.cgi?ytid={query}",
+        "Restrictions II": f"https://watannetwork.com/tools/blocked/#url={query}",
+        "Metadata": f"https://www.googleapis.com/youtube/v3/videos?id={query}&part=snippet,statistics,recordingDetails&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw",
+        "Download": f"http://www.pwnyoutube.com/watch?v={query}",
+        "Web Archive": f"https://web.archive.org/web/https://www.youtube.com/watch?v={query}"
     }
 
+    return Vidict
+
+def YT_vid_comments(video_id: str, search_term: str) -> str:
+    """
+    Return the URL of comments on a given Youtube Video
+
+    :param video_id: the ID number of the video
+    :param search_term: key terms you are looking for in comments
+    :return: URL (single string) of query result webpage
+    """
+
+    Vidstr = f"https://www.googleapis.com/youtube/v3/commentThreads?part=id,snippet&videoId={video_id}&pageToken=&order=Relevance&maxResults=100&searchTerms={search_term}&textFormat=plainText&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
+
+    return Vidstr
+
+def YT_user_query(query: str) -> dict:
+    """
+    Query a YouTube user given their username
+
+    :param query: Youtube username
+    :return: links to profile and account details for the given username
+    """
+
+    Vidict = {
+        "Profile": f"https://www.youtube.com/user/{query}",
+        "Account": f"https://www.youtube.com/feeds/videos.xml?user={query}"
+    }
+
+    return Vidict
+
+def YT_channel_metadata(channel_id: str) -> str:
+    """
+    Get Youtube Channel metadata given a channel ID
+
+    :param query: channel ID of interest
+    :return: URL to metadata
+    """
+
+    Vidstr = f"https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
+    
+    return Vidstr
+
+def vid_search_term(query: str) -> dict:
+    """
+    Search for videos across the web by term or tag
+
+    :param query: search term or tag of interest
+    :return: dict containing URLs of results on various video sharing sites and search engines
+    """
+
+    Vidict = {
+        "Google Videos": f"https://www.google.com/search?tbm=vid&q={query}",
+        "Bing Videos": f"https://www.bing.com/videos/search?q={query}",
+        "Yandex Videos": f"https://yandex.ru/video/search?text={query}&rpt=imageview",
+        "Youtube": f"https://www.youtube.com/results?search_query={query}",
+        "Twitter Videos": f"https://twitter.com/search?q={query}&f=video",
+        "Facebook Videos": f"https://www.facebook.com/search/videos/?q={query}",
+        "Reddit Videos": f"https://www.reddit.com/search?q=site:v.redd.it%20AND%20{query}",
+        "TikTok": f"https://www.tiktok.com/tag/{query}",
+        "PeteyVid": f"https://www.peteyvid.com/index.php?q={query}",
+        "Archives I": f"https://archive.org/details/movies?and[]={query}",
+        "Archives II": f"https://archive.org/details/opensource_movies?and%5B%5D={query}"
+    }
+    
     return Vidict
 
 # Domains tool: https://inteltechniques.com/tools/Domain.html
 
 def domain_query(query: str) -> dict:
     """
-http://viewdns.info/whois/?domain=' + Search01, 'Search01window');}
-http://viewdns.info/reverseip/?host=' + Search02 + '&t=1', 'Search02window');}
-http://viewdns.info/reversewhois/?q=' + Search03 + '&t=1', 'Search03window');}
-http://viewdns.info/portscan/?host=' + Search04, 'Search04window');}
-http://viewdns.info/iphistory/?domain=' + Search05, 'Search05window');}
-http://viewdns.info/dnsreport/?domain=' + Search06, 'Search06window');}
-http://viewdns.info/traceroute/?domain=' + Search07, 'Search07window');}
-http://who.is/whois/' + Search08, 'Search08window');}
-http://who.is/dns/' + Search09, 'Search09window');}
-http://who.is/domain-history/' + Search10, 'Search10window');}
-https://dmns.app/domains?q=' + Search11, 'Search11window');}
-https://www.whoxy.com/' + Search12, 'Search12window');}
-https://whoisology.com/' + Search13, 'Search13window');}
-https://web.archive.org/web/http://www.who.is/whois/' + Search15, 'Search15window');}
-https://web.archive.org/web/https://whois.domaintools.com/' + Search16, 'Search16window');}
-https://web.archive.org/web/https://www.whoxy.com/' + Search17, 'Search17window');}
-https://web.archive.org/web/https://domainbigdata.com/' + Search18, 'Search18window');}
-https://web.archive.org/web/https://whoisology.com/' + Search19, 'Search19window');}
-http://web.archive.org/web/*/' + Search20, 'Search20window');}
-http://archive.md/' + Search21, 'Search21window');}
-http://timetravel.mementoweb.org/list/19991212110000/http://' + Search22, 'Search22window');}
-https://webarchive.loc.gov/all/*/http://' + Search23, 'Search23window');}
-https://arquivo.pt/page/search?hitsPerPage=100&query=site%3A' + Search24, 'Search24window');}
-http://carbondate.cs.odu.edu/#' + Search25, 'Search25window');}
-http://google.com/search?q=site%3A' + Search26, 'Search26window');}
-http://webcache.googleusercontent.com/search?q=cache:' + Search27, 'Search27window');}
-https://website.informer.com/' + Search28 + '#tab_stats', 'Search28window');}
-https://urlscan.io/domain/' + Search29, 'Search29window');}
-https://www.easycounter.com/report/' + Search30, 'Search30window');}
-https://whois.domaintools.com/' + Search31, 'Search31window');}
-https://www.domainiq.com/snapshot_history#' + Search32, 'Search32window');}
-https://files.dmns.app/screenshots/' + Search33 + '.jpg', 'Search33window');}
-http://spyonweb.com/' + Search34, 'Search34window');}
-http://analyzeid.com/?domain=' + Search35, 'Search35window');}
-https://dnslytics.com/reverse-analytics/' + Search36, 'Search36window');}
-https://dnslytics.com/reverse-adsense/' + Search37, 'Search37window');}
-https://www.domainiq.com/snapshot_history?data=' + Search38 + '#' + Search38, 'Search38window');}
-http://moonsearch.com/report/' + Search39 + '.html', 'Search39awindow');}
-https://www.nerdydata.com/reports/new?search=%7B%22all%22%3A%5B%7B%22type%22%3A%22code%22,%22value%22%3A%22' + Search40 + '%22%7D%5D,%22any%22%3A%5B%5D,%22none%22%3A%5B%5D%7D', 'Search40window');}
-https://builtwith.com/' + Search41, 'Search41window');}
-https://dnsdumpster.com/static/map/' + Search42 + '.png', 'Search42window');}
-http://' + Search43 + '/robots.txt', 'Search43window');}
-https://host.io/' + Search44, 'Search44window');}
-https://host.io/backlinks/' + Search45, 'Search45window');}
-https://host.io/redirects/' + Search46, 'Search46window');}
-https://dnslytics.com/domain/' + Search47, 'Search47window');}
-https://www.wmtips.com/tools/info/' + Search48, 'Search48window');}
-https://www.robtex.com/dns-lookup/' + Search49, 'Search49window');}
-https://www.domaincodex.com/search.php?q=' + Search50, 'Search50window');}
-http://www.similarweb.com/website/' + Search51, 'Search51window');}
-https://moz.com/domain-analysis?site=' + Search52, 'Search52window');}
-https://www.spyfu.com/overview/domain?query=' + Search53, 'Search53window');}
-https://api.sharedcount.com/v1.0/?url=https%3A%2F%2F' + Search54 + '&apikey=1934f519a63e142e0d3c893e59cc37fe0172e98a', 'Search54window');}
-https://www.reddit.com/search?q=site:' + Search55, 'Search55window');}
-http://bc.linkody.com/en/seo-tools/free-backlink-checker/' + Search56, 'Search56window');}
-https://www.copyscape.com/?q=http://' + Search57, 'Search57window');}
-http://www.visualsitemapper.com/map/' + Search58, 'Search58window');}
-https://www.virustotal.com/#/domain/' + Search14, 'Search14window');}
-https://threatintelligenceplatform.com/report/' + Search59, 'Search59window');}
-https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=100&virtual_hosts=INCLUDE&q=' + Search60, 'Search60window');}
-https://securitytrails.com/list/apex_domain/' + Search61, 'Search61window');}
-https://www.threatcrowd.org/domain.php?domain=' + Search62, 'Search62window');}
-https://themarkup.org/blacklight?url=' + Search63, 'Search63window');}
-https://crt.sh/?q=' + Search64, 'Search64window');}
-https://dehashed.com/search?query=%22' + Search65 + '%22', 'Search65window');}
-https://www.hudsonrock.com/search?domain=' + Search66, 'Search66window');}
-https://intelx.io/?s=' + Search67, 'Search67window');}
-https://www.skymem.info/srch?q=' + Search68, 'Search68window');}
-https://' + Search69 + '+', 'Search69window');}
-https://' + Search71 + '~', 'Search71window');}
-http://' + Search72 + '-', 'Search72window');}
-http://checkshorturl.com/expand.php?u=' + Search73, 'Search73window');}
-http://moonsearch.com/adsense/' + Search74 + '.html', 'Search74window');}
-https://analyzeid.com/id/ca-pub-' + Search75, 'Search75window');}
-https://dnslytics.com/reverse-adsense/pub-' + Search76, 'Search76window');}
-https://api.hackertarget.com/analyticslookup/?q=pub-' + Search77, 'Search77window');}
-http://moonsearch.com/analytics/' + Search78 + '.html', 'Search78window');}
-https://analyzeid.com/id/ua-' + Search79, 'Search79window');}
-https://dnslytics.com/reverse-analytics/ua-' + Search80, 'Search80window');}
-https://publicwww.com/websites/%22ua-' + Search81 + '%22/', 'Search81window');}
-https://api.hackertarget.com/analyticslookup/?q=UA-' + Search82, 'Search82window');}
+    Returns URLs of various sites to lookup information about a domain
+
+    :param query: the domain you want to query
+    :return: dict containg the URLs to lookup info
     """
 
     Domdict = {
-        
+        "ViewDNS": [
+            f"http://viewdns.info/whois/?domain={query}",
+            f"http://viewdns.info/reverseip/?host={query}&t=1",
+            f"http://viewdns.info/reversewhois/?q={query}&t=1",
+            f"http://viewdns.info/portscan/?host={query}",
+            f"http://viewdns.info/iphistory/?domain={query}",
+            f"http://viewdns.info/dnsreport/?domain={query}",
+            f"http://viewdns.info/traceroute/?domain={query}"
+        ],
+        "Who.is": [
+            f"http://who.is/whois/{query}",
+            f"http://who.is/dns/{query}",
+            f"http://who.is/domain-history/{query}"
+        ],
+        "Other Whois": [
+            f"https://dmns.app/domains?q={query}",
+            f"https://www.whoxy.com/{query}",
+            f"https://whoisology.com/{query}",
+        ],
+        "Whois Archive": [
+            f"https://web.archive.org/web/http://www.who.is/whois/{query}",
+            f"https://web.archive.org/web/https://whois.domaintools.com/{query}",
+            f"https://web.archive.org/web/https://www.whoxy.com/{query}",
+            f"https://web.archive.org/web/https://domainbigdata.com/{query}",
+            f"https://web.archive.org/web/https://whoisology.com/{query}",
+            f"http://web.archive.org/web/*/{query}",
+            f"http://archive.md/{query}",
+            f"http://timetravel.mementoweb.org/list/19991212110000/http://{query}",
+            f"https://webarchive.loc.gov/all/*/http://{query}",
+            f"https://arquivo.pt/page/search?hitsPerPage=100&query=site%3A{query}",
+            f"http://carbondate.cs.odu.edu/#{query}"
+        ],
+        "Google": [
+            f"http://google.com/search?q=site%3A{query}",
+            f"http://webcache.googleusercontent.com/search?q=cache:{query}"
+        ],
+        "Analytics": [
+            f"https://website.informer.com/{query}#tab_stats",
+            f"http://spyonweb.com/{query}",
+            f"http://analyzeid.com/?domain={query}",
+            f"https://dnslytics.com/reverse-analytics/{query}",
+            f"https://dnslytics.com/reverse-adsense/{query}",
+            f"https://www.domainiq.com/snapshot_history?data={query}#{query}",
+            f"http://moonsearch.com/report/{query}.html", 
+            f"https://www.nerdydata.com/reports/new?search=%7B%22all%22%3A%5B%7B%22type%22%3A%22code%22,%22value%22%3A%22{query}%22%7D%5D,%22any%22%3A%5B%5D,%22none%22%3A%5B%5D%7D",
+            f"https://builtwith.com/{query}",
+            f"https://dnsdumpster.com/static/map/{query}.png",
+            f"http://{query}/robots.txt",
+            f"https://host.io/{query}",
+            f"https://host.io/backlinks/{query}",
+            f"https://host.io/redirects/{query}",
+            f"https://dnslytics.com/domain/{query}",
+            f"https://www.wmtips.com/tools/info/{query}",
+            f"https://www.robtex.com/dns-lookup/{query}",
+            f"https://www.domaincodex.com/search.php?q={query}"
+        ],
+        "Network": [
+            f"http://www.similarweb.com/website/{query}",
+            f"https://moz.com/domain-analysis?site={query}",
+            f"https://www.spyfu.com/overview/domain?query={query}",
+            f"https://api.sharedcount.com/v1.0/?url=https%3A%2F%2F{query}&apikey=1934f519a63e142e0d3c893e59cc37fe0172e98a",
+            f"https://www.reddit.com/search?q=site:{query}",
+            f"http://bc.linkody.com/en/seo-tools/free-backlink-checker/{query}",
+            f"https://www.copyscape.com/?q=http://{query}",
+            f"http://www.visualsitemapper.com/map/{query}"
+        ],
+        "Threat detection": [
+            f"https://www.virustotal.com/#/domain/{query}",
+            f"https://threatintelligenceplatform.com/report/{query}",
+            f"https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=100&virtual_hosts=INCLUDE&q={query}",
+            f"https://securitytrails.com/list/apex_domain/{query}",
+            f"https://www.threatcrowd.org/domain.php?domain={query}",
+            f"https://themarkup.org/blacklight?url={query}",
+            f"https://crt.sh/?q={query}"
+        ],
+        "Leaks/Compromised Data": [
+            f"https://dehashed.com/search?query=%22{query}%22",
+            f"https://www.hudsonrock.com/search?domain={query}",
+            f"https://intelx.io/?s={query}",
+            f"https://www.skymem.info/srch?q={query}"
+        ]
     }
 
     return Domdict
-
-#####################
-#####################
-######################
-# ALL METHODS AFTER THIS POINT HAVE ALREADY BEEN COMPLETED
-# CONGRATULATIONS - V1.0.0 IS COMPLETE PENDING A FEW OUTSTANDING ISSUES (SEE GITHUB REPO ISSUES TAB)
-# ALSO - MAKE SOME ADDITIONAL TESTS TO RUN BEFORE COMPLETING THOSE ISSUES
-# CAN JUST PUMP THE CODE THROUGH A JUPYTER NOTEBOOK AND GET PYTEST TO COMPARE THE RESULTS IN TEST_FUNCTIONS.py
-#####################
-#####################
-#####################
 
 # IP Addresses tool: https://inteltechniques.com/tools/IP.html
 
@@ -1116,21 +992,9 @@ def IP_query(query: str) -> dict:
 
     return IPdict
 
-# Business/Government searches: https://inteltechniques.com/tools/Business.html
-# def bizgovQ(query: str) -> dict:
-#   This is heavily US-centric
-#   Seems little point implementing right now
-#   TODO: implement Business/Government searches if demand appears
-
-# Vehicle searches: https://inteltechniques.com/tools/Vehicle.html 
-# def vehiQl(query: str) -> dict:
-#   Only useful in the United States - not implemented
-#   TODO: Implement vehicle searches if this becomes/is a desired feature
-
 # Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
-# Out of virtual/crypto currency - will mostly be bitcoin
-# Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
-# TODO: look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+#   Out of virtual/crypto currency - will mostly be bitcoin
+#   Would be nice to be able to search Eth and Doge, but I can't see many cases where bad actors will be circulating money in Doge
 
 def bitcoin_query(query: str) -> dict:
     """
@@ -1159,11 +1023,11 @@ def bitcoin_query(query: str) -> dict:
     return currdict
 
 # Breach searches: https://inteltechniques.com/tools/Breaches.html
-# Recommend only partial implementation of breach stuff
-# Dehashing etc is done far better with other tools
-# No point reinventing the wheel...
-# Finding breaches is the real use-case here
-# Also some of the fns Bazzell has online seem edge cases for most OSINT
+#   Partial implementation of breach stuff
+#   Dehashing etc is done far better with other tools
+#       No point reinventing the wheel...
+#   Finding breaches is the real use-case here
+#   Also some of the fns Bazzell has online seem edge cases for most OSINT
 
 def breachQ_email(query: str) -> dict:
     """
@@ -1250,14 +1114,8 @@ def breachQ_IP(query: str) -> dict:
     return Breachdict
 
 # Master query function for breaches below
-# Also - I know that chaining 5 if statements together below to make this is awful
+#       I know that chaining 5 if statements together below to make this is awful
 #       I just don't have time to write something better
-# TODO: Breach master tool should really have error handling
-#       Hell, so should the rest of this library probably
-# TODO: If there is time at some point, add in RegEx to check queries valid for each arg in breach query master
-# TODO: Possibly add in master queries for other tools
-#       However, does seem like the master query is most useful for this tool at this stage
-#       Worth waiting to see if there is any demand for this
 
 def breach_query(email: str, username: str, domain: str, telephone: str, IP_add: str) -> dict:
     """
@@ -1306,6 +1164,162 @@ def breach_query(email: str, username: str, domain: str, telephone: str, IP_add:
 
     return Breachdict
 
+##################################
+#### FUTURE DEVELOPMENT TASKS ####
+##################################
+#
+# TODO: Error handling for all methods
+# TODO: If there is time at some point, add in RegEx to check queries valid for each arg in methods
+# TODO: Possibly add in master queries of multiple methods at once
+# TODO: look into adding other crypto searching functionality, especially if Bitcoin becomes no longer the favoured coin
+# TODO: these could be stuck in other tools:
+#   https://api.flickr.com/services/rest/?method=flickr.people.findByEmail&api_key=27c196593dad58382fc4912b00cf1194&find_email=' + flemail
+#   https://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=27c196593dad58382fc4912b00cf1194&username=' + fluser
+#   https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=27c196593dad58382fc4912b00cf1194&user_id=' + flnumber + '&format=rest
+#
+# def addressQ(query: str) -> dict:
+#   TODO: Possibly implement address querying; Limited application outside United States - not implemented (yet)
+#   Tool is here: https://inteltechniques.com/tools/Address.html
+#
+# def telephoneNo(query: str) -> dict:
+#   TODO: Possibly implement telephone No tool; Limited application outside United States - not implemented (yet)
+#   Tool is here: https://inteltechniques.com/tools/Telephone.html
+#
+# Maps tool: https://inteltechniques.com/tools/Location.html
+# TODO: Possibly add Maps tool in the future
+#       I really don't see this tool as necessary - why would you
+#       need to search lat and long from multiple sources?
+#
+# def map_query(lat: str, long: str) -> dict:
+#    """
+#    """
+#
+#    Mapdict = {
+#        
+#    }
+#
+#    return Mapdict
+#
+# Business/Government searches: https://inteltechniques.com/tools/Business.html
+# def bizgovQ(query: str) -> dict:
+#   This is heavily US-centric
+#   Seems little point implementing right now
+#   TODO: implement Business/Government searches if demand appears
+#
+# Vehicle searches: https://inteltechniques.com/tools/Vehicle.html 
+# def vehiQl(query: str) -> dict:
+#   Only useful in the United States - not implemented
+#   TODO: Implement vehicle searches if this becomes/is a desired feature
+#
+#
+# Not implementing these in v1.0.0
+# TODO: Implement the remainder of the Facebook tools when get time
+#       There are JavaScript routines for querying
+#
+#def facebook_UID(UID: str, qual: str) -> dict:
+#    """
+#    """
+#
+#    FBdict = {
+#
+#    }
+#
+#    return FBdict
+#
+#def facebook_LOCID(LOCID: str, qualifier: str) -> dict:
+#    """
+#    """
+#
+#    FBdict = {
+#
+#    }
+#    
+#   return FBdict
+#
+# def facebook_UID_query(UID: str, qual:str, query: str) -> dict:
+#    """
+#    """
+#
+#    FBdict = {
+#
+#    }
+#    
+#   return FBdict
+#
+#def facebook_events_by_loc(LOCID: str, query: str) -> dict:
+#    """
+#    """
+#
+#    FBdict = {
+#
+#    }
+#    
+#   return FBdict
+#
+#def facebook_profiles_by_institution(IID: str, name: str) -> dict:
+#    """
+#    Employer, city or school
+#    """
+#
+#    FBdict = {
+#
+#    }
+#    
+#   return FBdict
+#
+#
+#def facebook_content_by_date(keyword: str, start: str, end: str) -> dict:
+#    """
+#    Return posts, photos, videos by keyword within a specific timeframe
+#    """
+#    FBdict = {
+#
+#    }
+#    
+#   return FBdict
+#
+# Some LinkedIn tools seem non-essential for locating individuals
+# TODO: add when have time, would be useful for people using OSINT for Recruitment
+#def linkedin_keyword(keyword: str) -> dict:
+#    """
+#       'https://www.linkedin.com/search/results/companies/?keywords=' + keyword
+#       'https://www.linkedin.com/search/results/groups/?keywords=' + keyword
+#       'https://www.linkedin.com/search/results/schools/?keywords=' + keyword
+#       'https://www.linkedin.com/search/results/events/?keywords=' + keyword
+#       'https://www.linkedin.com/jobs/index/?keywords=' + keyword
+#    """
+#
+#    Linkdict = {
+#    }
+#
+#    return Linkdict
+#
+# def linkedin_web_mob_profile(...)
+#   function not implemented - use case seems redundant
+#   TODO: only if requested
+#   'https://search.google.com/test/mobile-friendly?url=http://linkedin.com/in/' + Search12
+#
+# def linkedin_photos_videos(...)
+#   function not implemented - use case seems redundant
+#   TODO: only if requested
+#   'https://www.google.com/search?q=site:linkedin.com+' + Search13 + '&source=lnms&tbm=isch'
+#   'https://www.bing.com/images/search?q=site%3alinkedin.com+' + Search14 + '&scenario=ImageBasicHover'
+#   'https://www.google.com/search?q=site:linkedin.com+' + Search15 + '&tbm=vid'
+#
+# TODO: implement other aspects of Bazzell Communities tool if requested
+#
+# TODO: Pastes tool: https://inteltechniques.com/tools/Pastes.html
+# Not doing right now
+#def paste_query(query: str) -> dict:
+#    """
+#    """
+#
+#    Pastedict = {
+#        
+#    }
+#
+#    return Pastedict
+#
 # def live_audio_video(...)
 #   Function not implemented
 #   TODO: possibly implement the Live Audio and Live Video streams tools
@@ -1313,7 +1327,7 @@ def breach_query(email: str, username: str, domain: str, telephone: str, IP_add:
 #   Therefore, not a priority.
 #   Live Audio searches: https://inteltechniques.com/tools/Radio.html
 #   Live Video searches: https://inteltechniques.com/tools/Video.html
-
+#
 # def API_search(...)
 #   This function seems a bit pointless and possibly a security flaw
 #   TODO: possibly implement API search in future (see: https://inteltechniques.com/tools/API.html).
