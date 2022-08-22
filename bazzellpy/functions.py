@@ -684,7 +684,10 @@ def name_query(forename: str, surname: str) -> dict:
 
 def doc_query(query: str) -> dict:
     """
-    
+    Return search engine queries for online documents containing a particular term
+
+    :param query: your search term
+    :return: query URLs in dict
     """
 
     Docdict = {
