@@ -36,12 +36,12 @@ def _iter_all_modules(package, prefix=""):
     import pkgutil
 
     if type(package) is not str:
-        path, prefix = package.__path__[0], package.__name__ + "."
+        path, prefix = package.__path__[0], f"{package.__name__}."
     else:
         path = package
     for _, name, is_package in pkgutil.iter_modules([path]):
         if is_package:
-            for m in _iter_all_modules(os.path.join(path, name), prefix=name + "."):
+            for m in _iter_all_modules(os.path.join(path, name), prefix=f"{name}."):
                 yield prefix + m
         else:
             yield prefix + name

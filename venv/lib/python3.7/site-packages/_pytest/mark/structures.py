@@ -23,7 +23,7 @@ def alias(name, warning=None):
         warnings.warn(warning, stacklevel=2)
         return getter(self)
 
-    return property(getter if warning is None else warned, doc="alias for " + name)
+    return property(getter if warning is None else warned, doc=f"alias for {name}")
 
 
 def istestfunc(func):
@@ -350,7 +350,7 @@ class NodeKeywords(MappingMixin):
         return len(self._seen())
 
     def __repr__(self):
-        return "<NodeKeywords for node %s>" % (self.node,)
+        return f"<NodeKeywords for node {self.node}>"
 
 
 @attr.s(cmp=False, hash=False)

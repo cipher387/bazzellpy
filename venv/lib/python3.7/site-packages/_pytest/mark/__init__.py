@@ -88,7 +88,7 @@ def pytest_cmdline_main(config):
             parts = line.split(":", 1)
             name = parts[0]
             rest = parts[1] if len(parts) == 2 else ""
-            tw.write("@pytest.mark.%s:" % name, bold=True)
+            tw.write(f"@pytest.mark.{name}:", bold=True)
             tw.line(rest)
             tw.line()
         config._ensure_unconfigure()
@@ -101,7 +101,7 @@ pytest_cmdline_main.tryfirst = True
 def deselect_by_keyword(items, config):
     keywordexpr = config.option.keyword.lstrip()
     if keywordexpr.startswith("-"):
-        keywordexpr = "not " + keywordexpr[1:]
+        keywordexpr = f"not {keywordexpr[1:]}"
     selectuntil = False
     if keywordexpr[-1:] == ":":
         selectuntil = True

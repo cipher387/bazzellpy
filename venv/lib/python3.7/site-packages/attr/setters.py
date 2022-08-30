@@ -61,11 +61,7 @@ def convert(instance, attrib, new_value):
 
     .. versionadded:: 20.1.0
     """
-    c = attrib.converter
-    if c:
-        return c(new_value)
-
-    return new_value
+    return c(new_value) if (c := attrib.converter) else new_value
 
 
 # Sentinel for disabling class-wide *on_setattr* hooks for certain attributes.

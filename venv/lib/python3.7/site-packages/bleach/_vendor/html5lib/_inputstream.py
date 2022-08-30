@@ -14,9 +14,15 @@ from .constants import _ReparseException
 from . import _utils
 
 # Non-unicode versions of constants for use in the pre-parser
-spaceCharactersBytes = frozenset([item.encode("ascii") for item in spaceCharacters])
-asciiLettersBytes = frozenset([item.encode("ascii") for item in asciiLetters])
-asciiUppercaseBytes = frozenset([item.encode("ascii") for item in asciiUppercase])
+spaceCharactersBytes = frozenset(
+    item.encode("ascii") for item in spaceCharacters
+)
+
+asciiLettersBytes = frozenset(item.encode("ascii") for item in asciiLetters)
+asciiUppercaseBytes = frozenset(
+    item.encode("ascii") for item in asciiUppercase
+)
+
 spacesAngleBrackets = spaceCharactersBytes | frozenset([b">", b"<"])
 
 
@@ -61,9 +67,7 @@ class BufferedStream(object):
         self.position = [-1, 0]  # chunk number, offset
 
     def tell(self):
-        pos = 0
-        for chunk in self.buffer[:self.position[0]]:
-            pos += len(chunk)
+        pos = sum(len(chunk) for chunk in self.buffer[:self.position[0]])
         pos += self.position[1]
         return pos
 
@@ -86,7 +90,7 @@ class BufferedStream(object):
             return self._readFromBuffer(bytes)
 
     def _bufferedBytes(self):
-        return sum([len(item) for item in self.buffer])
+        return sum(len(item) for item in self.buffer)
 
     def _readStream(self, bytes):
         data = self.stream.read(bytes)
@@ -135,14 +139,12 @@ def HTMLInputStream(source, **kwargs):
     else:
         isUnicode = isinstance(source, text_type)
 
-    if isUnicode:
-        encodings = [x for x in kwargs if x.endswith("_encoding")]
-        if encodings:
-            raise TypeError("Cannot set an encoding with a unicode input, set %r" % encodings)
-
-        return HTMLUnicodeInputStream(source, **kwargs)
-    else:
+    if not isUnicode:
         return HTMLBinaryInputStream(source, **kwargs)
+    if encodings := [x for x in kwargs if x.endswith("_encoding")]:
+        raise TypeError("Cannot set an encoding with a unicode input, set %r" % encodings)
+
+    return HTMLUnicodeInputStream(source, **kwargs)
 
 
 class HTMLUnicodeInputStream(object):
@@ -207,13 +209,7 @@ class HTMLUnicodeInputStream(object):
         source can be either a file object, local filename or a string.
 
         """
-        # Already a file object
-        if hasattr(source, 'read'):
-            stream = source
-        else:
-            stream = StringIO(source)
-
-        return stream
+        return source if hasattr(source, 'read') else StringIO(source)
 
     def _position(self, offset):
         chunk = self.chunk
@@ -236,9 +232,8 @@ class HTMLUnicodeInputStream(object):
             EOF when EOF is reached.
         """
         # Read a new chunk from the input stream if necessary
-        if self.chunkOffset >= self.chunkSize:
-            if not self.readChunk():
-                return EOF
+        if self.chunkOffset >= self.chunkSize and not self.readChunk():
+            return EOF
 
         chunkOffset = self.chunkOffset
         char = self.chunk[chunkOffset]
@@ -327,8 +322,8 @@ class HTMLUnicodeInputStream(object):
                     assert(ord(c) < 128)
             regex = "".join(["\\x%02x" % ord(c) for c in characters])
             if not opposite:
-                regex = "^%s" % regex
-            chars = charsUntilRegEx[(characters, opposite)] = re.compile("[%s]+" % regex)
+                regex = f"^{regex}"
+            chars = charsUntilRegEx[(characters, opposite)] = re.compile(f"[{regex}]+")
 
         rv = []
 
@@ -355,8 +350,7 @@ class HTMLUnicodeInputStream(object):
                 # Reached EOF
                 break
 
-        r = "".join(rv)
-        return r
+        return "".join(rv)
 
     def unget(self, char):
         # Only one character is allowed to be ungotten at once - it must
@@ -436,11 +430,7 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
 
         """
         # Already a file object
-        if hasattr(source, 'read'):
-            stream = source
-        else:
-            stream = BytesIO(source)
-
+        stream = source if hasattr(source, 'read') else BytesIO(source)
         try:
             stream.seek(stream.tell())
         except Exception:
@@ -524,7 +514,9 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
             self.rawStream.seek(0)
             self.charEncoding = (newEncoding, "certain")
             self.reset()
-            raise _ReparseException("Encoding changed from %s to %s" % (self.charEncoding[0], newEncoding))
+            raise _ReparseException(
+                f"Encoding changed from {self.charEncoding[0]} to {newEncoding}"
+            )
 
     def detectBOM(self):
         """Attempts to detect at BOM at the start of the stream. If
@@ -547,9 +539,9 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
             # Need to detect UTF-32 before UTF-16
             encoding = bomDict.get(string)         # UTF-32
             seek = 4
-            if not encoding:
-                encoding = bomDict.get(string[:2])  # UTF-16
-                seek = 2
+        if not encoding:
+            encoding = bomDict.get(string[:2])  # UTF-16
+            seek = 2
 
         # Set the read position past the BOM if one was found, otherwise
         # set it to the start of the stream
@@ -579,9 +571,9 @@ class EncodingBytes(bytes):
     """String-like object with an associated position and various extra methods
     If the position is ever greater than the string length then an exception is
     raised"""
-    def __new__(self, value):
+    def __new__(cls, value):
         assert isinstance(value, bytes)
-        return bytes.__new__(self, value.lower())
+        return bytes.__new__(cls, value.lower())
 
     def __init__(self, value):
         # pylint:disable=unused-argument
@@ -619,10 +611,7 @@ class EncodingBytes(bytes):
     def getPosition(self):
         if self._position >= len(self):
             raise StopIteration
-        if self._position >= 0:
-            return self._position
-        else:
-            return None
+        return self._position if self._position >= 0 else None
 
     position = property(getPosition, setPosition)
 
@@ -727,29 +716,28 @@ class EncodingParser(object):
             attr = self.getAttribute()
             if attr is None:
                 return True
-            else:
-                if attr[0] == b"http-equiv":
-                    hasPragma = attr[1] == b"content-type"
-                    if hasPragma and pendingEncoding is not None:
-                        self.encoding = pendingEncoding
-                        return False
-                elif attr[0] == b"charset":
-                    tentativeEncoding = attr[1]
+            if attr[0] == b"http-equiv":
+                hasPragma = attr[1] == b"content-type"
+                if hasPragma and pendingEncoding is not None:
+                    self.encoding = pendingEncoding
+                    return False
+            elif attr[0] == b"charset":
+                tentativeEncoding = attr[1]
+                codec = lookupEncoding(tentativeEncoding)
+                if codec is not None:
+                    self.encoding = codec
+                    return False
+            elif attr[0] == b"content":
+                contentParser = ContentAttrParser(EncodingBytes(attr[1]))
+                tentativeEncoding = contentParser.parse()
+                if tentativeEncoding is not None:
                     codec = lookupEncoding(tentativeEncoding)
                     if codec is not None:
-                        self.encoding = codec
-                        return False
-                elif attr[0] == b"content":
-                    contentParser = ContentAttrParser(EncodingBytes(attr[1]))
-                    tentativeEncoding = contentParser.parse()
-                    if tentativeEncoding is not None:
-                        codec = lookupEncoding(tentativeEncoding)
-                        if codec is not None:
-                            if hasPragma:
-                                self.encoding = codec
-                                return False
-                            else:
-                                pendingEncoding = codec
+                        if hasPragma:
+                            self.encoding = codec
+                            return False
+                        else:
+                            pendingEncoding = codec
 
     def handlePossibleStartTag(self):
         return self.handlePossibleTag(False)
@@ -873,7 +861,7 @@ class ContentAttrParser(object):
             self.data.jumpTo(b"charset")
             self.data.position += 1
             self.data.skip()
-            if not self.data.currentByte == b"=":
+            if self.data.currentByte != b"=":
                 # If there is no = sign keep looking for attrs
                 return None
             self.data.position += 1
@@ -909,10 +897,9 @@ def lookupEncoding(encoding):
         except UnicodeDecodeError:
             return None
 
-    if encoding is not None:
-        try:
-            return webencodings.lookup(encoding)
-        except AttributeError:
-            return None
-    else:
+    if encoding is None:
+        return None
+    try:
+        return webencodings.lookup(encoding)
+    except AttributeError:
         return None

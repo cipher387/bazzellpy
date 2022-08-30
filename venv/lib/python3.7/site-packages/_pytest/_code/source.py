@@ -45,21 +45,18 @@ class Source(object):
         try:
             return self.lines == other.lines
         except AttributeError:
-            if isinstance(other, str):
-                return str(self) == other
-            return False
+            return str(self) == other if isinstance(other, str) else False
 
     __hash__ = None
 
     def __getitem__(self, key):
         if isinstance(key, int):
             return self.lines[key]
-        else:
-            if key.step not in (None, 1):
-                raise IndexError("cannot slice a Source with a step")
-            newsource = Source()
-            newsource.lines = self.lines[key.start : key.stop]
-            return newsource
+        if key.step not in (None, 1):
+            raise IndexError("cannot slice a Source with a step")
+        newsource = Source()
+        newsource.lines = self.lines[key.start : key.stop]
+        return newsource
 
     def __len__(self):
         return len(self.lines)
@@ -124,10 +121,7 @@ class Source(object):
         """
         from parser import suite as syntax_checker
 
-        if deindent:
-            source = str(self.deindent())
-        else:
-            source = str(self)
+        source = str(self.deindent()) if deindent else str(self)
         try:
             # compile(source+'\n', "x", "exec")
             syntax_checker(source + "\n")
@@ -167,7 +161,7 @@ class Source(object):
             msglines = self.lines[: ex.lineno]
             if ex.offset:
                 msglines.append(" " * ex.offset + "^")
-            msglines.append("(code was compiled probably from here: %s)" % filename)
+            msglines.append(f"(code was compiled probably from here: {filename})")
             newex = SyntaxError("\n".join(msglines))
             newex.offset = ex.offset
             newex.lineno = ex.lineno
@@ -197,8 +191,7 @@ def compile_(source, filename=None, mode="exec", flags=0, dont_inherit=0):
         return compile(source, filename, mode, flags, dont_inherit)
     _genframe = sys._getframe(1)  # the caller
     s = Source(source)
-    co = s.compile(filename, mode, flags, _genframe=_genframe)
-    return co
+    return s.compile(filename, mode, flags, _genframe=_genframe)
 
 
 def getfslineno(obj):
@@ -272,17 +265,13 @@ def get_statement_startend2(lineno, node):
         if isinstance(x, (ast.stmt, ast.ExceptHandler)):
             values.append(x.lineno - 1)
             for name in ("finalbody", "orelse"):
-                val = getattr(x, name, None)
-                if val:
+                if val := getattr(x, name, None):
                     # treat the finally/orelse part as its own statement
                     values.append(val[0].lineno - 1 - 1)
     values.sort()
     insert_index = bisect_right(values, lineno)
     start = values[insert_index - 1]
-    if insert_index >= len(values):
-        end = None
-    else:
-        end = values[insert_index]
+    end = None if insert_index >= len(values) else values[insert_index]
     return start, end
 
 

@@ -95,12 +95,6 @@ def make_set_closure_cell():
         x = value
         return
 
-        # This function will be eliminated as dead code, but
-        # not before its reference to `x` forces `x` to be
-        # represented as a closure cell rather than a local.
-        def force_x_to_be_a_cell():  # pragma: no cover
-            return x
-
     try:
         # Extract the code object and make sure our assumptions about
         # the closure behavior are correct.

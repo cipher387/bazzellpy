@@ -168,7 +168,7 @@ class LFPlugin(object):
             mode = "rerun previous {count} {noun}{suffix}".format(
                 count=self._previously_failed_count, suffix=suffix, noun=noun
             )
-            return "run-last-failure: %s" % mode
+            return f"run-last-failure: {mode}"
 
     def pytest_runtest_logreport(self, report):
         if (report.when == "call" and report.passed) or report.skipped:
@@ -186,28 +186,29 @@ class LFPlugin(object):
             self.lastfailed[report.nodeid] = True
 
     def pytest_collection_modifyitems(self, session, config, items):
-        if self.active:
-            if self.lastfailed:
-                previously_failed = []
-                previously_passed = []
-                for item in items:
-                    if item.nodeid in self.lastfailed:
-                        previously_failed.append(item)
-                    else:
-                        previously_passed.append(item)
-                self._previously_failed_count = len(previously_failed)
-                if not previously_failed:
-                    # running a subset of all tests with recorded failures outside
-                    # of the set of tests currently executing
-                    return
-                if self.config.getoption("lf"):
-                    items[:] = previously_failed
-                    config.hook.pytest_deselected(items=previously_passed)
+        if not self.active:
+            return
+        if self.lastfailed:
+            previously_failed = []
+            previously_passed = []
+            for item in items:
+                if item.nodeid in self.lastfailed:
+                    previously_failed.append(item)
                 else:
-                    items[:] = previously_failed + previously_passed
-            elif self._no_failures_behavior == "none":
-                config.hook.pytest_deselected(items=items)
-                items[:] = []
+                    previously_passed.append(item)
+            self._previously_failed_count = len(previously_failed)
+            if not previously_failed:
+                # running a subset of all tests with recorded failures outside
+                # of the set of tests currently executing
+                return
+            if self.config.getoption("lf"):
+                items[:] = previously_failed
+                config.hook.pytest_deselected(items=previously_passed)
+            else:
+                items[:] = previously_failed + previously_passed
+        elif self._no_failures_behavior == "none":
+            config.hook.pytest_deselected(items=items)
+            items[:] = []
 
     def pytest_sessionfinish(self, session):
         config = self.config
@@ -349,14 +350,14 @@ def pytest_report_header(config):
             displaypath = cachedir.relative_to(config.rootdir)
         except ValueError:
             displaypath = cachedir
-        return "cachedir: {}".format(displaypath)
+        return f"cachedir: {displaypath}"
 
 
 def cacheshow(config, session):
     from pprint import pformat
 
     tw = py.io.TerminalWriter()
-    tw.line("cachedir: " + str(config.cache._cachedir))
+    tw.line(f"cachedir: {str(config.cache._cachedir)}")
     if not config.cache._cachedir.is_dir():
         tw.line("cache is empty")
         return 0
@@ -368,11 +369,11 @@ def cacheshow(config, session):
         key = valpath.relative_to(vdir)
         val = config.cache.get(key, dummy)
         if val is dummy:
-            tw.line("%s contains unreadable content, will be ignored" % key)
+            tw.line(f"{key} contains unreadable content, will be ignored")
         else:
-            tw.line("%s contains:" % key)
+            tw.line(f"{key} contains:")
             for line in pformat(val).splitlines():
-                tw.line("  " + line)
+                tw.line(f"  {line}")
 
     ddir = basedir / "d"
     if ddir.is_dir():

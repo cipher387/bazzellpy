@@ -92,11 +92,7 @@ def install_importhook(config):
 
 
 def pytest_collection(session):
-    # this hook is only called when test modules are collected
-    # so for example not in the master process of pytest-xdist
-    # (which does not collect test modules)
-    assertstate = getattr(session.config, "_assertstate", None)
-    if assertstate:
+    if assertstate := getattr(session.config, "_assertstate", None):
         if assertstate.hook is not None:
             assertstate.hook.set_session(session)
 
@@ -145,8 +141,7 @@ def pytest_runtest_teardown(item):
 
 
 def pytest_sessionfinish(session):
-    assertstate = getattr(session.config, "_assertstate", None)
-    if assertstate:
+    if assertstate := getattr(session.config, "_assertstate", None):
         if assertstate.hook is not None:
             assertstate.hook.set_session(None)
 

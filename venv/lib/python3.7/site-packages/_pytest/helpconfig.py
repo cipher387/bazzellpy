@@ -123,8 +123,7 @@ def showversion(config):
     sys.stderr.write(
         "This is pytest version %s, imported from %s\n" % (pytest.__version__, p)
     )
-    plugininfo = getpluginversioninfo(config)
-    if plugininfo:
+    if plugininfo := getpluginversioninfo(config):
         for line in plugininfo:
             sys.stderr.write(line + "\n")
 
@@ -155,7 +154,7 @@ def showhelp(config):
         help, type, default = config._parser._inidict[name]
         if type is None:
             type = "string"
-        spec = "%s (%s)" % (name, type)
+        spec = f"{name} ({type})"
         line = "  %-24s %s" % (spec, help)
         tw.line(line[: tw.fullwidth])
 
@@ -181,7 +180,7 @@ def showhelp(config):
     )
 
     for warningreport in reporter.stats.get("warnings", []):
-        tw.line("warning : " + warningreport.message, red=True)
+        tw.line(f"warning : {warningreport.message}", red=True)
     return
 
 
@@ -190,32 +189,27 @@ conftest_options = [("pytest_plugins", "list of plugin names to load")]
 
 def getpluginversioninfo(config):
     lines = []
-    plugininfo = config.pluginmanager.list_plugin_distinfo()
-    if plugininfo:
+    if plugininfo := config.pluginmanager.list_plugin_distinfo():
         lines.append("setuptools registered plugins:")
         for plugin, dist in plugininfo:
             loc = getattr(plugin, "__file__", repr(plugin))
-            content = "%s-%s at %s" % (dist.project_name, dist.version, loc)
-            lines.append("  " + content)
+            content = f"{dist.project_name}-{dist.version} at {loc}"
+            lines.append(f"  {content}")
     return lines
 
 
 def pytest_report_header(config):
     lines = []
     if config.option.debug or config.option.traceconfig:
-        lines.append("using: pytest-%s pylib-%s" % (pytest.__version__, py.__version__))
+        lines.append(f"using: pytest-{pytest.__version__} pylib-{py.__version__}")
 
-        verinfo = getpluginversioninfo(config)
-        if verinfo:
+        if verinfo := getpluginversioninfo(config):
             lines.extend(verinfo)
 
     if config.option.traceconfig:
         lines.append("active plugins:")
         items = config.pluginmanager.list_name_plugin()
         for name, plugin in items:
-            if hasattr(plugin, "__file__"):
-                r = plugin.__file__
-            else:
-                r = repr(plugin)
+            r = plugin.__file__ if hasattr(plugin, "__file__") else repr(plugin)
             lines.append("    %-20s: %s" % (name, r))
     return lines

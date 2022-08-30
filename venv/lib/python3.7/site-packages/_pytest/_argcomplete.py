@@ -79,7 +79,7 @@ class FastFilesCompleter(object):
         if "*" not in prefix and "?" not in prefix:
             # we are on unix, otherwise no bash
             if not prefix or prefix[-1] == os.path.sep:
-                globbed.extend(glob(prefix + ".*"))
+                globbed.extend(glob(f"{prefix}.*"))
             prefix += "*"
         globbed.extend(glob(prefix))
         for x in sorted(globbed):
