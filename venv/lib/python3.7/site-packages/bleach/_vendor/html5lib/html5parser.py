@@ -72,14 +72,19 @@ def parseFragment(doc, container="div", treebuilder="etree", namespaceHTMLElemen
 
 
 def method_decorator_metaclass(function):
+
+
+
     class Decorated(type):
-        def __new__(meta, classname, bases, classDict):
+        def __new__(cls, classname, bases, classDict):
             for attributeName, attribute in classDict.items():
                 if isinstance(attribute, types.FunctionType):
                     attribute = function(attribute)
 
                 classDict[attributeName] = attribute
-            return type.__new__(meta, classname, bases, classDict)
+            return type.__new__(cls, classname, bases, classDict)
+
+
     return Decorated
 
 
@@ -152,10 +157,6 @@ class HTMLParser(object):
                 self.tokenizer.state = self.tokenizer.rawtextState
             elif self.innerHTML == 'plaintext':
                 self.tokenizer.state = self.tokenizer.plaintextState
-            else:
-                # state already is data state
-                # self.tokenizer.state = self.tokenizer.dataState
-                pass
             self.phase = self.phases["beforeHtml"]
             self.phase.insertHtmlElement()
             self.resetInsertionMode()
@@ -175,9 +176,11 @@ class HTMLParser(object):
         :obj:`None` if that is not determined yet
 
         """
-        if not hasattr(self, 'tokenizer'):
-            return None
-        return self.tokenizer.stream.charEncoding[0].name
+        return (
+            self.tokenizer.stream.charEncoding[0].name
+            if hasattr(self, 'tokenizer')
+            else None
+        )
 
     def isHTMLIntegrationPoint(self, element):
         if (element.name == "annotation-xml" and

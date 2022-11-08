@@ -10,7 +10,7 @@ def searchengines(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    SEdict = {
+    return {
         "Surface web": {
             "Google": f"http://google.com/search?q={query}",
             "Google Date": f"http://google.com/search?q={query}&tbs=cdr:1,cd_min:1/1/0,sbd:1",
@@ -33,7 +33,7 @@ def searchengines(query: str) -> dict:
             "Brave": f"https://search.brave.com/search?q={query}",
             "Wayback": f"https://web.archive.org/web/*/{query}",
             "Ahmia": f"https://ahmia.fi/search/?q={query}",
-            "Onionland": f"https://onionlandsearchengine.com/search?q={query}"
+            "Onionland": f"https://onionlandsearchengine.com/search?q={query}",
         },
         "Dark web": {
             "Torch": f"http://torch4st4l57l2u2vr5wqwvwyueucvnrao4xajqr2klmcmicrv7ccaad.onion/search?query={query}&action=search",
@@ -49,11 +49,9 @@ def searchengines(query: str) -> dict:
             "Submarine": f"http://no6m4wzdexe3auiupv2zwif7rm6qwxcyhslkcnzisxgeiw6pvjsgafad.onion/search.php?term={query}",
             "DeepSearch": f"http://searchgf7gdtauh7bhnbyed4ivxqmuoat3nm6zfrg3ymkq6mtnpye3ad.onion/search?q={query}",
             "OnionCenter": f"http://5qqrlc7hw3tsgokkqifb33p3mrlpnleka2bjg7n46vih2synghb6ycid.onion/index.php?a=search&q={query}",
-            "FreshOnion": f"http://freshonifyfe4rmuh6qwpsexfhdrww7wnt5qmkoertwxmcuvm4woo4ad.onion/?query={query}"
-        }
+            "FreshOnion": f"http://freshonifyfe4rmuh6qwpsexfhdrww7wnt5qmkoertwxmcuvm4woo4ad.onion/?query={query}",
+        },
     }
-
-    return SEdict
 
 # Segmented Facebook tool into separate functions
 # Tools available here: https://inteltechniques.com/tools/Facebook.html
@@ -67,10 +65,8 @@ def facebook_user(username: str, userno: str) -> dict:
     :return: dict containing links to various parts of user profile
     """
 
-    if username=="":
-        FBdict_username = {"Username search": "Nothing returned - no username supplied to search"}
-    else:
-        FBdict_username = {
+    FBdict_username = (
+        {
             "Timeline": f"https://www.facebook.com/{username}",
             "About": f"https://www.facebook.com/{username}/about",
             "Employment": f"https://www.facebook.com/{username}/about?section=work",
@@ -98,22 +94,23 @@ def facebook_user(username: str, userno: str) -> dict:
             "Events": f"https://www.facebook.com/{username}/events",
             "Facts": f"https://www.facebook.com/{username}/did_you_know",
             "Reviews": f"https://www.facebook.com/{username}/reviews",
-            "Notes": f"https://www.facebook.com/{username}/notes"
+            "Notes": f"https://www.facebook.com/{username}/notes",
         }
-    
-    if userno=="":
-        FBdict_userno = {"User number search": "Nothing returned - no user number supplied to search"}
-    else:
-        FBdict_userno = {
-            "Profile":f"https://www.facebook.com/{userno}"
+        if username
+        else {
+            "Username search": "Nothing returned - no username supplied to search"
         }
+    )
 
-    FBdict = {
-        "Username": FBdict_username,
-        "User number": FBdict_userno
-    }
+    FBdict_userno = (
+        {"Profile": f"https://www.facebook.com/{userno}"}
+        if userno
+        else {
+            "User number search": "Nothing returned - no user number supplied to search"
+        }
+    )
 
-    return FBdict
+    return {"Username": FBdict_username, "User number": FBdict_userno}
 
 def facebook_search(query: str) -> dict:
     """
@@ -123,7 +120,7 @@ def facebook_search(query: str) -> dict:
     :return: dict containing links to the search results for your query
     """
 
-    FBdict = {
+    return {
         "All": f"https://www.facebook.com/search/top/?q={query}",
         "Posts": f"https://www.facebook.com/search/posts/?q={query}",
         "People": f"https://www.facebook.com/search/people/?q={query}",
@@ -135,10 +132,8 @@ def facebook_search(query: str) -> dict:
         "Groups": f"https://www.facebook.com/search/groups/?q={query}",
         "Apps": f"https://www.facebook.com/search/apps/?q={query}",
         "Events": f"https://www.facebook.com/search/events/?q={query}",
-        "Links": f"https://www.facebook.com/search/links/?q={query}"
+        "Links": f"https://www.facebook.com/search/links/?q={query}",
     }
-
-    return FBdict
 
 def facebook_mutuality(UID1: str, UID2: str) -> str:
     """
@@ -149,9 +144,7 @@ def facebook_mutuality(UID1: str, UID2: str) -> str:
     :return: common friends result URL as string
     """
 
-    FBstr = f"https://facebook.com/browse/mutual_friends/?uid={UID1}&node={UID2}",
-    
-    return FBstr
+    return f"https://facebook.com/browse/mutual_friends/?uid={UID1}&node={UID2}",
 
 # Segmented Twitter tool into separate functions
 # Twitter tool: https://inteltechniques.com/tools/Twitter.html
@@ -222,9 +215,7 @@ def twitter_query_year(query: str, year: str) -> str:
     :return: string of URL to page displaying activity
     """
 
-    Twitstr = f"https://twitter.com/search?q={query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live"
-    
-    return Twitstr
+    return f"https://twitter.com/search?q={query}%20since%3A{year}-01-01%20until%3A{year}-12-31&src=typd&f=live"
 
 def twitter_real_name(forename: str, surname: str) -> dict:
     """
@@ -235,12 +226,10 @@ def twitter_real_name(forename: str, surname: str) -> dict:
     :return: dict containing two URLs of search results
     """
 
-    Twitdict = {
+    return {
         "Profile Search I": f"https://twitter.com/search?q={forename}%20{surname}&f=user",
-        "Profile Search II": f"http://followerwonk.com/bio/?q_type=all&n={forename}%20{surname}"
+        "Profile Search II": f"http://followerwonk.com/bio/?q_type=all&n={forename}%20{surname}",
     }
-    
-    return Twitdict
 
 def twitter_lists(list_number: str) -> dict:
     """
@@ -250,13 +239,11 @@ def twitter_lists(list_number: str) -> dict:
     :return: dict containing the URLs
     """
 
-    Twitdict = {
+    return {
         "List": f"https://twitter.com/i/lists/{query}",
         "List Members": f"https://twitter.com/i/lists/{query}/members",
-        "List Followers": f"https://twitter.com/i/lists/{query}/followers"
+        "List Followers": f"https://twitter.com/i/lists/{query}/followers",
     }
-    
-    return Twitdict
 
 # Segmented Insta tool into separate functions
 # Insta tool: https://inteltechniques.com/tools/Instagram.html
@@ -269,7 +256,7 @@ def instagram_user(query: str) -> dict:
     :return: dict containing URLs of results
     """
 
-    Instadict = {
+    return {
         "IG Profile": f"http://instagram.com/{query}",
         "IG Channel": f"http://instagram.com/{query}/channel/",
         "IG Tagged": f"https://instagram.com/{query}/tagged/",
@@ -278,10 +265,8 @@ def instagram_user(query: str) -> dict:
         "Bing Search": f'https://www.bing.com/search?q=site%3Ainstagram.com+"{query}"',
         "Yandex Search": f'https://yandex.com/search/?text=site%3Ainstagram.com+"{query}"',
         "Twitter Posts": f'https://www.google.com/search?q=site%3Atwitter.com+“{query}”+“instagram.com%2Fp”',
-        "Dumpor Profile": f"https://dumpor.com/v/{query}"
+        "Dumpor Profile": f"https://dumpor.com/v/{query}",
     }
-    
-    return Instadict
 
 def instagram_follow(query: str) -> dict:
     """
@@ -291,12 +276,14 @@ def instagram_follow(query: str) -> dict:
     :return: dict containing the URLs of the followers and following webpages
     """
 
-    Instadict = {
-        "Followers": 'https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables={%22id%22:%22%{que}%22,%22include_reel%22:true,%22fetch_mutual%22:true,%22first%22:50}'.format(que=query),
-        "Following": 'https://www.instagram.com/graphql/query/?query_hash=d04b0a864b4b54837c0d870b0e77e076&variables={%22id%22:%22{que}%22,%22include_reel%22:true,%22fetch_mutual%22:false,%22first%22:50}'.format(que=query)
+    return {
+        "Followers": 'https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables={%22id%22:%22%{que}%22,%22include_reel%22:true,%22fetch_mutual%22:true,%22first%22:50}'.format(
+            que=query
+        ),
+        "Following": 'https://www.instagram.com/graphql/query/?query_hash=d04b0a864b4b54837c0d870b0e77e076&variables={%22id%22:%22{que}%22,%22include_reel%22:true,%22fetch_mutual%22:false,%22first%22:50}'.format(
+            que=query
+        ),
     }
-    
-    return Instadict
 
 def instagram_user_term(user: str, search_term: str) -> str:
     """
@@ -307,9 +294,7 @@ def instagram_user_term(user: str, search_term: str) -> str:
     :return: string URL for search results
     """
 
-    Instastr = f'https://www.google.com/search?&q=site%3Ainstagram.com+“{user}”+“{search_term}”'
-    
-    return Instastr
+    return f'https://www.google.com/search?&q=site%3Ainstagram.com+“{user}”+“{search_term}”'
 
 def instagram_association(user1: str, user2: str) -> str:
     """
@@ -320,9 +305,7 @@ def instagram_association(user1: str, user2: str) -> str:
     :return: string URL for search results
     """
 
-    Instastr = f'https://www.google.com/search?&q=site%3Ainstagram.com+“{user1}”+“{user2}”'
-    
-    return Instastr
+    return f'https://www.google.com/search?&q=site%3Ainstagram.com+“{user1}”+“{user2}”'
 
 def instagram_search_or_tag(query: str) -> dict:
     """
@@ -332,13 +315,11 @@ def instagram_search_or_tag(query: str) -> dict:
     :return: dict of search result URLs
     """
 
-    Instadict = {
+    return {
         "Tags": f'https://www.instagram.com/explore/tags/{query}',
         "Search": f'https://www.google.com/search?&q=site%3Ainstagram.com+{query}',
-        "Dumpor Tag": f'https://dumpor.com/t/{query}'
+        "Dumpor Tag": f'https://dumpor.com/t/{query}',
     }
-    
-    return Instadict
 
 # Segmented LinkedIn tool into separate functions
 # LinkedIn tool: https://inteltechniques.com/tools/Linkedin.html 
@@ -356,9 +337,7 @@ def linkedin_person_search(forename: str, surname: str, keyword: str, title: str
     :return: string containing URL of search result
     """
 
-    Linkstr = f'https://www.linkedin.com/search/results/people/?keywords={keyword}&firstName={forename}&lastName={surname}&title={title}&company={company}&school={school}'
-    
-    return Linkstr
+    return f'https://www.linkedin.com/search/results/people/?keywords={keyword}&firstName={forename}&lastName={surname}&title={title}&company={company}&school={school}'
 
 def linkedin_post_search(keyword: str, title: str) -> str:
     """
@@ -369,9 +348,7 @@ def linkedin_post_search(keyword: str, title: str) -> str:
     :return: string containing URL of search result
     """
 
-    Linkstr = f'https://www.linkedin.com/search/results/content/?authorJobTitle=%22{title}%22&keywords={keyword}'
-    
-    return Linkstr
+    return f'https://www.linkedin.com/search/results/content/?authorJobTitle=%22{title}%22&keywords={keyword}'
 
 def linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title: str, company: str, school: str) -> dict:
     """
@@ -386,13 +363,11 @@ def linkedin_google_bing_yandex(forename: str, surname: str, keyword: str, title
     :return: dict containing URLs of search results
     """
 
-    Linkdict = {
+    return {
         "Google": f"https://www.google.com/search?q=site%3Awww.linkedin.com+{keyword}+{forename}+{surname}+{title}+{company}+{school}",
         "Bing": f"https://www.bing.com/search?q=site%3Alinkedin.com+{keyword}+{forename}+{surname}+{title}+{company}+{school}",
-        "Yandex": f"https://www.yandex.com/search/?text=site%3Alinkedin.com+{keyword}+{forename}+{surname}+{title}+{company}+{school}"
+        "Yandex": f"https://www.yandex.com/search/?text=site%3Alinkedin.com+{keyword}+{forename}+{surname}+{title}+{company}+{school}",
     }
-
-    return Linkdict
 
 # Communities tool: https://inteltechniques.com/tools/Communities.html
 #       Only implementing this tool in part because some parts seem redundant
@@ -405,7 +380,7 @@ def community_query(query: str) -> dict:
     :return: dict of URLs of search results
     """
 
-    Commdict = {
+    return {
         "Reddit": {
             "User Profile": f"https://old.reddit.com/user/{query}",
             "User Posts": f"https://old.reddit.com/user/{query}/posts/",
@@ -416,21 +391,21 @@ def community_query(query: str) -> dict:
                 "I": f"https://api.pushshift.io/reddit/search/comment/?author={query}&sort=asc&size=1000",
                 "II": f"https://api.pushshift.io/reddit/search/comment/?author={query}",
                 "III": f"https://api.pushshift.io/reddit/search/comment/?q={query}",
-                "IV": f"https://api.pushshift.io/reddit/search/submission/?q={query}"
-            }
+                "IV": f"https://api.pushshift.io/reddit/search/submission/?q={query}",
+            },
         },
         "Hacker News": {
             "User Search": f"https://news.ycombinator.com/user?id={query}",
             "User Posts": f"https://news.ycombinator.com/submitted?id={query}",
             "User Comments": f"https://news.ycombinator.com/threads?id={query}",
-            "Favorites": f"https://news.ycombinator.com/favorites?id={query}"
+            "Favorites": f"https://news.ycombinator.com/favorites?id={query}",
         },
         "TikTok": {
             "User Profile": f"https://www.tiktok.com/@{query}",
             "User Profile Search": f"https://www.tiktok.com/search/user?q={query}",
             "TikTok Analytics I": f"https://tokcount.com/tiktok-analytics/{query}",
             "TikTok Analytics II": f"https://exolyt.com/user/{query}",
-            "TikTok Analytics III": f"https://tokcounter.com/tiktok-analytics/{query}"
+            "TikTok Analytics III": f"https://tokcounter.com/tiktok-analytics/{query}",
         },
         "Meetup": {
             "Member Search": f"https://www.google.com/search?q=site:meetup.com+inurl:member+{query}"
@@ -439,28 +414,24 @@ def community_query(query: str) -> dict:
             "User Account": f"https://www.ebay.com/usr/{query}",
             "User Feedback": f"https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid={user}",
             "User Items": f"https://www.ebay.com/sch/{user}",
-            "Google Search": f"https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.ebay.com%2Fusr+%22{query}%22"
+            "Google Search": f"https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.ebay.com%2Fusr+%22{query}%22",
         },
         "Pintrest": {
             "User Search": f"https://www.pinterest.com/{query}",
             "User Pins": f"https://www.pinterest.com/{query}/pins/",
-            "User Boards": f"https://www.pinterest.com/{query}/boards/"
+            "User Boards": f"https://www.pinterest.com/{query}/boards/",
         },
-        "Discord": {
-            "Server Invite Check": f"https://discord.gg/{query}"
-        },
+        "Discord": {"Server Invite Check": f"https://discord.gg/{query}"},
         "Telegram": {
             "t.me": f"https://t.me/{query}",
             "telegram.me/s": f"https://telegram.me/s/{query}",
-            "telesco.pe": f"https://telesco.pe/{query}"
+            "telesco.pe": f"https://telesco.pe/{query}",
         },
         "Other": {
             "Parler User": f"https://parler.com/{query}",
-            "Gab User": f"https://gab.com/{query}"
-        }
+            "Gab User": f"https://gab.com/{query}",
+        },
     }
-
-    return Commdict
 
 def community_term_query(query: str) -> dict:
     """
@@ -470,27 +441,27 @@ def community_term_query(query: str) -> dict:
     :return: a dict containing URLs of search results
     """
 
-    commdict = {
+    return {
         "Reddit": {
             "Search": f"https://old.reddit.com/search?q={query}",
-            "Title": f"https://old.reddit.com/search?q=title:{query}"
+            "Title": f"https://old.reddit.com/search?q=title:{query}",
         },
         "4chan": {
             "Keyword Search": f"http://4chansearch.com/?q={query}&s=4",
             "Archive Search I": f"http://4chansearch.com/?q={query}&s=7",
             "Archive Search II": f"https://archive.4plebs.org/_/search/text/{query}/order/asc/",
-            "Google Search": f"https://www.google.com/search?q=site:4chan.org {query}"
+            "Google Search": f"https://www.google.com/search?q=site:4chan.org {query}",
         },
         "TikTok": {
             "Tags": f"https://www.tiktok.com/tag/{query}",
             "Term Search": f"https://www.tiktok.com/search?q={query}",
             "Video Search": f"https://www.tiktok.com/search/video?q={query}",
-            "Google Search": f"https://www.google.com/search?q=site:tiktok.com+{query}"
+            "Google Search": f"https://www.google.com/search?q=site:tiktok.com+{query}",
         },
         "Meetup": {
             "Event Search": f"https://www.google.com/search?q=site:meetup.com+inurl:events+{query}",
             "Post Search": f"https://www.google.com/search?q=site:meetup.com+inurl:discussions+{query}",
-            "Google Search": f"https://www.google.com/search?q=site:meetup.com+{query}"
+            "Google Search": f"https://www.google.com/search?q=site:meetup.com+{query}",
         },
         "Discord": {
             "Disboard": f"https://disboard.org/search?keyword={query}",
@@ -498,16 +469,14 @@ def community_term_query(query: str) -> dict:
             "Discord.me": f"https://discord.me/servers?search={query}",
             "Discord Servers": f"https://discordservers.com/search/{query}",
             "Discordbee": f"https://discordbee.com/servers?q={query}",
-            "Google Search": f"https://www.google.com/search?q=site:discord.com+{query}"
+            "Google Search": f"https://www.google.com/search?q=site:discord.com+{query}",
         },
         "Telegram": {
             "Group Search": f"https://www.telegram-group.com/en?s={query}",
             "Channel Search I": f"https://telegramchannels.me/search?type=all&search={query}",
-            "Channel Searcg II": f"https://telemetr.io/en/channels?channel={query}"
-        }
+            "Channel Searcg II": f"https://telemetr.io/en/channels?channel={query}",
+        },
     }
-
-    return commdict
 
 # Email address tool: https://inteltechniques.com/tools/Email.html
 
@@ -519,7 +488,7 @@ def email_query(email: str) -> dict:
     :return: dict containing the search result URLs
     """
 
-    Emaildict = {
+    return {
         "Google": f'http://google.com/search?q="{email}"',
         "Bing": f'http://bing.com/search?q="{email}"',
         "Yandex": f'https://yandex.com/search/?text="{email}"',
@@ -544,10 +513,8 @@ def email_query(email: str) -> dict:
         "ScamSearch": f"https://scamsearch.io/search_report?searchoption=all&search={email}",
         "MySpace": f"https://myspace.com/search/people?q={email}",
         "Flickr": f"https://www.flickr.com/search/people/?q={email}",
-        "Google psbdmp.ws": f'http://google.com/search?q=site:psbdmp.ws+"{email}"'
+        "Google psbdmp.ws": f'http://google.com/search?q=site:psbdmp.ws+"{email}"',
     }
-
-    return Emaildict
 
 # Username tool: https://inteltechniques.com/tools/Username.html
 
@@ -567,7 +534,7 @@ def username_query(query: str) -> dict:
     :return: dict of URLs to search the username
     """
 
-    Userdict = {
+    return {
         "Google": f'https://www.google.com/search?q=%22{query}%22',
         "Bing": f'https://www.bing.com/search?q=%22{query}%22',
         "Yandex": f'https://yandex.com/search/?text="{query}"',
@@ -584,7 +551,7 @@ def username_query(query: str) -> dict:
             f'https://usersearch.org/results_advanced7.php?URL_username={query}',
             f'https://usersearch.org/results_dating.php?URL_username={query}',
             f'https://usersearch.org/results_forums.php?URL_username={query}',
-            f'https://usersearch.org/results_crypto.php?URL_username={query}'
+            f'https://usersearch.org/results_crypto.php?URL_username={query}',
         ],
         "NameVine": f'https://namevine.com/#/{query}',
         "SocialSearcher": f'https://www.social-searcher.com/search-users/?ntw=&q6={query}',
@@ -616,7 +583,7 @@ def username_query(query: str) -> dict:
             f"https://haveibeenpwned.com/unifiedsearch/{query}@gmx.com?truncateResponse=true",
             f"https://haveibeenpwned.com/unifiedsearch/{query}@mail.com?truncateResponse=true",
             f"https://haveibeenpwned.com/unifiedsearch/{query}@mac.com?truncateResponse=true",
-            f"https://haveibeenpwned.com/unifiedsearch/{query}@me.com?truncateResponse=true"
+            f"https://haveibeenpwned.com/unifiedsearch/{query}@me.com?truncateResponse=true",
         ],
         "Dehashed Emails": [
             f"https://dehashed.com/search?query=%22{query}@gmail.com%22",
@@ -630,12 +597,10 @@ def username_query(query: str) -> dict:
             f"https://dehashed.com/search?query=%22{query}@gmx.com%22",
             f"https://dehashed.com/search?query=%22{query}@mail.com%22",
             f"https://dehashed.com/search?query=%22{query}@mac.com%22",
-            f"https://dehashed.com/search?query=%22{query}@me.com%22"
+            f"https://dehashed.com/search?query=%22{query}@me.com%22",
         ],
-        "Email Search": f'https://www.google.com/search?q=%22{query}@gmail.com%22OR%22{query}@yahoo.com%22OR%22{query}@hotmail.com%22OR%22{query}@protonmail.com%22OR%22{query}@live.com%22OR%22{query}@icloud.com%22OR%22{query}@yandex.com%22OR%22{query}@gmx.com%22OR%22{query}@mail.com%22OR%22{query}@mac.com%22OR%22{query}@me.com%22'
+        "Email Search": f'https://www.google.com/search?q=%22{query}@gmail.com%22OR%22{query}@yahoo.com%22OR%22{query}@hotmail.com%22OR%22{query}@protonmail.com%22OR%22{query}@live.com%22OR%22{query}@icloud.com%22OR%22{query}@yandex.com%22OR%22{query}@gmx.com%22OR%22{query}@mail.com%22OR%22{query}@mac.com%22OR%22{query}@me.com%22',
     }
-
-    return Userdict
 
 # Name tool: https://inteltechniques.com/tools/Name.html
 
@@ -648,7 +613,7 @@ def name_query(forename: str, surname: str) -> dict:
     :return: dict of URLs for querying an individual's real name against public databases
     """
 
-    Namedict = {
+    return {
         "TruePeopleSearch": f'https://www.truepeoplesearch.com/results?name={forename}%20{surname}',
         "FastPeopleSearch": f'https://www.fastpeoplesearch.com/name/{forename}-{surname}',
         "Nuwber": f'https://nuwber.com/search?name={forneame}%20{surname}',
@@ -675,10 +640,8 @@ def name_query(forename: str, surname: str) -> dict:
         "OfficialUSA": f'https://www.officialusa.com/names/{forename}-{surname}',
         "Addresses.com": f'https://www.addresses.com/people/{forename}-{surname}',
         "Classmates.com": f'https://www.classmates.com/siteui/ybsearch/results?q={forename} {surname}',
-        "Cubib": f'https://cubib.com/search_results.php?fname={forename}&lname={surname}&locations:all'
+        "Cubib": f'https://cubib.com/search_results.php?fname={forename}&lname={surname}&locations:all',
     }
-
-    return Namedict
 
 # Documents tool: https://inteltechniques.com/tools/Documents.html
 
@@ -687,7 +650,7 @@ def doc_query(query: str) -> dict:
     
     """
 
-    Docdict = {
+    return {
         "PDF": f"https://www.google.com/search?q=ext%3Apdf+{query}",
         "DOC/DOCX": f"https://www.google.com/search?q=ext%3Adoc+OR+ext%3Adocx+{query}",
         "XLS/XLSX/CSV": f"https://www.google.com/search?q=ext%3Axls+OR+ext%3Axlsx+OR+ext%3Acsv+{query}",
@@ -715,10 +678,8 @@ def doc_query(query: str) -> dict:
         "PDF Drive": f"https://www.pdfdrive.net/search?q={query}",
         "Wikileaks": f"https://search.wikileaks.org/?query={query}&exact_phrase=&any_of=&exclude_words=&document_date_start=&document_date_end=&released_date_start=&released_date_end=&new_search=True&order_by=most_relevant#results",
         "Archive.org": f"https://archive.org/search.php?query={query}&sin=TXT",
-        "Google Books": f"https://www.google.com/search?tbm=bks&q={query}"  
+        "Google Books": f"https://www.google.com/search?tbm=bks&q={query}",
     }
-
-    return Docdict
 
 # Images tool: https://inteltechniques.com/tools/Images.html
 
@@ -730,16 +691,14 @@ def img_query_url(query: str) -> dict:
     :return: results of image reverse search on various search engines
     """
 
-    Imgdict = {
+    return {
         "Google Search by Image": f"https://www.google.com/searchbyimage?site=search&sa=X&image_url={query}",
         "Bing Search by Image": f"https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:{query}",
         "Tineye": f"http://www.tineye.com/search/?url={query}",
         "Yandex Search by Image": f"https://yandex.com/images/search?rpt=imageview&url={query}",
         "Baidu": f"https://graph.baidu.com/upload?image={query}",
-        "Karma Decay": f"https://karmadecay.com/search?q={query}"
+        "Karma Decay": f"https://karmadecay.com/search?q={query}",
     }
-
-    return Imgdict
 
 def img_query_text(query: str) -> dict:
     """
@@ -749,7 +708,7 @@ def img_query_text(query: str) -> dict:
     :return: dict of URLs of results for the query
     """
 
-    Imgdict = {
+    return {
         "Google Images": f"https://www.google.com/search?q={query}&tbm=isch",
         "Bing Images": f"https://www.bing.com/images/search?q={query}",
         "Yandex Images": f"https://yandex.com/images/search?text={query}",
@@ -758,10 +717,8 @@ def img_query_text(query: str) -> dict:
         "Instagram": f"https://www.google.com/search?tbm=isch&q=site%3Ainstagram.com+{query}",
         "LinkedIn": f"https://www.google.com/search?tbm=isch&q=site%3Alinkedin.com+{query}",
         "Flickr": f"https://www.flickr.com/search/?text={query}",
-        "Tumblr": f"https://www.tumblr.com/search/{query}"
+        "Tumblr": f"https://www.tumblr.com/search/{query}",
     }
-
-    return Imgdict
 
 # Videos tool: https://inteltechniques.com/tools/Videos.html
 
@@ -773,7 +730,7 @@ def YT_vid_ID_query(query: str) -> dict:
     :return: dict of resultant URLs
     """
 
-    Vidict = {
+    return {
         "Age Bypass": f"https://keepvid.works/?url=https://www.youtube.com/watch/v={query}",
         "Full Screen": f"https://www.youtube.com/embed/{query}",
         "Thumbnail HQ": f"https://i.ytimg.com/vi/{query}/maxresdefault.jpg",
@@ -788,10 +745,8 @@ def YT_vid_ID_query(query: str) -> dict:
         "Restrictions II": f"https://watannetwork.com/tools/blocked/#url={query}",
         "Metadata": f"https://www.googleapis.com/youtube/v3/videos?id={query}&part=snippet,statistics,recordingDetails&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw",
         "Download": f"http://www.pwnyoutube.com/watch?v={query}",
-        "Web Archive": f"https://web.archive.org/web/https://www.youtube.com/watch?v={query}"
+        "Web Archive": f"https://web.archive.org/web/https://www.youtube.com/watch?v={query}",
     }
-
-    return Vidict
 
 def YT_vid_comments(video_id: str, search_term: str) -> str:
     """
@@ -802,9 +757,7 @@ def YT_vid_comments(video_id: str, search_term: str) -> str:
     :return: URL (single string) of query result webpage
     """
 
-    Vidstr = f"https://www.googleapis.com/youtube/v3/commentThreads?part=id,snippet&videoId={video_id}&pageToken=&order=Relevance&maxResults=100&searchTerms={search_term}&textFormat=plainText&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
-
-    return Vidstr
+    return f"https://www.googleapis.com/youtube/v3/commentThreads?part=id,snippet&videoId={video_id}&pageToken=&order=Relevance&maxResults=100&searchTerms={search_term}&textFormat=plainText&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
 
 def YT_user_query(query: str) -> dict:
     """
@@ -814,12 +767,10 @@ def YT_user_query(query: str) -> dict:
     :return: links to profile and account details for the given username
     """
 
-    Vidict = {
+    return {
         "Profile": f"https://www.youtube.com/user/{query}",
-        "Account": f"https://www.youtube.com/feeds/videos.xml?user={query}"
+        "Account": f"https://www.youtube.com/feeds/videos.xml?user={query}",
     }
-
-    return Vidict
 
 def YT_channel_metadata(channel_id: str) -> str:
     """
@@ -829,9 +780,7 @@ def YT_channel_metadata(channel_id: str) -> str:
     :return: URL to metadata
     """
 
-    Vidstr = f"https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
-    
-    return Vidstr
+    return f"https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key=AIzaSyDNALbuV1FZSRy6JpafwUaV_taSVV12wZw"
 
 def vid_search_term(query: str) -> dict:
     """
@@ -841,7 +790,7 @@ def vid_search_term(query: str) -> dict:
     :return: dict containing URLs of results on various video sharing sites and search engines
     """
 
-    Vidict = {
+    return {
         "Google Videos": f"https://www.google.com/search?tbm=vid&q={query}",
         "Bing Videos": f"https://www.bing.com/videos/search?q={query}",
         "Yandex Videos": f"https://yandex.ru/video/search?text={query}&rpt=imageview",
@@ -852,10 +801,8 @@ def vid_search_term(query: str) -> dict:
         "TikTok": f"https://www.tiktok.com/tag/{query}",
         "PeteyVid": f"https://www.peteyvid.com/index.php?q={query}",
         "Archives I": f"https://archive.org/details/movies?and[]={query}",
-        "Archives II": f"https://archive.org/details/opensource_movies?and%5B%5D={query}"
+        "Archives II": f"https://archive.org/details/opensource_movies?and%5B%5D={query}",
     }
-    
-    return Vidict
 
 # Domains tool: https://inteltechniques.com/tools/Domain.html
 
@@ -867,7 +814,7 @@ def domain_query(query: str) -> dict:
     :return: dict containg the URLs to lookup info
     """
 
-    Domdict = {
+    return {
         "ViewDNS": [
             f"http://viewdns.info/whois/?domain={query}",
             f"http://viewdns.info/reverseip/?host={query}&t=1",
@@ -875,12 +822,12 @@ def domain_query(query: str) -> dict:
             f"http://viewdns.info/portscan/?host={query}",
             f"http://viewdns.info/iphistory/?domain={query}",
             f"http://viewdns.info/dnsreport/?domain={query}",
-            f"http://viewdns.info/traceroute/?domain={query}"
+            f"http://viewdns.info/traceroute/?domain={query}",
         ],
         "Who.is": [
             f"http://who.is/whois/{query}",
             f"http://who.is/dns/{query}",
-            f"http://who.is/domain-history/{query}"
+            f"http://who.is/domain-history/{query}",
         ],
         "Other Whois": [
             f"https://dmns.app/domains?q={query}",
@@ -898,11 +845,11 @@ def domain_query(query: str) -> dict:
             f"http://timetravel.mementoweb.org/list/19991212110000/http://{query}",
             f"https://webarchive.loc.gov/all/*/http://{query}",
             f"https://arquivo.pt/page/search?hitsPerPage=100&query=site%3A{query}",
-            f"http://carbondate.cs.odu.edu/#{query}"
+            f"http://carbondate.cs.odu.edu/#{query}",
         ],
         "Google": [
             f"http://google.com/search?q=site%3A{query}",
-            f"http://webcache.googleusercontent.com/search?q=cache:{query}"
+            f"http://webcache.googleusercontent.com/search?q=cache:{query}",
         ],
         "Analytics": [
             f"https://website.informer.com/{query}#tab_stats",
@@ -911,7 +858,7 @@ def domain_query(query: str) -> dict:
             f"https://dnslytics.com/reverse-analytics/{query}",
             f"https://dnslytics.com/reverse-adsense/{query}",
             f"https://www.domainiq.com/snapshot_history?data={query}#{query}",
-            f"http://moonsearch.com/report/{query}.html", 
+            f"http://moonsearch.com/report/{query}.html",
             f"https://www.nerdydata.com/reports/new?search=%7B%22all%22%3A%5B%7B%22type%22%3A%22code%22,%22value%22%3A%22{query}%22%7D%5D,%22any%22%3A%5B%5D,%22none%22%3A%5B%5D%7D",
             f"https://builtwith.com/{query}",
             f"https://dnsdumpster.com/static/map/{query}.png",
@@ -922,7 +869,7 @@ def domain_query(query: str) -> dict:
             f"https://dnslytics.com/domain/{query}",
             f"https://www.wmtips.com/tools/info/{query}",
             f"https://www.robtex.com/dns-lookup/{query}",
-            f"https://www.domaincodex.com/search.php?q={query}"
+            f"https://www.domaincodex.com/search.php?q={query}",
         ],
         "Network": [
             f"http://www.similarweb.com/website/{query}",
@@ -932,7 +879,7 @@ def domain_query(query: str) -> dict:
             f"https://www.reddit.com/search?q=site:{query}",
             f"http://bc.linkody.com/en/seo-tools/free-backlink-checker/{query}",
             f"https://www.copyscape.com/?q=http://{query}",
-            f"http://www.visualsitemapper.com/map/{query}"
+            f"http://www.visualsitemapper.com/map/{query}",
         ],
         "Threat detection": [
             f"https://www.virustotal.com/#/domain/{query}",
@@ -941,17 +888,15 @@ def domain_query(query: str) -> dict:
             f"https://securitytrails.com/list/apex_domain/{query}",
             f"https://www.threatcrowd.org/domain.php?domain={query}",
             f"https://themarkup.org/blacklight?url={query}",
-            f"https://crt.sh/?q={query}"
+            f"https://crt.sh/?q={query}",
         ],
         "Leaks/Compromised Data": [
             f"https://dehashed.com/search?query=%22{query}%22",
             f"https://www.hudsonrock.com/search?domain={query}",
             f"https://intelx.io/?s={query}",
-            f"https://www.skymem.info/srch?q={query}"
-        ]
+            f"https://www.skymem.info/srch?q={query}",
+        ],
     }
-
-    return Domdict
 
 # IP Addresses tool: https://inteltechniques.com/tools/IP.html
 
@@ -963,7 +908,7 @@ def IP_query(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    IPdict = {
+    return {
         "VD ReverseIP": f"http://viewdns.info/reverseip/?host={query}&t=1",
         "VD LocateIP": f"http://viewdns.info/iplocation/?ip={query}",
         "VD PortScan": f"http://viewdns.info/portscan/?host={query}",
@@ -987,10 +932,8 @@ def IP_query(query: str) -> dict:
         "Shodan Raw": f"https://beta.shodan.io/host/{query}/raw",
         "ThreatCrowd": f"https://www.threatcrowd.org/ip.php?ip={query}",
         "Censys": f"https://search.censys.io/hosts/{query}",
-        "Dehashed": f"https://dehashed.com/search?query=%22{query}%22"
+        "Dehashed": f"https://dehashed.com/search?query=%22{query}%22",
     }
-
-    return IPdict
 
 # Virtual currencies searches: https://inteltechniques.com/tools/Currencies.html
 #   Out of virtual/crypto currency - will mostly be bitcoin
@@ -1004,7 +947,7 @@ def bitcoin_query(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    currdict = {
+    return {
         "BTC Validation": f"https://thomas.vanhoutte.be/tools/validate-bitcoin-address.php?address={query}",
         "Satoshi Receive": f"https://blockchain.info/q/getreceivedbyaddress/{query}",
         "Satoshi Sent": f"https://blockchain.info/q/getsentbyaddress/{query}",
@@ -1017,10 +960,8 @@ def bitcoin_query(query: str) -> dict:
         "OXT": f"https://oxt.me/address/{query}",
         "WalletExplorer": f"https://www.walletexplorer.com/address/{query}",
         "BTC": f"https://btc.com/{query}",
-        "BC BTC": f"https://blockchair.com/bitcoin/address/{query}"
+        "BC BTC": f"https://blockchair.com/bitcoin/address/{query}",
     }
-
-    return currdict
 
 # Breach searches: https://inteltechniques.com/tools/Breaches.html
 #   Partial implementation of breach stuff
@@ -1037,17 +978,15 @@ def breachQ_email(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    Breachdict = {
+    return {
         "HIBP": f"https://haveibeenpwned.com/unifiedsearch/{query}",
         "Dehashed": f'https://dehashed.com/search?query="{query}"',
         "IntelX": f"https://intelx.io/?s={query}",
         "PSDMP": f"https://psbdmp.ws/api/search/{query}",
         "CyberNews": f"https://check.cybernews.com/chk/?lang=en_US&e={query}",
         "Spycloud": f"https://portal.spycloud.com/endpoint/enriched-stats/{query}",
-        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}"
+        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}",
     }
-
-    return Breachdict
 
 def breachQ_username(query: str) -> dict:
     """
@@ -1057,13 +996,11 @@ def breachQ_username(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    Breachdict = {
+    return {
         "HIBP": f"https://haveibeenpwned.com/unifiedsearch/{query}",
         "Dehashed": f'https://dehashed.com/search?query="{query}"',
-        "PSBDMP": f"https://psbdmp.ws/api/search/{query}"
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
     }
-
-    return Breachdict
 
 def breachQ_domain(query: str) -> dict:
     """
@@ -1073,14 +1010,12 @@ def breachQ_domain(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    Breachdict = {
+    return {
         "Dehashed": f'https://dehashed.com/search?query="{query}"',
         "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
         "IntelX": f"https://intelx.io/?s={query}",
-        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}"
+        "HudsonRock": f"https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email={query}",
     }
-
-    return Breachdict
 
 def breachQ_telephone(query: str) -> dict:
     """
@@ -1090,12 +1025,10 @@ def breachQ_telephone(query: str) -> dict:
     :return: dict containing URLs for your query
     """
 
-    Breachdict = {
+    return {
         "Dehashed": f'https://dehashed.com/search?query="{query}"',
-        "PSBDMP": f"https://psbdmp.ws/api/search/{query}"
+        "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
     }
-
-    return Breachdict
 
 def breachQ_IP(query: str) -> dict:
     """
@@ -1104,14 +1037,12 @@ def breachQ_IP(query: str) -> dict:
     :param query: what you want to search
     :return: dict containing URLs for your query
     """
-    
-    Breachdict = {
+
+    return {
         "Dehashed": f'https://dehashed.com/search?query="{query}"',
         "PSBDMP": f"https://psbdmp.ws/api/search/{query}",
-        "IntelX": f"https://intelx.io/?s={query}"
+        "IntelX": f"https://intelx.io/?s={query}",
     }
-
-    return Breachdict
 
 # Master query function for breaches below
 #       I know that chaining 5 if statements together below to make this is awful
@@ -1129,40 +1060,38 @@ def breach_query(email: str, username: str, domain: str, telephone: str, IP_add:
     :return: dict of dicts containing URLs for your query
     """
 
-    if email=="":
-        s1 = {"Email": "Email to query not specified"}
-    else:
-        s1 = breachQ_email(email)
+    s1 = (
+        breachQ_email(email)
+        if email
+        else {"Email": "Email to query not specified"}
+    )
 
-    if username=="":
-        s2 = {"Username": "Username to query not specified"}
-    else:
-        s2 = breachQ_username(username)
+    s2 = (
+        breachQ_username(username)
+        if username
+        else {"Username": "Username to query not specified"}
+    )
 
-    if domain=="":
-        s3 = {"Domain": "Domain to query not specified"}
-    else:
-        s3 = breachQ_domain(domain)
+    s3 = (
+        breachQ_domain(domain)
+        if domain
+        else {"Domain": "Domain to query not specified"}
+    )
 
-    if telephone=="":
-        s4 = {"Telephone": "Number to query not specified"}
-    else:
-        s4 = breachQ_telephone(telephone)
+    s4 = (
+        breachQ_telephone(telephone)
+        if telephone
+        else {"Telephone": "Number to query not specified"}
+    )
 
-    if IP_add=="":
-        s5 = {"IP": "Address to query not specified"}
-    else:
-        s5 = breachQ_IP(IP_add)
-
-    Breachdict = {
+    s5 = breachQ_IP(IP_add) if IP_add else {"IP": "Address to query not specified"}
+    return {
         "Email": s1,
         "Username": s2,
         "Domain": s3,
         "Telephone": s4,
-        "IP Address": s5
+        "IP Address": s5,
     }
-
-    return Breachdict
 
 ##################################
 #### FUTURE DEVELOPMENT TASKS ####

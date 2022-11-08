@@ -25,7 +25,7 @@ class OutcomeException(BaseException):
             if isinstance(val, bytes):
                 val = val.decode("UTF-8", errors="replace")
             return val
-        return "<%s instance>" % (self.__class__.__name__,)
+        return f"<{self.__class__.__name__} instance>"
 
     __str__ = __repr__
 
@@ -97,7 +97,7 @@ def skip(msg="", **kwargs):
     __tracebackhide__ = True
     allow_module_level = kwargs.pop("allow_module_level", False)
     if kwargs:
-        raise TypeError("unexpected keyword arguments: {}".format(sorted(kwargs)))
+        raise TypeError(f"unexpected keyword arguments: {sorted(kwargs)}")
     raise Skipped(msg=msg, allow_module_level=allow_module_level)
 
 
@@ -174,19 +174,18 @@ def importorskip(modname, minversion=None, reason=None):
     if minversion is None:
         return mod
     verattr = getattr(mod, "__version__", None)
-    if minversion is not None:
-        try:
-            from pkg_resources import parse_version as pv
-        except ImportError:
-            raise Skipped(
-                "we have a required version for %r but can not import "
-                "pkg_resources to parse version strings." % (modname,),
-                allow_module_level=True,
-            )
-        if verattr is None or pv(verattr) < pv(minversion):
-            raise Skipped(
-                "module %r has __version__ %r, required is: %r"
-                % (modname, verattr, minversion),
-                allow_module_level=True,
-            )
+    try:
+        from pkg_resources import parse_version as pv
+    except ImportError:
+        raise Skipped(
+            "we have a required version for %r but can not import "
+            "pkg_resources to parse version strings." % (modname,),
+            allow_module_level=True,
+        )
+    if verattr is None or pv(verattr) < pv(minversion):
+        raise Skipped(
+            "module %r has __version__ %r, required is: %r"
+            % (modname, verattr, minversion),
+            allow_module_level=True,
+        )
     return mod

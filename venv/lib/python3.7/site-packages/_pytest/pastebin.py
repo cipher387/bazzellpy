@@ -26,23 +26,24 @@ def pytest_addoption(parser):
 
 @pytest.hookimpl(trylast=True)
 def pytest_configure(config):
-    if config.option.pastebin == "all":
-        tr = config.pluginmanager.getplugin("terminalreporter")
-        # if no terminal reporter plugin is present, nothing we can do here;
-        # this can happen when this function executes in a slave node
-        # when using pytest-xdist, for example
-        if tr is not None:
-            # pastebin file will be utf-8 encoded binary file
-            config._pastebinfile = tempfile.TemporaryFile("w+b")
-            oldwrite = tr._tw.write
+    if config.option.pastebin != "all":
+        return
+    tr = config.pluginmanager.getplugin("terminalreporter")
+    # if no terminal reporter plugin is present, nothing we can do here;
+    # this can happen when this function executes in a slave node
+    # when using pytest-xdist, for example
+    if tr is not None:
+        # pastebin file will be utf-8 encoded binary file
+        config._pastebinfile = tempfile.TemporaryFile("w+b")
+        oldwrite = tr._tw.write
 
-            def tee_write(s, **kwargs):
-                oldwrite(s, **kwargs)
-                if isinstance(s, six.text_type):
-                    s = s.encode("utf-8")
-                config._pastebinfile.write(s)
+        def tee_write(s, **kwargs):
+            oldwrite(s, **kwargs)
+            if isinstance(s, six.text_type):
+                s = s.encode("utf-8")
+            config._pastebinfile.write(s)
 
-            tr._tw.write = tee_write
+        tr._tw.write = tee_write
 
 
 def pytest_unconfigure(config):
@@ -83,11 +84,10 @@ def create_new_paste(contents):
     }
     url = "https://bpaste.net"
     response = urlopen(url, data=urlencode(params).encode("ascii")).read()
-    m = re.search(r'href="/raw/(\w+)"', response.decode("utf-8"))
-    if m:
-        return "%s/show/%s" % (url, m.group(1))
+    if m := re.search(r'href="/raw/(\w+)"', response.decode("utf-8")):
+        return f"{url}/show/{m.group(1)}"
     else:
-        return "bad response: " + response
+        return f"bad response: {response}"
 
 
 def pytest_terminal_summary(terminalreporter):
@@ -110,4 +110,4 @@ def pytest_terminal_summary(terminalreporter):
             s = tw.stringio.getvalue()
             assert len(s)
             pastebinurl = create_new_paste(s)
-            tr.write_line("%s --> %s" % (msg, pastebinurl))
+            tr.write_line(f"{msg} --> {pastebinurl}")

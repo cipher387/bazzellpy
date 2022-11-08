@@ -170,14 +170,14 @@ class PyTest(orig.test):
 
     @staticmethod
     def _warn_old_setuptools():
-        msg = (
-            "pytest-runner will stop working on this version of setuptools; "
-            "please upgrade to setuptools 30.4 or later or pin to "
-            "pytest-runner < 5."
-        )
         ver_str = pkg_resources.get_distribution('setuptools').version
         ver = pkg_resources.parse_version(ver_str)
         if ver < pkg_resources.parse_version('30.4'):
+            msg = (
+                "pytest-runner will stop working on this version of setuptools; "
+                "please upgrade to setuptools 30.4 or later or pin to "
+                "pytest-runner < 5."
+            )
             _warnings.warn(msg)
 
     def run(self):
@@ -211,6 +211,5 @@ class PyTest(orig.test):
         Invoke pytest, replacing argv. Return result code.
         """
         with _save_argv(_sys.argv[:1] + self.addopts):
-            result_code = __import__('pytest').main()
-            if result_code:
+            if result_code := __import__('pytest').main():
                 raise SystemExit(result_code)

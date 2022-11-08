@@ -30,7 +30,7 @@ __title__ = "attrs"
 __description__ = "Classes Without Boilerplate"
 __url__ = "https://www.attrs.org/"
 __uri__ = __url__
-__doc__ = __description__ + " <" + __uri__ + ">"
+__doc__ = f"{__description__} <{__uri__}>"
 
 __author__ = "Hynek Schlawack"
 __email__ = "hs@ox.cx"

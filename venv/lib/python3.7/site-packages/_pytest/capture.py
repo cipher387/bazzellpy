@@ -112,9 +112,7 @@ class CaptureManager(object):
             return "global"
         capture_fixture = getattr(self._current_item, "_capture_fixture", None)
         if capture_fixture is not None:
-            return (
-                "fixture %s" % self._current_item._capture_fixture.request.fixturename
-            )
+            return f"fixture {self._current_item._capture_fixture.request.fixturename}"
         return False
 
     # Global capturing control
@@ -258,13 +256,10 @@ capture_fixtures = {"capfd", "capfdbinary", "capsys", "capsysbinary"}
 
 
 def _ensure_only_one_capture_fixture(request, name):
-    fixtures = set(request.fixturenames) & capture_fixtures - {name}
-    if fixtures:
+    if fixtures := set(request.fixturenames) & capture_fixtures - {name}:
         fixtures = sorted(fixtures)
         fixtures = fixtures[0] if len(fixtures) == 1 else fixtures
-        raise request.raiseerror(
-            "cannot use {} and {} at the same time".format(fixtures, name)
-        )
+        raise request.raiseerror(f"cannot use {fixtures} and {name} at the same time")
 
 
 @pytest.fixture
@@ -440,9 +435,7 @@ class EncodedFile(object):
         if isinstance(obj, six.text_type):
             obj = obj.encode(self.encoding, "replace")
         elif _PY3:
-            raise TypeError(
-                "write() argument must be str, not {}".format(type(obj).__name__)
-            )
+            raise TypeError(f"write() argument must be str, not {type(obj).__name__}")
         self.buffer.write(obj)
 
     def writelines(self, linelist):
@@ -568,10 +561,7 @@ class FDCaptureBinary(object):
             self.tmpfile_fd = tmpfile.fileno()
 
     def __repr__(self):
-        return "<FDCapture %s oldfd=%s>" % (
-            self.targetfd,
-            getattr(self, "targetfd_save", None),
-        )
+        return f'<FDCapture {self.targetfd} oldfd={getattr(self, "targetfd_save", None)}>'
 
     def start(self):
         """ Start capturing on targetfd using memorized tmpfile. """
@@ -638,10 +628,7 @@ class SysCapture(object):
         self._old = getattr(sys, name)
         self.name = name
         if tmpfile is None:
-            if name == "stdin":
-                tmpfile = DontReadFromInput()
-            else:
-                tmpfile = CaptureIO()
+            tmpfile = DontReadFromInput() if name == "stdin" else CaptureIO()
         self.tmpfile = tmpfile
 
     def start(self):
@@ -726,10 +713,8 @@ def _colorama_workaround():
     fail in various ways.
     """
     if sys.platform.startswith("win32"):
-        try:
+        with contextlib.suppress(ImportError):
             import colorama  # noqa: F401
-        except ImportError:
-            pass
 
 
 def _readline_workaround():
@@ -751,10 +736,8 @@ def _readline_workaround():
     See https://github.com/pytest-dev/pytest/pull/1281
     """
     if sys.platform.startswith("win32"):
-        try:
+        with contextlib.suppress(ImportError):
             import readline  # noqa: F401
-        except ImportError:
-            pass
 
 
 def _py36_windowsconsoleio_workaround(stream):
@@ -793,11 +776,7 @@ def _py36_windowsconsoleio_workaround(stream):
         return
 
     def _reopen_stdio(f, mode):
-        if not buffered and mode[0] == "w":
-            buffering = 0
-        else:
-            buffering = -1
-
+        buffering = 0 if not buffered and mode[0] == "w" else -1
         return io.TextIOWrapper(
             open(os.dup(f.fileno()), mode, buffering),
             f.encoding,
@@ -814,9 +793,7 @@ def _py36_windowsconsoleio_workaround(stream):
 def _attempt_to_close_capture_file(f):
     """Suppress IOError when closing the temporary file used for capturing streams in py27 (#2370)"""
     if six.PY2:
-        try:
+        with contextlib.suppress(IOError):
             f.close()
-        except IOError:
-            pass
     else:
         f.close()
